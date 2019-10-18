@@ -5,26 +5,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ URL::asset('loginFrom\Login_v15\images\icons\favicon.ico') }}"/> 
+	<link rel="icon" type="image/png" href="<?php echo e(URL::asset('loginFrom\Login_v15\images\icons\favicon.ico')); ?>"/> 
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\bootstrap\css\._bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\bootstrap\css\._bootstrap.min.css')); ?>">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\fonts\font-awesome-4.7.0\css\._font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\fonts\font-awesome-4.7.0\css\._font-awesome.min.css')); ?>">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\fonts\Linearicons-Free-v1.0.0\._icon-font.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\fonts\Linearicons-Free-v1.0.0\._icon-font.min.css')); ?>">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\animate\animate.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\animate\animate.css')); ?>">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\css-hamburgers\hamburgers.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\css-hamburgers\hamburgers.min.css')); ?>">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\animsition\css\animsition.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\animsition\css\animsition.min.css')); ?>">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\select2\select2.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\select2\select2.min.css')); ?>">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\daterangepicker\daterangepicker.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\daterangepicker\daterangepicker.css')); ?>">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\css\util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\css\main.css') }}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\css\util.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\css\main.css')); ?>">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -94,4 +94,4 @@
 	<script src="C:\xampp\htdocs\DatabaseProject\public\loginFrom\Login_v15\js\main.js"></script>
 
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/login.blade.php ENDPATH**/ ?>
