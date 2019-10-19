@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/productlist', function () {
+    return view('Productlist');
 });
 
 Route::get('product','ProductController@index');
