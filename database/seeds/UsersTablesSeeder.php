@@ -12,10 +12,12 @@ class UsersTablesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => bcrypt('password'),
+        DB::table('employees')->insert([
+            'employeeNumber' => DB::random(10),
+            'firstName' => DB::random(10),
+            'lastName' => DB::random(10),
+            'password' => Hash::make('password'),
+            'remember_Token' => str::random(10),
         ]);
         //$users = DB::table('employees')->insert('employeeNumber', 'firstName','lastName')->get();
          //User::create([
