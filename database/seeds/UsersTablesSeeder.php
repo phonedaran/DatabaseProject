@@ -16,7 +16,7 @@ class UsersTablesSeeder extends Seeder
             'employeeNumber' => DB::random(10),
             'firstName' => DB::random(10),
             'lastName' => DB::random(10),
-            'password' => Hash::make('password'),
+            'password' => bcrypt('password'),
             'remember_Token' => str::random(10),
         ]);
         //$users = DB::table('employees')->insert('employeeNumber', 'firstName','lastName')->get();
