@@ -11,11 +11,11 @@ class ProductController extends Controller
 
         $products = Product::paginate(15);
 
-        return view('products.index',['products' => $products ]);
+        return view('products.productlist',['products' => $products ]);
 
        // $productName = 'Coke';
 
-        //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view 
+        //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view
     }
 
 
