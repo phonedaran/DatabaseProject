@@ -12,7 +12,7 @@ class UsersTablesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('employees')->insert([
+        DB::table('users')->insert([
             'employeeNumber' => DB::random(10),
             'firstName' => DB::random(10),
             'lastName' => DB::random(10),
