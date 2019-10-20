@@ -18,5 +18,15 @@ class ProductController extends Controller
         //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view
     }
 
+    public function pdlogin(){
+
+        $products = Product::paginate(15);
+
+        return view('products.successlogin',['products' => $products ]);
+
+       // $productName = 'Coke';
+
+        //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view
+    }
 
 }

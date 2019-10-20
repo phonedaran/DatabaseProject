@@ -26,7 +26,7 @@ class MainController extends Controller
         $data=DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$password]);
         if (count($data))
         {
-            return redirect('main/successlogin');
+            return redirect('main/success');
         }
         else
         {
@@ -49,13 +49,13 @@ class MainController extends Controller
         // }
         // else
         // {
-            return  redirect()->back()->with('errors','Wrong Login Details!');
+            //return  redirect()->back()->with('errors','Wrong Login Details!');
         }
     }
 
     function successlogin()
     {
-        return view('successlogin');
+        return view('products.successlogin');
     }
 
     function logout()

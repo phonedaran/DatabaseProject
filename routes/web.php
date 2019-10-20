@@ -22,5 +22,6 @@ Route::get('/productlist', function () {
 Route::get('/','ProductController@index');
 Route::get('/main','MainController@index');
 Route::post('/main/checklogin','MainController@checklogin');
-Route::get('main/successlogin','MainController@successlogin');
+Route::get('main/success','MainController@successlogin');
+Route::get('main/success','ProductController@pdlogin');
 Route::get('main/logout','MainController@logout');
