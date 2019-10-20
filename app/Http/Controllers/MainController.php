@@ -26,7 +26,7 @@ class MainController extends Controller
         $data=DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$password]);
         if (count($data))
         {
-            return redirect('main/success');
+            return redirect('main/success')->with('success','welcome to KIKKOK !');
         }
         else
         {
@@ -49,7 +49,7 @@ class MainController extends Controller
         // }
         // else
         // {
-            //return  redirect()->back()->with('errors','Wrong Login Details!');
+            return  redirect()->back()->with('warning','Please try again');
         }
     }
 
@@ -60,7 +60,6 @@ class MainController extends Controller
 
     function logout()
     {
-        Auth::logout();
-        return redirect('main');
+        return redirect('/');
     }
 }
