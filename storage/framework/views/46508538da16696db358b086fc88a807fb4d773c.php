@@ -124,8 +124,7 @@
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 font-italic">Classic Plastic model SHOP</h1>
-                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most
-                    interesting in this post’s contents.</p>
+                <p class="lead my-3">A little shop but not a little things</p>
             </div>
         </div>
     </div>
@@ -138,6 +137,7 @@
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
+
                                 <div class="card-body">
                                     <h3><?php echo e($product->productName); ?></h3>
                                     <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
@@ -148,8 +148,10 @@
 
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" >
+                                                <a href="<?php echo e(url('/productlist/view')); ?>"> View</a>
+                                            </button>
+                                            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
                                         </div>
                                         <!--small class="text-muted">9 mins</small>-->
                                     </div>

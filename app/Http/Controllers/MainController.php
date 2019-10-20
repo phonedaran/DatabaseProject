@@ -32,7 +32,7 @@ class MainController extends Controller
         {
         //print_r($data);
         // print_r($request->input());
-        
+
         // $this->validate($request, [
         //     'name'      =>  'requred|name',
         //     'pass'      =>  'requred|alphanNum|min:3'

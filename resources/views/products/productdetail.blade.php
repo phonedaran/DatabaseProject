@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
-    
+
     <link rel="stylesheet" href="bootstrap-4.3.1-dist\js\button.js">
 
     <!-- Bootstrap core CSS -->
@@ -77,10 +77,8 @@
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black">
-                <img src="images/star-icon.png" width="35" height="35" alt="l">
-            </a>
-            
+
+
             <a class="py-2 d-none d-md-inline-block" style="color:black" href="{{ url('/productlist') }}">Product</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
@@ -88,7 +86,7 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">
                 <!-- <li class="nav-item dropdown"> -->
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                {{-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     Dropdown link
                 </a>
@@ -96,18 +94,18 @@
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                </div> --}}
                 <!-- </li>  -->
             </a>
         </div>
     </nav>
 
-    
+
     <main role="main">
-   
+
         <div class="album py-5 bg-light">
             <div class="container">
-                <div class="row">     
+                <div class="row">
                     <div class="col-md-6">
                         <div class="card mb-6 shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
@@ -137,8 +135,8 @@
                             </div>
                         </div>
                     </div>
-                </div>  
-              
+                </div>
+
             </div>
         </div>
     </main>

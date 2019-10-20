@@ -18,13 +18,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-<<<<<<< HEAD
 
-=======
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-        crossorigin="anonymous">
-   
->>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -70,7 +64,7 @@
                             <path d="M21 21l-5.2-5.2" />
                         </svg>
                         </a>
-                        <a><span class="fas fa-user" style=" color: aliceblue"></span></a>
+                        <!--<a><span class="fas fa-user" style=" color: aliceblue"></span></a>-->
                     </div>
                 </div>
             </header>
@@ -104,8 +98,7 @@
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 font-italic">Classic Plastic model SHOP</h1>
-                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most
-                    interesting in this post’s contents.</p>
+                <p class="lead my-3">A little shop but not a little things</p>
             </div>
         </div>
     </div>
@@ -118,14 +111,14 @@
 
                 @foreach ($products as $product )
                     <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-<<<<<<< HEAD
-                                    <img src='<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
-=======
-                                <img src='images/product/<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
-                                <!--<img src='<?php echo 'images/gg.png' ?>' width="100%" height="100%"  />-->
-
->>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
+                            <div class="card mb-4 shadow-sm"><svg class="bd-placeholder-img card-img-top" width="100%" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" />
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                                    <!--<img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                        onerror="this.src='images/not.png'" width="100%" height="100%"  />-->
                                 <div class="card-body">
                                     <h3>{{$product->productName}}</h3>
                                     <!--<p class="card-text">{{$product->productDescription}}</p>-->

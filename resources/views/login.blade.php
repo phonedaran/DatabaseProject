@@ -4,7 +4,7 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="{{ URL::asset('loginFrom\Login_v15\images\icons\favicon.ico') }}"/> 
+	<link rel="icon" type="image/png" href="{{ URL::asset('loginFrom\Login_v15\images\icons\favicon.ico') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\bootstrap\css\._bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\fonts\font-awesome-4.7.0\css\._font-awesome.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\fonts\Linearicons-Free-v1.0.0\._icon-font.min.css') }}">
@@ -34,32 +34,7 @@
 			</header>
 		</div>
     </div>
-	<nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <!-- <a class="py-2" href="#" style="color:black">
-                <img src="images/star-icon.png" width="35" height="35" alt="l">
-            </a> -->
-            
-            <a class="py-2 d-none d-md-inline-block" style="color:black" href="{{ url('/') }}">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">
-                <!-- <li class="nav-item dropdown"> -->
-                <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-                <!-- </li>  -->
-            </a>
-        </div>
-    </nav>
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -72,7 +47,7 @@
 				@if (Session('warning'))
 				<div class="alert alert-danger alert-dismissable fade show" role="alert">
   					<!-- {{ Session::get('message') }} -->
-					<strong>Please try again</strong> 
+					<strong>Please try again</strong>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     					<span aria-hidden="true">&times;</span>
  					</button>
@@ -112,6 +87,6 @@
 	<link rel="stylesheet" href="{{asset('loginFrom\Login_v15\vendor\daterangepicker\daterangepicker.js')}}">
 	<link rel="stylesheet" href="{{asset('loginFrom\Login_v15\vendor\countdowntime\countdowntime.js')}}">
 	<link rel="stylesheet" href="{{asset('loginFrom\Login_v15\js\main.js')}}">
-	
+
 </body>
 </html>
