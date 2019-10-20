@@ -18,13 +18,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-<<<<<<< HEAD
-
-=======
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-        crossorigin="anonymous">
    
->>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -70,7 +64,7 @@
                             <path d="M21 21l-5.2-5.2" />
                         </svg>
                         </a>
-                        <a><span class="fas fa-user" style=" color: aliceblue"></span></a>
+                        <!-- <a><img src=""></a> -->
                     </div>
                 </div>
             </header>
@@ -94,12 +88,12 @@
                     <a class="dropdown-item" href="#">Key Order</a>
                     <a class="dropdown-item" href="#">Order list</a>
                     <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
                 </div>
             <!-- </a> -->
         </div>
     </nav>
-
+    
     <div class="container">
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
@@ -116,22 +110,18 @@
                 <div class="row">
 
 
-                @foreach ($products as $product )
+                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-<<<<<<< HEAD
-                                    <img src='<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
-=======
                                 <img src='images/product/<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
                                 <!--<img src='<?php echo 'images/gg.png' ?>' width="100%" height="100%"  />-->
 
->>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
                                 <div class="card-body">
-                                    <h3>{{$product->productName}}</h3>
-                                    <!--<p class="card-text">{{$product->productDescription}}</p>-->
+                                    <h3><?php echo e($product->productName); ?></h3>
+                                    <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
                                     <tr>
-                                        <td>Stock : {{$product->quantityInStock}}</td>
-                                        <td>Pirce : {{$product->buyPrice}}</td>
+                                        <td>Stock : <?php echo e($product->quantityInStock); ?></td>
+                                        <td>Pirce : <?php echo e($product->buyPrice); ?></td>
                                     </tr>
 
                                     <div class="d-flex justify-content-between align-items-center">
@@ -144,12 +134,13 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 </div>
 
                 <br>
-                    {{ $products->links() }}
+                    <?php echo e($products->links()); ?>
+
             </div>
         </div>
 
@@ -180,3 +171,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp1\htdocs\DatabaseProject\resources\views/products/successlogin.blade.php ENDPATH**/ ?>

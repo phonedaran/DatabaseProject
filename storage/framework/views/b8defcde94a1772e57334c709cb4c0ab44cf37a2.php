@@ -18,7 +18,13 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+<<<<<<< HEAD
 
+=======
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+        crossorigin="anonymous">
+   
+>>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -64,7 +70,11 @@
                             <path d="M21 21l-5.2-5.2" />
                         </svg>
                         </a>
+<<<<<<< HEAD
                         <!-- <a><img src=""></a> -->
+=======
+                        <a><span class="fas fa-user" style=" color: aliceblue"></span></a>
+>>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
                     </div>
                 </div>
             </header>
@@ -88,7 +98,7 @@
                     <a class="dropdown-item" href="#">Key Order</a>
                     <a class="dropdown-item" href="#">Order list</a>
                     <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
                 </div>
             <!-- </a> -->
         </div>
@@ -110,10 +120,16 @@
                 <div class="row">
 
 
-                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
+<<<<<<< HEAD
                                     <img src='<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
+=======
+                                <img src='images/product/<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
+                                <!--<img src='<?php echo 'images/gg.png' ?>' width="100%" height="100%"  />-->
+
+>>>>>>> 5145ebfeb6d765cd1cb9d47c2858b6f975cee68e
                                 <div class="card-body">
                                     <h3><?php echo e($product->productName); ?></h3>
                                     <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
