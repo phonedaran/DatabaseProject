@@ -83,7 +83,7 @@
                     <circle cx="12" cy="12" r="10" />
                     <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
                 </svg> -->
-                <img src="images/star-icon.png" width="35" height="35" alt="l">
+
             </a>
 
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
@@ -123,7 +123,7 @@
     <div class="container">
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
+                <h1 class="display-4 font-italic">Classic Plastic model SHOP</h1>
                 <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most
                     interesting in this post’s contents.</p>
             </div>
@@ -140,12 +140,15 @@
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
+                                <!--
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
                                     focusable="false" role="img" aria-label="Placeholder: Thumbnail">
                                     <title>Placeholder</title>
                                     <rect width="100%" height="100%" fill="#55595c" />
                                     <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                                </svg>
+                                </svg>-->
+                                <img src='<?php echo $product->imagePath; ?>' width="100%" height="100%"  />
+
                                 <div class="card-body">
                                     <h3><?php echo e($product->productName); ?></h3>
                                     <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
