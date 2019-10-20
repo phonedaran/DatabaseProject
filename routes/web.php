@@ -19,8 +19,4 @@ Route::get('/productlist', function () {
     return view('Productlist');
 });
 
-Route::get('/productdetail', function () {
-    return view('productdetail');
-});
-
 Route::get('product','ProductController@index');
