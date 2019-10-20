@@ -15,10 +15,48 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\vendor\daterangepicker\daterangepicker.css')); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\css\util.css')); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('loginFrom\Login_v15\css\main.css')); ?>">
-
+	<link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 </head>
 <body>
-
+	<div class="text-white bg-dark">
+        <div class="container">
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-12 text-center">
+                        <h1 class="display-4">K I K K O K</h1>
+                    </div>
+                </div>
+			</header>
+		</div>
+    </div>
+	<nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2" href="#" style="color:black">
+                <img src="images/star-icon.png" width="35" height="35" alt="l">
+            </a>
+            
+            <a class="py-2 d-none d-md-inline-block" style="color:black" href="<?php echo e(url('/productlist')); ?>">Product</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">
+                <!-- <li class="nav-item dropdown"> -->
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Dropdown link
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+                <!-- </li>  -->
+            </a>
+        </div>
+    </nav>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">

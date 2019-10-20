@@ -18,7 +18,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-   
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -93,7 +93,7 @@
             <!-- </a> -->
         </div>
     </nav>
-    
+
     <div class="container">
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
@@ -113,8 +113,7 @@
                     @foreach ($products as $product )
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img src='<?php echo $product->imagePath; ?>' width="100%" height="100%"  />
-
+                                    <img src='<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
                                 <div class="card-body">
                                     <h3>{{$product->productName}}</h3>
                                     <!--<p class="card-text">{{$product->productDescription}}</p>-->

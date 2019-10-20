@@ -137,9 +137,7 @@
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img src='images/product/<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
-                                <!--<img src='<?php echo 'images/gg.png' ?>' width="100%" height="100%"  />-->
-
+                                <img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
                                 <div class="card-body">
                                     <h3><?php echo e($product->productName); ?></h3>
                                     <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
