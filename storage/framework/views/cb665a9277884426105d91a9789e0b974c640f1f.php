@@ -68,7 +68,7 @@
                             <path d="M21 21l-5.2-5.2" />
                         </svg>
                         </a>
-                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
+                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                 <div class="row">
 
 
-                    @foreach ($products as $product )
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
@@ -147,11 +147,11 @@
                                     <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                                 </svg>
                                 <div class="card-body">
-                                    <h3>{{$product->productName}}</h3>
-                                    <!--<p class="card-text">{{$product->productDescription}}</p>-->
+                                    <h3><?php echo e($product->productName); ?></h3>
+                                    <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
                                     <tr>
-                                        <td>Stock : {{$product->quantityInStock}}</td>
-                                        <td>Pirce : {{$product->buyPrice}}</td>
+                                        <td>Stock : <?php echo e($product->quantityInStock); ?></td>
+                                        <td>Pirce : <?php echo e($product->buyPrice); ?></td>
                                     </tr>
 
                                     <div class="d-flex justify-content-between align-items-center">
@@ -164,12 +164,13 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 </div>
 
                 <br>
-                    {{ $products->links() }}
+                    <?php echo e($products->links()); ?>
+
             </div>
         </div>
 
@@ -200,3 +201,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp1\htdocs\DatabaseProject\resources\views/products/productlist.blade.php ENDPATH**/ ?>

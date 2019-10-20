@@ -19,4 +19,8 @@ Route::get('/productlist', function () {
     return view('Productlist');
 });
 
-Route::get('product','ProductController@index');
+Route::get('/','ProductController@index');
+Route::get('/main','MainController@index');
+Route::post('/main/checklogin','MainController@checklogin');
+Route::get('main/successlogin','MainController@successlogin');
+Route::get('main/logout','MainController@logout');

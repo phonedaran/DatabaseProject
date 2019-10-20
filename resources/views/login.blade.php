@@ -28,7 +28,29 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<!-- @if (isset(Auth::user()->name))
+					<script>window.location="/main/successlogin";</script>
+				@endif-->
+
+				<!-- @if ($massage = Session::get('error'))
+					<div class="alert alert-danger alert-block">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						<strong>{{ $massage }}</strong>
+					</div>
+				@endif -->
+
+				@if (count($errors) > 0)
+					<div class="alert alert-danger">
+						<ul>
+						@foreach($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+						</ul>
+					</div>
+				@endif	
+				<!-- {{ csrf_field() }}  -->
+				<form class="login100-form validate-form" method="POST" action="{{ URL::to('/main/checklogin') }}">
+					@csrf
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Uername</span>
 						<input class="input100" type="text" name="name" placeholder="Enter Username">
@@ -42,7 +64,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="login" value="Login">
 							Login
 						</button>
 					</div>
