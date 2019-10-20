@@ -83,7 +83,7 @@
                     <circle cx="12" cy="12" r="10" />
                     <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
                 </svg> -->
-                <img src="images/star-icon.png" width="35" height="35" alt="l">
+
             </a>
 
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
@@ -93,7 +93,7 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">
                 <!-- <li class="nav-item dropdown"> -->
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     Dropdown link
                 </a>
@@ -101,7 +101,7 @@
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                </div> -->
                 <!-- </li>  -->
             </a>
         </div>
@@ -133,19 +133,13 @@
     <main role="main">
         <div class="album py-5 bg-light">
             <div class="container">
-
                 <div class="row">
-
-
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                    focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c" />
-                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                                </svg>
+                                <img src='images/product/<?php echo $product->productName; ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
+                                <!--<img src='<?php echo 'images/gg.png' ?>' width="100%" height="100%"  />-->
+
                                 <div class="card-body">
                                     <h3><?php echo e($product->productName); ?></h3>
                                     <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
