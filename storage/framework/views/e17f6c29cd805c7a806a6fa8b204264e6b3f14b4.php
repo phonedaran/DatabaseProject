@@ -40,7 +40,7 @@
                 <img src="images/star-icon.png" width="35" height="35" alt="l">
             </a> -->
             
-            <a class="py-2 d-none d-md-inline-block" style="color:black" href="<?php echo e(url('/productlist')); ?>">Product</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:black" href="<?php echo e(url('/')); ?>">Product</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
