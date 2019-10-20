@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>WELCOME TO KIKKOK SHOP </h1>
+    <br>
+        <a href="{{ url('/main/logout') }}">Logout</a>
     <!-- @if (isset(Auth::user()->name))
         <div class="alert alert-danger success-block">
             <strong>Welcome! {{ Auth::user()->name }}</strong>

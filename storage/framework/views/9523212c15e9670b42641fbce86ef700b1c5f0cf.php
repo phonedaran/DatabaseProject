@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>WELCOME TO KIKKOK SHOP </h1>
+    <br>
+        <a href="<?php echo e(url('/main/logout')); ?>">Logout</a>
     <!-- <?php if(isset(Auth::user()->name)): ?>
         <div class="alert alert-danger success-block">
             <strong>Welcome! <?php echo e(Auth::user()->name); ?></strong>

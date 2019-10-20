@@ -15,6 +15,10 @@
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\vendor\daterangepicker\daterangepicker.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\css\util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('loginFrom\Login_v15\css\main.css') }}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -32,14 +36,24 @@
 					<script>window.location="/main/successlogin";</script>
 				@endif-->
 
-				<!-- @if ($massage = Session::get('error'))
-					<div class="alert alert-danger alert-block">
-						<button type="button" class="close" data-dismiss="alert">x</button>
-						<strong>{{ $massage }}</strong>
-					</div>
-				@endif -->
+				@if (Session('success'))
+				<div class="alert alert-success" role="alert">
+  					<!-- {{ Session::get('message') }} -->
+					  Welcome to KIKKOK!
+				</div>
+				@endif
 
-				@if (count($errors) > 0)
+				@if (Session('warning'))
+				<div class="alert alert-danger alert-dismissable fade show" role="alert">
+  					<!-- {{ Session::get('message') }} -->
+					<strong>Please try again</strong> 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+ 					</button>
+				</div>
+				@endif
+
+				<!-- @if (count($errors) > 0)
 					<div class="alert alert-danger">
 						<ul>
 						@foreach($errors->all() as $error)
@@ -47,7 +61,7 @@
 						@endforeach
 						</ul>
 					</div>
-				@endif	
+				@endif	 -->
 				<!-- {{ csrf_field() }}  -->
 				<form class="login100-form validate-form" method="POST" action="{{ URL::to('/main/checklogin') }}">
 					@csrf
@@ -73,6 +87,7 @@
 		</div>
 	</div>
 
+	<!-- @yield('content') -->
 	<link rel="stylesheet" href="{{asset('loginFrom\Login_v15\vendor\jquery\jquery-3.2.1.min.js')}}">
 	<link rel="stylesheet" href="{{asset('loginFrom\Login_v15\vendor\animsition\js\animsition.min.js')}}">
 	<link rel="stylesheet" href="{{asset('loginFrom\Login_v15\vendor\bootstrap\js\popper.js')}}">
