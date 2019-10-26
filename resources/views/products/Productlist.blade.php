@@ -13,6 +13,8 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
 
+    <script src="../resources/js/jquery-3.4.1.js"></script>
+
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -76,16 +78,7 @@
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black">
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false">
-                    <title>Product</title>
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
-                </svg> -->
-
-            </a>
-
+            <a class="py-2" href="#" style="color:black"></a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
@@ -106,20 +99,6 @@
             </a>
         </div>
     </nav>
-    <!-- <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul> -->
     <div class="container">
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
@@ -129,32 +108,127 @@
         </div>
     </div>
 
+    <?php
+        use App\Filter;
+    ?>
+
+    <div class="container">
+        <div class="col-md-3 px-0">
+            <!--Price range [15.91-103.42] -->
+            <div class="list-group">
+                <br>
+                <h2>Product Filter</h2>
+                <br>
+            </div>
+
+            <!--Type-->
+            <div class="list-group">
+                <h3>Type</h3>
+                <select name="type">
+                    <option value="Any">Any</option>
+                    <option value="Classic Cars">Classic Cars</option>
+                    <option value="Motorcycles">Motorcycles </option>
+                    <option value="Planes">Planes</option>
+                    <option value="Ships">Ships</option>
+                    <option value="Trains">Trains</option>
+                    <option value="Trucks and Buses">Trucks and Buses</option>
+                    <option value="Vintage Cars">Vintage Cars</option>
+                </select>
+            </div>
+
+            <!--Scale-->
+            <div class="list-group">
+                <h3>Scale</h3>
+                <select name="scale">
+                    <option value="Any">Any </option>
+                    <option value="1:10">1:10</option>
+                    <option value="1:12">1:12</option>
+                    <option value="1:18">1:18</option>
+                    <option value="1:24">1:24</option>
+                    <option value="1:32">1:32</option>
+                    <option value="1:50">1:50</option>
+                    <option value="1:72">1:72</option>
+                    <option value="1:700">1:700</option>
+                </select>
+            </div>
+
+            <!--Vendor-->
+            <div class="list-group">
+                <h3>vendor</h3>
+                <select name="vendor">
+                    <option value="Any">Any </option>
+                    <option value="Autoart Studio Design">Autoart Studio Design </option>
+                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                    <option value="Classic Metal Creations">Classic Metal Creations </option>
+                    <option value="Exoto Designs">Exoto Designs </option>
+                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                    <option value="Min Lin Diecast">Min Lin Diecast </option>
+                    <option value="Motor City Art Classics">Motor City Art Classics </option>
+                    <option value="Red Start Diecast">Red Start Diecast </option>
+                    <option value="Second Gear Diecast">Second Gear Diecast </option>
+                    <option value="Studio M Art Models">Studio M Art Models </option>
+                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                </select>
+            </div>
+
+            <?php
+                if(isset($_POST['submit'])){
+                    $type = $_POST('type');
+                    $scale = $_POST('scale');
+                    $vendor = $_POST('vendor');
+                }
+
+            ?>
+
+            <!--Button-->
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" >
+                        <a href="{{ url('/') }}">Filter</a-->
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" >
+                        <a href="{{ url('/') }}">Clear</a>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <main role="main">
+
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
+
                     @foreach ($products as $product )
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg' onerror="this.src='images/not.png'" width="100%" height="100%"  />
-
-
+                                <img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                    onerror="this.src='images/not.png'" width="100%" height="100%"  />
                                 <div class="card-body">
                                     <h3>{{$product->productName}}</h3>
-                                    <!--<p class="card-text">{{$product->productDescription}}</p>-->
                                     <tr>
                                         <td>Stock : {{$product->quantityInStock}}</td>
+                                        <br>
                                         <td>Pirce : {{$product->buyPrice}}</td>
-                                    </tr>
+                                        <br>
+                                        <td>producLine(type?) : {{$product->productLine}}</td>
+                                        <br>
+                                        <td>Scale : {{$product->productScale}}</td>
+                                        <br>
+                                        <td>Vendor : {{$product->productVendor}}</td>
 
+                                    </tr>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary" >
-                                                <a href="{{ url('/productlist/view') }}"> View</a>
+                                                <!--<a href="{{ url('/productlist/view') }}"> View</a>-->
+                                                <a href="{{'productlist/view?'.$product->productName}}"> View</a>
                                             </button>
-                                            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
                                         </div>
-                                        <!--small class="text-muted">9 mins</small>-->
                                     </div>
                                 </div>
                             </div>
