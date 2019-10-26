@@ -102,9 +102,22 @@
 
 
     <main role="main">
+        <?php
 
-        <!--test-->
-        <?php echo str_replace('%20',' ', $_SERVER['QUERY_STRING'] )?>
+            $code = $_GET['code'];
+            $jsonDecode = json_Decode($products,true);
+            foreach ($jsonDecode as $result) {
+                if($result['productCode'] == $code){
+                    $name = $result['productName'];
+                    $line = $result['productLine'];
+                    $scale = $result['productScale'];
+                    $vendor = $result['productVendor'];
+                    $des = $result['productDescription'];
+                    $stock = $result['quantityInStock'];
+                    $price = $result['buyPrice'];
+                }
+            }
+        ?>
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
@@ -112,8 +125,8 @@
                         <div class="card mb-6 shadow-sm">
                             {{-- fix path later --}}
 
-                            <img src='../images/product/<?php echo str_replace('%20',' ', $_SERVER['QUERY_STRING'] )?>.jpg'
-                                    onerror="this.src='images/not.png'" width="100%" height="100%"  />
+                            <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $name)); ?>.jpg'
+                            onerror="this.src='../images/not.png'" width="100%" height="100%"  />
 
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.

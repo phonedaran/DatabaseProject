@@ -220,14 +220,15 @@
                                         <td>Scale : {{$product->productScale}}</td>
                                         <br>
                                         <td>Vendor : {{$product->productVendor}}</td>
-
                                     </tr>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary" >
-                                                <!--<a href="{{ url('/productlist/view') }}"> View</a>-->
-                                                <a href="{{'productlist/view?'.$product->productName}}"> View</a>
-                                            </button>
+                                            <form action="productlist/view" method="get">
+                                                <a href="{{'productlist/views'.$product->productName}}">
+                                                    <input type="hidden" value={{$product->productCode}} name="code">
+                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" ></a>
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
