@@ -24,6 +24,7 @@ Route::get('/main','MainController@index');
 Route::post('/main/checklogin','MainController@checklogin');
 Route::get('main/success','MainController@successlogin');
 Route::get('main/success','ProductController@pdlogin');
+Route::get('main/success','ProductController@showName');
 Route::get('main/logout','MainController@logout');
 Route::get('/productlist/view','ViewController@index');
 Route::get('/filter','FilterController@checkfilter'); // Filter
