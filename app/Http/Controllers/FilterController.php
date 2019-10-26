@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 
-class ViewController extends Controller
+class FilterController extends Controller
 {
-    function index(){
-        
+    //
+    public function filter(){
+
         $products = Product::all();
-        return view('products.productdetail', ['products'=>$products]);
+        return view('products/filter', ['products' => $products ]);
     }
 }

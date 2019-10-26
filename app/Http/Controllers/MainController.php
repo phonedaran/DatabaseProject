@@ -23,7 +23,7 @@ class MainController extends Controller
         $checkpass = md5($password);
         $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$checkpass]);
         // $employeeName = DB::select('select firstName from employees where employeeNumber=?',[$name]);
-        
+
         if (count($data))
         {
             return redirect('main/success')->with('success','welcome to KIKKOK !');

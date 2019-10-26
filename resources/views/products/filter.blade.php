@@ -70,7 +70,7 @@
                             <path d="M21 21l-5.2-5.2" />
                         </svg>
                         </a>
-                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
+                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
                     </div>
                 </div>
             </div>
@@ -109,69 +109,77 @@
     </div>
 
     <main role="main">
+        <!--Filter-->
+        <?php
+            $type = $_GET['type'];
+            $scale = $_GET['scale'];
+            $vendor = $_GET['vendor'];
+            $filterType = true;
+            $filterScale = true;
+            $filterVendor = true;
+            $resultFilter = array();
+            $count = 0;
+            $jsonDecode= json_Decode($products,true);
+            foreach ($jsonDecode as $result) {
+                //type check
+                if($result['productLine'] == $type){
+                    $filterType = true;
+                }elseif($type == 'Any') {
+                    $filterType = true;
+                }else{
+                    $filterType = false;
+                }
+                //scale check
+                if($result['productScale'] == $scale){
+                    $filterScale = true;
+                }elseif($scale == 'Any') {
+                    $filterScale = true;
+                }else{
+                    $filterScale = false;
+                }
+                //vendor check
+                if($result['productVendor'] == $vendor){
+                    $filterVendor = true;
+                }elseif ($vendor == 'Any') {
+                    $filterVendor = true;
+                }else{
+                    $filterVendor = false;
+                }
+                //result
+                if($filterType=='1' && $filterScale=='1' && $filterVendor=='1'){
+                    array_push($resultFilter, $result['productCode']);
+                    $count++; //count number result
+                }
+            }
+        ?>
+
         <div class="container">
-            <div class="col-md-3 px-0">
+            <div class="col-md-6 px-0">
                 <!--Button-->
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <form action="productlist/filter" method="get">
-                            <h2>Product Filter</h2>
+                            <h2>Result have <?php echo $count ?> products. </h2>
+
                             <!--Type-->
                             <div class="list-group">
                                 <h3>Type</h3>
-                                <select name="type">
-                                    <option value="Any">Any</option>
-                                    <option value="Classic Cars">Classic Cars</option>
-                                    <option value="Motorcycles">Motorcycles </option>
-                                    <option value="Planes">Planes</option>
-                                    <option value="Ships">Ships</option>
-                                    <option value="Trains">Trains</option>
-                                    <option value="Trucks and Buses">Trucks and Buses</option>
-                                    <option value="Vintage Cars">Vintage Cars</option>
-                                </select>
                             </div>
 
                             <!--Scale-->
                             <div class="list-group">
                                 <h3>Scale</h3>
-                                <select name="scale">
-                                    <option value="Any">Any </option>
-                                    <option value="1:10">1:10</option>
-                                    <option value="1:12">1:12</option>
-                                    <option value="1:18">1:18</option>
-                                    <option value="1:24">1:24</option>
-                                    <option value="1:32">1:32</option>
-                                    <option value="1:50">1:50</option>
-                                    <option value="1:72">1:72</option>
-                                    <option value="1:700">1:700</option>
-                                </select>
                             </div>
 
                             <!--Vendor-->
                             <div class="list-group">
                                 <h3>vendor</h3>
-                                <select name="vendor">
-                                    <option value="Any">Any </option>
-                                    <option value="Autoart Studio Design">Autoart Studio Design </option>
-                                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
-                                    <option value="Classic Metal Creations">Classic Metal Creations </option>
-                                    <option value="Exoto Designs">Exoto Designs </option>
-                                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
-                                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
-                                    <option value="Min Lin Diecast">Min Lin Diecast </option>
-                                    <option value="Motor City Art Classics">Motor City Art Classics </option>
-                                    <option value="Red Start Diecast">Red Start Diecast </option>
-                                    <option value="Second Gear Diecast">Second Gear Diecast </option>
-                                    <option value="Studio M Art Models">Studio M Art Models </option>
-                                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
-                                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
-                                </select>
                             </div>
-                            <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
+
+                            <button type="button" class="btn btn-sm btn-outline-secondary" >
+                                <a href="{{ url('/') }}">Clear</a>
+                            </button>
                         </form>
-
-
-
                     </div>
                 </div>
             </div>
@@ -181,43 +189,46 @@
             <div class="container">
                 <div class="row">
 
-                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                <img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
-                                    onerror="this.src='images/not.png'" width="100%" height="100%"  />
-                                <div class="card-body">
-                                    <h3><?php echo e($product->productName); ?></h3>
-                                    <tr>
-                                        <td>Stock : <?php echo e($product->quantityInStock); ?></td>
-                                        <br>
-                                        <td>Pirce : <?php echo e($product->buyPrice); ?></td>
-                                        <br>
-                                        <td>producLine(type?) : <?php echo e($product->productLine); ?></td>
-                                        <br>
-                                        <td>Scale : <?php echo e($product->productScale); ?></td>
-                                        <br>
-                                        <td>Vendor : <?php echo e($product->productVendor); ?></td>
-                                    </tr>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <form action="productlist/view" method="get">
-                                                    <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
-                                            </form>
+                    @foreach ( $resultFilter as $key)
+                        @foreach ($products as $product )
+                            @if ($product->productCode == $key)
+                                <div class="col-md-4">
+                                    <div class="card mb-4 shadow-sm">
+                                        <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                            onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                        <div class="card-body">
+                                            <h3>{{$product->productName}}</h3>
+                                            <tr>
+                                                <td>Stock : {{$product->quantityInStock}}</td>
+                                                <br>
+                                                <td>Pirce : {{$product->buyPrice}}</td>
+                                                <br>
+                                                <td>Type : {{$product->productLine}}</td>
+                                                <br>
+                                                <td>Scale : {{$product->productScale}}</td>
+                                                <br>
+                                                <td>Vendor : {{$product->productVendor}}</td>
+                                            </tr>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                    <form action="productlist/view" method="get">
+                                                            <input type="hidden" value={{$product->productCode}} name="code">
+                                                            <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                    </form>
 
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            @endif
+                        @endforeach
+                    @endforeach
+
 
                 </div>
 
                 <br>
-                    <?php echo e($products->links()); ?>
-
             </div>
         </div>
 
@@ -248,4 +259,3 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/products/productlist.blade.php ENDPATH**/ ?>

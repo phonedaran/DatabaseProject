@@ -108,96 +108,74 @@
         </div>
     </div>
 
-    <?php
-        use App\Filter;
-    ?>
+    <main role="main">
+        <div class="container">
+            <div class="col-md-3 px-0">
+                <!--Button-->
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <form action="productlist/filter" method="get">
+                            <h2>Product Filter</h2>
+                            <!--Type-->
+                            <div class="list-group">
+                                <h3>Type</h3>
+                                <select name="type">
+                                    <option value="Any">Any</option>
+                                    <option value="Classic Cars">Classic Cars</option>
+                                    <option value="Motorcycles">Motorcycles </option>
+                                    <option value="Planes">Planes</option>
+                                    <option value="Ships">Ships</option>
+                                    <option value="Trains">Trains</option>
+                                    <option value="Trucks and Buses">Trucks and Buses</option>
+                                    <option value="Vintage Cars">Vintage Cars</option>
+                                </select>
+                            </div>
 
-    <div class="container">
-        <div class="col-md-3 px-0">
-            <!--Price range [15.91-103.42] -->
-            <div class="list-group">
-                <br>
-                <h2>Product Filter</h2>
-                <br>
-            </div>
+                            <!--Scale-->
+                            <div class="list-group">
+                                <h3>Scale</h3>
+                                <select name="scale">
+                                    <option value="Any">Any </option>
+                                    <option value="1:10">1:10</option>
+                                    <option value="1:12">1:12</option>
+                                    <option value="1:18">1:18</option>
+                                    <option value="1:24">1:24</option>
+                                    <option value="1:32">1:32</option>
+                                    <option value="1:50">1:50</option>
+                                    <option value="1:72">1:72</option>
+                                    <option value="1:700">1:700</option>
+                                </select>
+                            </div>
 
-            <!--Type-->
-            <div class="list-group">
-                <h3>Type</h3>
-                <select name="type">
-                    <option value="Any">Any</option>
-                    <option value="Classic Cars">Classic Cars</option>
-                    <option value="Motorcycles">Motorcycles </option>
-                    <option value="Planes">Planes</option>
-                    <option value="Ships">Ships</option>
-                    <option value="Trains">Trains</option>
-                    <option value="Trucks and Buses">Trucks and Buses</option>
-                    <option value="Vintage Cars">Vintage Cars</option>
-                </select>
-            </div>
+                            <!--Vendor-->
+                            <div class="list-group">
+                                <h3>vendor</h3>
+                                <select name="vendor">
+                                    <option value="Any">Any </option>
+                                    <option value="Autoart Studio Design">Autoart Studio Design </option>
+                                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                                    <option value="Classic Metal Creations">Classic Metal Creations </option>
+                                    <option value="Exoto Designs">Exoto Designs </option>
+                                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                                    <option value="Min Lin Diecast">Min Lin Diecast </option>
+                                    <option value="Motor City Art Classics">Motor City Art Classics </option>
+                                    <option value="Red Start Diecast">Red Start Diecast </option>
+                                    <option value="Second Gear Diecast">Second Gear Diecast </option>
+                                    <option value="Studio M Art Models">Studio M Art Models </option>
+                                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                                </select>
+                            </div>
+                            <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
+                        </form>
 
-            <!--Scale-->
-            <div class="list-group">
-                <h3>Scale</h3>
-                <select name="scale">
-                    <option value="Any">Any </option>
-                    <option value="1:10">1:10</option>
-                    <option value="1:12">1:12</option>
-                    <option value="1:18">1:18</option>
-                    <option value="1:24">1:24</option>
-                    <option value="1:32">1:32</option>
-                    <option value="1:50">1:50</option>
-                    <option value="1:72">1:72</option>
-                    <option value="1:700">1:700</option>
-                </select>
-            </div>
 
-            <!--Vendor-->
-            <div class="list-group">
-                <h3>vendor</h3>
-                <select name="vendor">
-                    <option value="Any">Any </option>
-                    <option value="Autoart Studio Design">Autoart Studio Design </option>
-                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
-                    <option value="Classic Metal Creations">Classic Metal Creations </option>
-                    <option value="Exoto Designs">Exoto Designs </option>
-                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
-                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
-                    <option value="Min Lin Diecast">Min Lin Diecast </option>
-                    <option value="Motor City Art Classics">Motor City Art Classics </option>
-                    <option value="Red Start Diecast">Red Start Diecast </option>
-                    <option value="Second Gear Diecast">Second Gear Diecast </option>
-                    <option value="Studio M Art Models">Studio M Art Models </option>
-                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
-                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
-                </select>
-            </div>
 
-            <?php
-                if(isset($_POST['submit'])){
-                    $type = $_POST('type');
-                    $scale = $_POST('scale');
-                    $vendor = $_POST('vendor');
-                }
-
-            ?>
-
-            <!--Button-->
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" >
-                        <a href="{{ url('/') }}">Filter</a-->
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" >
-                        <a href="{{ url('/') }}">Clear</a>
-                    </button>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
-
-    <main role="main">
 
         <div class="album py-5 bg-light">
             <div class="container">
@@ -224,9 +202,8 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="productlist/view" method="get">
-                                                <a href="{{'productlist/views'.$product->productName}}">
                                                     <input type="hidden" value={{$product->productCode}} name="code">
-                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" ></a>
+                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
                                             </form>
 
                                         </div>

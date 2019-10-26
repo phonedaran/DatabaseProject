@@ -103,7 +103,6 @@
 
     <main role="main">
         <?php
-
             $code = $_GET['code'];
             $jsonDecode = json_Decode($products,true);
             foreach ($jsonDecode as $result) {
