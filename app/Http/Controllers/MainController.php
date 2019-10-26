@@ -18,37 +18,18 @@ class MainController extends Controller
     function checklogin(request $request)
     {
 
-        $name=$request->input('name');
-        $password=$request->input('pass');
-        $token=DB::select('select remember_token from users where employeeNumber=?',[$name]);
-        // $data=DB::select('select employeeNumber from users where employeeNumber=? and password =DES_DECRYPY(?,?)',
-        // [$name,$password,$token]);
-        $data=DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$password]);
+        $name = $request->input('name');
+        $password = $request->input('pass');
+        $checkpass = md5($password);
+        $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$checkpass]);
+        // $employeeName = DB::select('select firstName from employees where employeeNumber=?',[$name]);
+        
         if (count($data))
         {
             return redirect('main/success')->with('success','welcome to KIKKOK !');
         }
         else
         {
-        //print_r($data);
-        // print_r($request->input());
-
-        // $this->validate($request, [
-        //     'name'      =>  'requred|name',
-        //     'pass'      =>  'requred|alphanNum|min:3'
-        // ]);
-
-        // $user_data = array(
-        //     'emnumber'      =>  $request->get('name'),
-        //     'password'      =>  $request->get('password')
-        // );
-
-        // if(Auth::attempt($user_data))
-        // {
-        //     return redirect('main/successlogin');
-        // }
-        // else
-        // {
             return  redirect()->back()->with('warning','Please try again');
         }
     }
