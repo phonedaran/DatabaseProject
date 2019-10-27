@@ -159,33 +159,39 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <form action="productlist/filter" method="get">
-                            <h2>Result have <?php echo $count ?> products. </h2>
-
 
                             <!--Type-->
                             <div class="list-group">
-                                <h3>Type</h3>
-
+                                <?php
+                                    if($type !== 'Any'){
+                                        echo "<h3>Type : ".$type."</h3>";
+                                    }
+                                ?>
                             </div>
 
                             <!--Scale-->
                             <div class="list-group">
-                                <h3>Scale</h3>
-
+                                <?php
+                                    if($scale !== 'Any'){
+                                        echo "<h3>Scale : ".$scale."</h3>";
+                                    }
+                                ?>
                             </div>
 
                             <!--Vendor-->
                             <div class="list-group">
-                                <h3>vendor</h3>
-
+                                <?php
+                                    if($vendor !== 'Any'){
+                                        echo "<h3>Vendor : ".$vendor."</h3>";
+                                    }
+                                ?>
                             </div>
+                            <h2>Result have <?php echo $count ?> products. </h2>
+
                             <button type="button" class="btn btn-sm btn-outline-secondary" >
                                 <a href="<?php echo e(url('/')); ?>">Clear</a>
                             </button>
                         </form>
-
-
-
                     </div>
                 </div>
             </div>
