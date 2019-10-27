@@ -206,7 +206,7 @@
                             @if ($product->productCode == $key)
                                 <div class="col-md-4">
                                     <div class="card mb-4 shadow-sm">
-                                        <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                        <img src="../images/product/<?php echo str_replace('/', '',str_replace(':', '', str_replace("'", '', $product->productName))); ?>.jpg"
                                             onerror="this.src='../images/not.png'" width="100%" height="100%"  />
                                         <div class="card-body">
                                             <h3>{{$product->productName}}</h3>
