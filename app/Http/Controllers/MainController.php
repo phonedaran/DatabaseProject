@@ -10,6 +10,9 @@ use Auth;
 
 class MainController extends Controller
 {
+
+
+
     function index()
     {
         return view('login');

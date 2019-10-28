@@ -237,13 +237,9 @@
                         @endforeach
                     @endforeach
 
-
                 </div>
-
-                <br>
             </div>
         </div>
-
     </main>
 
     <footer class="text-muted">

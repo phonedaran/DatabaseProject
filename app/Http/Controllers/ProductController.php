@@ -19,6 +19,12 @@ class ProductController extends Controller
         //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view
     }
 
+    public function filter(){
+
+        $products = Product::all();
+        return view('products/filter', ['products' => $products ]);
+    }
+
     public function pdlogin(){
 
         $products = Product::paginate(15);
