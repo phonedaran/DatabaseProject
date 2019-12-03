@@ -106,14 +106,7 @@
     </div>
 
     <main role="main">
-        <?php
-        $username = $_POST['name'];
-        if(isset($username)){
-            echo "found";
-        }else{
-            echo "Not Found";
-        }
-        ?>
+
         <div class="album py-5 bg-light">
             <div class="container">
 

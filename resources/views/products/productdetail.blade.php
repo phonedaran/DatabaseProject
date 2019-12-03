@@ -140,11 +140,15 @@
                                     This content is a little bit longer.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                    <input type='button' value='-' class='qtyminus' field='quantity' />
-                                    <input type='text' name='quantity' value='0' size="3" />
-                                    <input type='button' value='+' class='qtyplus' field='quantity' />
+                                        <input type='button' onclick="del('qtyTotal',{{$price}})" value='-'/>
+                                        <input id="qtyTotal" type='text' value="1"/>
+                                        <input type='button' onclick="add('qtyTotal',{{$price}})" value='+' />
+
                                     </div>
                                 </div>
+                                <h3>price :
+                                    <input id="priceTotal" type='text' value="{{$price}}" readonly/>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -176,6 +180,27 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script>
+        function add(id,p) {
+            let x = Number(document.getElementById('qtyTotal').value);
+            let result = x + 1;
+            let price = result*p
+            document.getElementById('qtyTotal').value = result;
+            document.getElementById('priceTotal').value = price.toFixed(2);
+        }
+        function del(id, p) {
+            let x = Number(document.getElementById('qtyTotal').value);
+            let result = x - 1;
+            let price = result*p
+            if(result < 0){
+                document.getElementById('qtyTotal').value = 0;
+                document.getElementById('priceTotal').value = 0
+            }else{
+                document.getElementById('qtyTotal').value = result;
+                document.getElementById('priceTotal').value = price.toFixed(2);
+            }
+        }
+    </script>
 </body>
 
 </html>
