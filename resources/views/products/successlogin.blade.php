@@ -114,12 +114,41 @@
             <div class="container">
 
                 <div class="row">
+                    @foreach ($products as $product )
+                    <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                    onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                <div class="card-body">
+                                    <h3>{{$product->productName}}</h3>
+                                    <tr>
+                                        <td>Stock : {{$product->quantityInStock}}</td>
+                                        <br>
+                                        <td>Pirce : {{$product->buyPrice}}</td>
+                                        <br>
+                                        <td>producLine : {{$product->productLine}}</td>
+                                        <br>
+                                        <td>Scale : {{$product->productScale}}</td>
+                                        <br>
+                                        <td>Vendor : {{$product->productVendor}}</td>
+                                    </tr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <form action="../productlist/view" method="get">
+                                                    <input type="hidden" value={{$product->productCode}} name="code">
+                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                            </form>
 
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
 
                 <br>
-
+                    {{ $products->links() }}
             </div>
         </div>
 

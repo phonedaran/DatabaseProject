@@ -193,7 +193,7 @@
                                         <br>
                                         <td>Pirce : {{$product->buyPrice}}</td>
                                         <br>
-                                        <td>producLine(type?) : {{$product->productLine}}</td>
+                                        <td>producLine : {{$product->productLine}}</td>
                                         <br>
                                         <td>Scale : {{$product->productScale}}</td>
                                         <br>

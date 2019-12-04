@@ -114,11 +114,41 @@
             <div class="container">
 
                 <div class="row">
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                    onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                <div class="card-body">
+                                    <h3><?php echo e($product->productName); ?></h3>
+                                    <tr>
+                                        <td>Stock : <?php echo e($product->quantityInStock); ?></td>
+                                        <br>
+                                        <td>Pirce : <?php echo e($product->buyPrice); ?></td>
+                                        <br>
+                                        <td>producLine : <?php echo e($product->productLine); ?></td>
+                                        <br>
+                                        <td>Scale : <?php echo e($product->productScale); ?></td>
+                                        <br>
+                                        <td>Vendor : <?php echo e($product->productVendor); ?></td>
+                                    </tr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <form action="../productlist/view" method="get">
+                                                    <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
+                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                            </form>
 
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
 
                 <br>
+                    <?php echo e($products->links()); ?>
 
             </div>
         </div>

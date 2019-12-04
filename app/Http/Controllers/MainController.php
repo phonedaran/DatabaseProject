@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Product;
 use Validator;
 use Auth;
 
@@ -26,10 +27,11 @@ class MainController extends Controller
         $checkpass = md5($password);
         $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$Enumber,$checkpass]);
         $User = DB::table('employees')->where(['employeeNumber'=> $Enumber])->get();
+        $products = Product::paginate(15);
 
         if (count($data))
         {
-            return view('products.successlogin',['User' => $User]);
+            return view('products.successlogin',['User' => $User, 'products' => $products]);
         }
         else
         {

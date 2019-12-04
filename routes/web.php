@@ -22,7 +22,7 @@ Route::get('/productlist', function () {
 Route::get('/','ProductController@index');
 Route::get('/main','MainController@index');
 Route::post('/main/success','MainController@login');
-Route::get('main/success','ProductController@pdlogin');
+//Route::get('/main/success','ProductController@pdlogin');
 Route::get('main/logout','MainController@logout');
 Route::get('/productlist/view','ViewController@index');
 Route::get('/productlist/filter','ProductController@filter'); // Filter
