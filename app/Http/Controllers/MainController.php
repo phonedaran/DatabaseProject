@@ -21,7 +21,7 @@ class MainController extends Controller
 
     function login(request $request)
     {
-
+        
         $Enumber = $request->input('name');
         $password = $request->input('pass');
         $checkpass = md5($password);

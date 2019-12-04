@@ -26,3 +26,8 @@ Route::post('/main/success','MainController@login');
 Route::get('main/logout','MainController@logout');
 Route::get('/productlist/view','ViewController@index');
 Route::get('/productlist/filter','ProductController@filter'); // Filter
+Route::get('/keyOrder','OrderController@keyOrder');
+Route::get('/keyOrder/check','OrderController@check');
+Route::get('/keyOrder/orderDetail','OrderController@orderDetail');
+Route::get('/keyOrder/orderDetail/check','OrderController@checkDetail');
+Route::get('/orderlist','OrderController@index');

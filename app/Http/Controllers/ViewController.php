@@ -9,8 +9,9 @@ use App\Product;
 class ViewController extends Controller
 {
     function index(){
-        
+
         $products = Product::all();
         return view('products.productdetail', ['products'=>$products]);
     }
+
 }

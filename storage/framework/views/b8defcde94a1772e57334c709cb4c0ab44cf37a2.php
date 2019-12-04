@@ -108,7 +108,11 @@
     </div>
 
     <main role="main">
-
+        <?php
+            foreach ($User as $user ){
+                $Enumber = $user->employeeNumber;
+            }
+        ?>
 
         <div class="album py-5 bg-light">
             <div class="container">
@@ -134,11 +138,11 @@
                                     </tr>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="../productlist/view" method="get">
-                                                    <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                            <form action="<?php echo e(URL::to('/productlist/view')); ?>" method="get">
+                                                <input type="hidden" value="<?php echo e($Enumber); ?>" name="user">
+                                                <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
+                                                <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>

@@ -193,7 +193,7 @@
                                         <br>
                                         <td>Pirce : <?php echo e($product->buyPrice); ?></td>
                                         <br>
-                                        <td>producLine(type?) : <?php echo e($product->productLine); ?></td>
+                                        <td>producLine : <?php echo e($product->productLine); ?></td>
                                         <br>
                                         <td>Scale : <?php echo e($product->productScale); ?></td>
                                         <br>
