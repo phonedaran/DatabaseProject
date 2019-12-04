@@ -36,11 +36,5 @@ class ProductController extends Controller
         //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view
     }
 
-    // public function showName(){
-
-    //     $employee = DB::table('employees')->select('firstName')->get();
-
-    //     return view('products.successlogin',['employee' => $employee ]);
-    // }
 
 }

@@ -54,7 +54,7 @@
 				</div>
 				@endif
 				<!-- {{ csrf_field() }}  -->
-				<form class="login100-form validate-form" method="POST" action="{{ URL::to('/main/checklogin') }}">
+				<form class="login100-form validate-form" method="POST" action="{{ URL::to('/main/success') }}">
 					@csrf
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Uername</span>

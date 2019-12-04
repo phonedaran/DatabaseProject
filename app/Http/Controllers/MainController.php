@@ -18,18 +18,41 @@ class MainController extends Controller
         return view('login');
     }
 
-    function checklogin(request $request)
+    function login(request $request)
     {
-
-        $name = $request->input('name');
+        $Enumber = $request->input('name');
         $password = $request->input('pass');
         $checkpass = md5($password);
-        $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$checkpass]);
-        // $employeeName = DB::select('select firstName from employees where employeeNumber=?',[$name]);
+        $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$Enumber,$checkpass]);
+        $User = DB::table('employees')->where(['employeeNumber'=> $Enumber])->get();
+        // switch($jobtype) {
+        //         case "President" :
+        //             $type = 1;
+        //         break;
+        //         case "VP Sales" :
+        //             $type = 2;
+        //         break;
+        //         case "VP Marketing" :
+        //             $type = 2;
+        //         break;
+        //         case "Sales Manager(APAC)" :
+        //             $type = 3;
+        //         break;
+        //         case "Sales Manager(EMEA)" :
+        //             $type = 3;
+        //         break;
+        //         case "Sales Manager(NA)" :
+        //             $type = 3;
+        //         break;
+        //         case "Sales Rep" :
+        //             $type = 4;
+        //         break;
+        //         }
 
         if (count($data))
         {
-            return redirect('main/success')->with('success','welcome to KIKKOK !');
+            return view('products.successlogin',['User' => $User]);
+            //return redirect('main/success',['data'=>$data]);
         }
         else
         {
@@ -37,10 +60,10 @@ class MainController extends Controller
         }
     }
 
-    function successlogin()
-    {
-        return view('products.successlogin');
-    }
+    // function successlogin(request $request)
+    // {
+    //     return view('products.successlogin',['type' => $type ]);
+    // }
 
     function logout()
     {

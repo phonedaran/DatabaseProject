@@ -82,7 +82,9 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"  style="color:black">
-                    Menu
+                    @foreach ($User as $user )
+                        <strong>{{$user->firstName}} &nbsp {{$user->lastName}}</strong>
+                    @endforeach
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Customer</a>
@@ -111,12 +113,15 @@
             <div class="container">
 
                 <div class="row">
-
-
+                @foreach ($User as $user )
+                {{$user->jobTitle}}
+                @endforeach
                 </div>
 
                 <br>
-
+               
+                
+                
             </div>
         </div>
 

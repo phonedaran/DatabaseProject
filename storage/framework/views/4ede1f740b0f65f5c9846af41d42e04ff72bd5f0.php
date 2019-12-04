@@ -66,6 +66,8 @@
                         </a>
                         <!--<a><span class="fas fa-user" style=" color: aliceblue"></span></a>-->
                     </div>
+                    <div>
+                    </div>
                 </div>
             </header>
         </div>
@@ -80,7 +82,9 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"  style="color:black">
-                    Menu
+                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <strong><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></strong>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Customer</a>
@@ -102,43 +106,23 @@
             </div>
         </div>
     </div>
+
     <main role="main">
+        
         <div class="album py-5 bg-light">
             <div class="container">
 
                 <div class="row">
+                <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php echo e($user->jobTitle); ?>
 
-
-                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                    <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
-                                        onerror="this.src='images/not.png'" width="100%" height="100%"  />
-                                <div class="card-body">
-                                    <h3><?php echo e($product->productName); ?></h3>
-                                    <!--<p class="card-text"><?php echo e($product->productDescription); ?></p>-->
-                                    <tr>
-                                        <td>Stock : <?php echo e($product->quantityInStock); ?></td>
-                                        <td>Pirce : <?php echo e($product->buyPrice); ?></td>
-                                    </tr>
-
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <!--small class="text-muted">9 mins</small>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
 
                 <br>
-                    <?php echo e($products->links()); ?>
-
+               
+                
+                
             </div>
         </div>
 
