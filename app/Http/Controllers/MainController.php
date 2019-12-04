@@ -18,30 +18,23 @@ class MainController extends Controller
         return view('login');
     }
 
-    function checklogin(request $request)
+    function login(request $request)
     {
 
-        $name = $request->input('name');
+        $Enumber = $request->input('name');
         $password = $request->input('pass');
         $checkpass = md5($password);
-        $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$name,$checkpass]);
-        // $employeeName = DB::select('select firstName from employees where employeeNumber=?',[$name]);
+        $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$Enumber,$checkpass]);
+        $User = DB::table('employees')->where(['employeeNumber'=> $Enumber])->get();
 
         if (count($data))
         {
-            return redirect('main/success')->with('success','welcome to KIKKOK !');
+            return view('products.successlogin',['User' => $User]);
         }
         else
         {
             return  redirect()->back()->with('warning','Please try again');
         }
-    }
-
-
-
-    function successlogin()
-    {
-        return view('products.successlogin');
     }
 
     function logout()

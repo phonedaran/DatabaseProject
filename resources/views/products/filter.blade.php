@@ -85,17 +85,6 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">
-                <!-- <li class="nav-item dropdown"> -->
-                <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-                <!-- </li>  -->
             </a>
         </div>
     </nav>
@@ -110,6 +99,7 @@
 
     <main role="main">
         <!--Filter-->
+
         <?php
             $type = $_GET['type'];
             $scale = $_GET['scale'];
@@ -223,7 +213,7 @@
                                             </tr>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
-                                                    <form action="productlist/view" method="get">
+                                                    <form action="../productlist/view" method="get">
                                                             <input type="hidden" value={{$product->productCode}} name="code">
                                                             <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
                                                     </form>

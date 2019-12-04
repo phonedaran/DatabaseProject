@@ -82,7 +82,9 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"  style="color:black">
-                    Menu
+                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <strong><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></strong>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Customer</a>
@@ -107,11 +109,12 @@
 
     <main role="main">
 
+
         <div class="album py-5 bg-light">
             <div class="container">
 
                 <div class="row">
-                    
+
 
                 </div>
 

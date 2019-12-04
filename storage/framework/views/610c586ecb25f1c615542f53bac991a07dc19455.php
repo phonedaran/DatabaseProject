@@ -85,9 +85,7 @@
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">
-                <!-- <li class="nav-item dropdown"> -->
-                
-                <!-- </li>  -->
+
             </a>
         </div>
     </nav>
