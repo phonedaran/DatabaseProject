@@ -7,13 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Product Detail</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <link rel="stylesheet" href="bootstrap-4.3.1-dist\js\button.js">
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -117,6 +118,7 @@
                 }
             }
         ?>
+
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
@@ -137,17 +139,21 @@
                     <div class="col-md-6">
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.</p>
+                                    This content is a little bit longer.
+                                </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                    <input type='button' value='-' class='qtyminus' field='quantity' />
-                                    <input type='text' name='quantity' value='0' size="3" />
-                                    <input type='button' value='+' class='qtyplus' field='quantity' />
-                                    </div>
-                                </div>
+                                    <button class="w3-button w3-red" input type='button' onclick="del('qtyTotal',{{$price}})" value='-'>-</button>
+                                    <input id="qtyTotal" type='text' value="1"/>
+                                    <button class="w3-button w3-black" input type='button' onclick="add('qtyTotal',{{$price}})" value='+'>+</button>
+                                </div>    
                             </div>
+                            <br>
+                            <h4>price :
+                                    <input id="priceTotal" type='text' value="{{$price}}" readonly/>
+                            </h4>
                         </div>
-                    </div>
+                    </div> 
                 </div>
 
             </div>
@@ -176,6 +182,29 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        
+    <script>
+        function add(id,p) {
+            let x = Number(document.getElementById('qtyTotal').value);
+            let result = x + 1;
+            let price = result*p
+            document.getElementById('qtyTotal').value = result;
+            document.getElementById('priceTotal').value = price.toFixed(2);
+        }
+        function del(id, p) {
+            let x = Number(document.getElementById('qtyTotal').value);
+            let result = x - 1;
+            let price = result*p
+            if(result < 0){
+                document.getElementById('qtyTotal').value = 0;
+                document.getElementById('priceTotal').value = 0
+            }else{
+                document.getElementById('qtyTotal').value = result;
+                document.getElementById('priceTotal').value = price.toFixed(2);
+            }
+        }
+    </script>
+
 </body>
 
 </html>
