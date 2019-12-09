@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Order;
@@ -56,7 +58,7 @@ class OrderController extends Controller
         $orderLineNumber =(DB::table('orderdetails') //หา orderLineNumber ของออเดอร์นี้
             ->where(['orderNumber' => $orderNumber])
             ->max('orderLineNumber'))+1;
-            
+
         $data=DB::table('orders')->where(['orderNumber' => $orderNumber])->exists();
         $code=DB::table('products')->where(['productCode' => $productCode])->exists();
 
@@ -70,7 +72,7 @@ class OrderController extends Controller
                     ->where(['orders.orderNumber' => $orderNumber])
                     ->get();
                 if(count($used) === 0){ //ลูกค้าที่ซื้ออยู่นี้ไม่เคยได้รับ promotion
-                   $quantity=$quantity*2;          
+                   $quantity=$quantity*2;
                 }
             }
 
@@ -84,7 +86,7 @@ class OrderController extends Controller
             );
 
             DB::table('orders')->update(['totalAmount'=> DB::raw("
-            (SELECT SUM(orderdetails.amount) 
+            (SELECT SUM(orderdetails.amount)
             FROM orderdetails
             WHERE orderdetails.orderNumber = orders.orderNumber)
             ")]);

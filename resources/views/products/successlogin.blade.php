@@ -125,12 +125,20 @@
                             @endforeach
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    @foreach ($User as $user )
                         <a class="dropdown-item" href="#">Customer</a>
-                        <a class="dropdown-item" href="#">Employee</a>
-                        <a class="dropdown-item" href="#">Key Order</a>
+                        @if ($user->jobTitle != 'Sales Rep')
+                            <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                        @endif
+                        @if ($user->jobTitle == 'Sales Rep')
+                            <a class="dropdown-item" href="#">Key Order</a>
+                        @endif
                         <a class="dropdown-item" href="#">Order list</a>
-                        <a class="dropdown-item" href="#">Promotion</a>
+                        @if ($user->jobTitle == 'VP Marketing')
+                            <a class="dropdown-item" href="#">Promotion</a>
+                        @endif
                         <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                    @endforeach
                     </div>
                 </div>
             </form>
