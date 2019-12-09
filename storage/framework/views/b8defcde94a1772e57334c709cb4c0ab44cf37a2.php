@@ -125,12 +125,20 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <a class="dropdown-item" href="#">Customer</a>
-                        <a class="dropdown-item" href="#">Employee</a>
-                        <a class="dropdown-item" href="#">Key Order</a>
+                        <?php if($user->jobTitle != 'Sales Rep'): ?>
+                            <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                        <?php endif; ?>
+                        <?php if($user->jobTitle == 'Sales Rep'): ?>
+                            <a class="dropdown-item" href="#">Key Order</a>
+                        <?php endif; ?>
                         <a class="dropdown-item" href="#">Order list</a>
-                        <a class="dropdown-item" href="#">Promotion</a>
+                        <?php if($user->jobTitle == 'VP Marketing'): ?>
+                            <a class="dropdown-item" href="#">Promotion</a>
+                        <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </form>
