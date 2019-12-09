@@ -67,7 +67,7 @@
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <div class="py-2 d-none d-md-inline-block">
-                        <b>Product Filter</b>
+                        <a>Product Filter</a>
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
                         <a>Type : </a>
