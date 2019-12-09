@@ -31,3 +31,7 @@ Route::get('/keyOrder/check','OrderController@check');
 Route::get('/keyOrder/orderDetail','OrderController@orderDetail');
 Route::get('/keyOrder/orderDetail/check','OrderController@checkDetail');
 Route::get('/orderlist','OrderController@index');
+Route::get('main/customer','CustomerController@index');
+Route::get('main/customer/view','CustomerController@detail');
+Route::get('main/customer/add','CustomerController@add');
+Route::get('main/customer/add/check','CustomerController@addcheck');
