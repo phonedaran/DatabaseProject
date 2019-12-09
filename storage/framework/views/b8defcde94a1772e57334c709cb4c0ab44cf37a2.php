@@ -56,56 +56,85 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <!--<a><span class="fas fa-user" style=" color: aliceblue"></span></a>-->
-                    </div>
-                    <div>
+                        <a class="text-muted" href="#"></a>
                     </div>
                 </div>
             </header>
         </div>
     </div>
 
-    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  style="color:black">
-                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <strong><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></strong>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Customer</a>
-                    <a class="dropdown-item" href="#">Employee</a>
-                    <a class="dropdown-item" href="#">Key Order</a>
-                    <a class="dropdown-item" href="#">Order list</a>
-                    <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+    <nav class="site-header sticky-top py-1" style="background-color:white ;">
+            <form action="../productlist/filter" method="get">
+                <div class="container d-flex flex-column flex-md-row justify-content-between">
+                    <div class="py-2 d-none d-md-inline-block">
+                        <b>Product Filter</b>
+                    </div>
+                    <div class="list-group py-2 d-none d-md-inline-block">
+                        <a>Type : </a>
+                            <select name="type">
+                                <option value="Any">Any</option>
+                                <option value="Classic Cars">Classic Cars</option>
+                                <option value="Motorcycles">Motorcycles </option>
+                                <option value="Planes">Planes</option>
+                                <option value="Ships">Ships</option>
+                                <option value="Trains">Trains</option>
+                                <option value="Trucks and Buses">Trucks and Buses</option>
+                                <option value="Vintage Cars">Vintage Cars</option>
+                            </select>
+                    </div>
+                    <div class="list-group py-2 d-none d-md-inline-block">
+                        <a>Scale : </a>
+                            <select name="scale">
+                                <option value="Any">Any </option>
+                                <option value="1:10">1:10</option>
+                                <option value="1:12">1:12</option>
+                                <option value="1:18">1:18</option>
+                                <option value="1:24">1:24</option>
+                                <option value="1:32">1:32</option>
+                                <option value="1:50">1:50</option>
+                                <option value="1:72">1:72</option>
+                                <option value="1:700">1:700</option>
+                            </select>
+                    </div>
+                    <div class="list-group py-2 d-none d-md-inline-block">
+                        <a>Vendor : <a>
+                            <select name="vendor">
+                                <option value="Any">Any </option>
+                                <option value="Autoart Studio Design">Autoart Studio Design </option>
+                                <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                                <option value="Classic Metal Creations">Classic Metal Creations </option>
+                                <option value="Exoto Designs">Exoto Designs </option>
+                                <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                                <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                                <option value="Min Lin Diecast">Min Lin Diecast </option>
+                                <option value="Motor City Art Classics">Motor City Art Classics </option>
+                                <option value="Red Start Diecast">Red Start Diecast </option>
+                                <option value="Second Gear Diecast">Second Gear Diecast </option>
+                                <option value="Studio M Art Models">Studio M Art Models </option>
+                                <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                                <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                            </select>
+                    </div>
+                    <div class="list-group py-2 d-none d-md-inline-block">
+                        <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
+                    </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"  style="color:darkblue">
+                            <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <b><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></b>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Customer</a>
+                        <a class="dropdown-item" href="#">Employee</a>
+                        <a class="dropdown-item" href="#">Key Order</a>
+                        <a class="dropdown-item" href="#">Order list</a>
+                        <a class="dropdown-item" href="#">Promotion</a>
+                        <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                    </div>
                 </div>
-            <!-- </a> -->
-        </div>
+            </form>
     </nav>
-
-    <div class="container">
-        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">Classic Plastic model SHOP</h1>
-                <p class="lead my-3">A little shop but not a little things</p>
-            </div>
-        </div>
-    </div>
 
     <main role="main">
         <?php
