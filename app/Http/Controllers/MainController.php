@@ -25,6 +25,7 @@ class MainController extends Controller
         $checkpass = md5($password);
         $data = DB::select('select employeeNumber from users where employeeNumber=? and password =?',[$Enumber,$checkpass]);
         $User = DB::table('employees')->where(['employeeNumber'=> $Enumber])->get();
+
         // switch($jobtype) {
         //         case "President" :
         //             $type = 1;
@@ -35,13 +36,13 @@ class MainController extends Controller
         //         case "VP Marketing" :
         //             $type = 2;
         //         break;
-        //         case "Sales Manager(APAC)" :
+        //         case "Sales Manager (APAC)" :
         //             $type = 3;
         //         break;
-        //         case "Sales Manager(EMEA)" :
+        //         case "Sales Manager (EMEA)" :
         //             $type = 3;
         //         break;
-        //         case "Sales Manager(NA)" :
+        //         case "Sales Manager (NA)" :
         //             $type = 3;
         //         break;
         //         case "Sales Rep" :

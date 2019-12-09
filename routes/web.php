@@ -22,10 +22,14 @@ Route::get('/productlist', function () {
 Route::get('/','ProductController@index');
 Route::get('/main','MainController@index');
 Route::post('/main/success','MainController@login');
-// Route::get('main/success','MainController@successlogin');
-// Route::post('main/success','MainController@successlogin');
 Route::get('main/success','ProductController@pdlogin');
-//Route::get('main/success','ProductController@showName');
 Route::get('main/logout','MainController@logout');
+Route::get('main/employee','EmployeeController@showEmployees');
+
+Route::get('main/addemployee', function () {
+    return view('employees.addemployee');
+});
+
+Route::get('employee/add/check','EmployeeController@addEmployee');
 Route::get('/productlist/view','ViewController@index');
 Route::get('/productlist/filter','ProductController@filter'); // Filter

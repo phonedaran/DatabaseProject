@@ -12,8 +12,13 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
+    <link rel="icon" type="image/png" href="{{ URL::asset('loginFrom\Login_v15\images\icons\favicon.ico') }}"/>
 
-
+    <!-- Bootstrap core js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -56,28 +61,7 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  style="color:white">
-                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <h7><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></h7>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <a class="dropdown-item" href="#">Customer</a>
-                    <?php if($user->jobTitle != 'Sales Rep'): ?>
-                    <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
-                    <?php endif; ?>
-                    <?php if($user->jobTitle == 'Sales Rep'): ?>
-                    <a class="dropdown-item" href="#">Key Order</a>
-                    <?php endif; ?>
-                    <a class="dropdown-item" href="#">Order list</a>
-                    <?php if($user->jobTitle == 'VP Marketing'): ?>
-                    <a class="dropdown-item" href="#">Promotion</a>
-                    <?php endif; ?>
-                    <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
+                    
                     </div>
                     <div>
                     </div>
@@ -85,20 +69,54 @@
             </header>
         </div>
     </div>
+    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            
+            <a class="py-2 d-none d-md-inline-block" href="{{url('/main/addemployee')}}">
+                <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
+            </a>
+            <a class="py-2 d-none d-md-inline-block">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  style="color:dark blue">
+                   A 
+            </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Customer</a>
+                    <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a>
+                    <a class="dropdown-item" href="#">Key Order</a>
+                    <a class="dropdown-item" href="#">Order list</a>
+                    <a class="dropdown-item" href="#">Promotion</a>
+                    <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+                </div>
+            </a>
+        </div>
+    </nav>
+
 
 
     <main role="main">
         
         <div class="album py-5 bg-light">
             <div class="container">
-
-                <div class="row">
-                <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php echo e($user->jobTitle); ?>
-
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <h4 class="display-5">EMPLOYEE</h4>
+                <div>
+                    <table class="table table-hover">
+                    @foreach ( $employees as $Emp)
+                        <from action="productlist/view" method="post">
+                            <tr class="table-secondary">                    
+                                <th scope="row">{{$Emp->firstName}}<input type="hidden" value={{$Emp->firstName}} name="Fname"></th>
+                                <th scope="row">{{$Emp->lastName}}<input type="hidden" value={{$Emp->lastName}} name="Lname"></th>
+                                
+                                <td>{{$Emp->jobTitle}}<input type="hidden" value={{$Emp->jobTitle}} name="jobtype"></td>
+                                <td>
+                                    <input type="submit" class="btn btn-outline-primary" name="edit" value="EDIT"></button>
+                                    <input type="submit" class="btn btn-outline-danger" name="fired" value="FIRED"></button>
+                                </td>
+                            </tr>
+                        </from>
+                    @endforeach
+                    </table>
                 </div>
-
                 <br>
                
                 
@@ -114,9 +132,7 @@
                 <a href="#">Back to top</a>
             </p>
             <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+            
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -133,4 +149,3 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp1\htdocs\DatabaseProject\resources\views/products/successlogin.blade.php ENDPATH**/ ?>
