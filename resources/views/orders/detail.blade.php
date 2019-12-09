@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Order List</title>
+
+    <title>Order Details</title>
 
     <style>
         .error {color: #FF0000;}
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {background-color:#f5f5f5;}
     </style>
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -41,8 +29,10 @@
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
 </head>
+
+
 <body>
-<!-- header -->
+    <!-- header -->
         <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
@@ -82,71 +72,37 @@
     <!-- header -->
 
 
-    <!-- alert  -->
-    @if (\Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> The order updated.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-    <!-- alert  -->
-
-
-    <!-- show order list -->
+    <!-- show order detail -->
     <div class="container">
-        <strong><h2>ORDER LISTS</h2></strong>
-        
-        <table style="width:100%">
+        <strong><h3>ORDER NUMBER : {{$orderNumber}} </h3></strong>
+        <h5>Total Amount : {{$total}}</h5>
+        <h5>Total Points : {{$point}}</h5>
+
+        <table class="table" width="100%">
             <thead>
                 <tr>
-                    <th scope="col" >orderNumber</th>
-                    <th scope="col" >customerNumber</th>
-                    <th scope="col" >orderDate</th>
-                    <th scope="col" >requiredDate</th>
-                    <th scope="col" >shippedDate</th>
-                    <th scope="col" >status</th>
-                    <th scope="col" >comments</th>
-                    <th scope="col" ></th>
-                    <th scope="col" ></th>
+                    <th scope="col" >productCode</th>
+                    <th scope="col" >quantity</th>
+                    <th scope="col" >priceEach</th>
+                    <th scope="col" >orderLineNumber</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($orders as $order)
-                <tr>
-                    <td schop="row">{{$order->orderNumber}}</td>
-                    <td schop="row">{{$order->customerNumber}}</td>
-                    <td schop="row">{{$order->orderDate}}</td>
-                    <td schop="row">{{$order->requiredDate}}</td>
-                    
-                        <form method="get">
-                            <div class="form-group">
-                                <input type="hidden" id="orderNumber" name="orderNumber" value="{{$order->orderNumber}}">
-                                <td schop="row"><input type="date" id="shippedDate" name="shippedDate" value="{{$order->shippedDate}}"></td>
-                                <td schop="row">
-                                    <select class="form-control" id="status" name="status">
-                                        <option>{{$order->status}}</option>
-                                        @foreach ($status as $value)
-                                            @if($value != $order->status)
-                                                <option>{{$value}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </td>    
-                                <td schop="row"><textarea rows="3"  id="comment" name="comment">{{$order->comments}}</textarea></td>
-                                <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/orderlist/updateOrder') }}'; submit()">
-                                <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='{{ URL::to('/orderlist/detail') }}'; submit()"> 
-                            </div>
-                        </form>
-                </tr>
-                @endforeach  
+                @foreach($orderdetails as $orderdetail)
+                    <tr>
+                        <td schop="row">{{$orderdetail->productCode}}</td>
+                        <td schop="row">{{$orderdetail->quantityOrdered}}</td>
+                        <td schop="row">{{$orderdetail->priceEach}}</td>
+                        <td schop="row">{{$orderdetail->orderLineNumber}}</td>
+                    </tr>
+                @endforeach
             </tbody>
-        </table>        
+        </table>
     </div>
-    <!-- show order list -->
+    <!-- show order detail -->
 
-    <!-- end -->
+
+<!-- end -->
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -170,6 +126,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!-- end -->
-
 </body>
 </html>

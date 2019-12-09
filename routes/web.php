@@ -31,3 +31,8 @@ Route::get('/keyOrder/check','OrderController@check');
 Route::get('/keyOrder/orderDetail','OrderController@orderDetail');
 Route::get('/keyOrder/orderDetail/check','OrderController@checkDetail');
 Route::get('/orderlist','OrderController@index');
+Route::get('/orderlist/updateOrder','OrderController@updateOrder');
+Route::get('/orderlist/detail','OrderController@detail');
+Route::get('/promotion','promotionController@index');
+Route::get('/promotion/checkDiscount','promotionController@checkDiscount');
+Route::get('/promotion/checkBuy1Get1','promotionController@checkBuy1Get1');

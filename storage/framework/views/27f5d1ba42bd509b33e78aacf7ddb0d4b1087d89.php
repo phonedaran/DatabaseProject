@@ -6,13 +6,26 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Order List</title>
 
     <style>
         .error {color: #FF0000;}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {background-color:#f5f5f5;}
     </style>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -29,7 +42,7 @@
     <link href="blog.css" rel="stylesheet">
 </head>
 <body>
-        <!-- header -->
+<!-- header -->
         <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
@@ -68,9 +81,70 @@
     </nav>
     <!-- header -->
 
+
+    <!-- alert  -->
+    <?php if(\Session::has('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> The order updated.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
+    <!-- alert  -->
+
+
+    <!-- show order list -->
     <div class="container">
-        <strong><h2>ORDER</h2></strong>
+        <strong><h2>ORDER LISTS</h2></strong>
+        
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col" >orderNumber</th>
+                    <th scope="col" >customerNumber</th>
+                    <th scope="col" >orderDate</th>
+                    <th scope="col" >requiredDate</th>
+                    <th scope="col" >shippedDate</th>
+                    <th scope="col" >status</th>
+                    <th scope="col" >comments</th>
+                    <th scope="col" ></th>
+                    <th scope="col" ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <tr>
+                    <td schop="row"><?php echo e($order->orderNumber); ?></td>
+                    <td schop="row"><?php echo e($order->customerNumber); ?></td>
+                    <td schop="row"><?php echo e($order->orderDate); ?></td>
+                    <td schop="row"><?php echo e($order->requiredDate); ?></td>
+                    
+                        <form method="get">
+                            <div class="form-group">
+                                <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo e($order->orderNumber); ?>">
+                                <td schop="row"><input type="date" id="shippedDate" name="shippedDate" value="<?php echo e($order->shippedDate); ?>"></td>
+                                <td schop="row">
+                                    <select class="form-control" id="status" name="status">
+                                        <option><?php echo e($order->status); ?></option>
+                                        <?php $__currentLoopData = $status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($value != $order->status): ?>
+                                                <option><?php echo e($value); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </td>    
+                                <td schop="row"><textarea rows="3"  id="comment" name="comment"><?php echo e($order->comments); ?></textarea></td>
+                                <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/orderlist/updateOrder')); ?>'; submit()">
+                                <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='<?php echo e(URL::to('/orderlist/detail')); ?>'; submit()"> 
+                            </div>
+                        </form>
+                </tr>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+            </tbody>
+        </table>        
     </div>
+    <!-- show order list -->
 
     <!-- end -->
     <footer class="text-muted">
