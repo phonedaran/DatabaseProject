@@ -99,17 +99,31 @@
     <main role="main" style="background-color:SlateGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
+    <!-- add employee -->
     <div class="col-md-12 ">
-      <h4 class="mb-5" style="text-align:center;">Add Employee</h4>
+      <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
 
-      <form class="needs-validation" novalidate action="{{ URL::to('/employee/add/check') }} ">
-       
-          <div class="mb-3">
-            <input type="text" name=Enumber class="form-control" id="Enumber" placeholder="Employee Number" required>
-            <div class="invalid-feedback">
-              Please enter Employee Number.
-            </div>
-          </div>
+      <!-- alert -->
+      @if (Session('warning'))
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oops!</strong> &nbsp Change a few Report To and try submitting again.
+      </div>
+      @endif
+      @if (Session('nodata'))
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
+      </div>
+      @endif
+      @if (Session('success'))
+      <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Well done!</strong> &nbsp You successfully.
+      </div>
+      @endif
+
+      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -128,39 +142,41 @@
         </div>
 
         <div class="mb-3">
-          <input type="text" name=mail class="form-control" id="mail" placeholder="E-mail" required>
+          <input type="text" name=email class="form-control" id="mail" placeholder="E-mail" required>
           <div class="invalid-feedback">
             Please enter E-mail.
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-6 mb-3">
             <input type="text" name=extension class="form-control" id="extension" placeholder="Extension" value="" required>
             <div class="invalid-feedback">
             Please enter Extension.
             </div>
           </div>
 
-          <div class="col-md-4 mb-3">
-            <input type="phone" name=officeCode class="form-control" id="officeCode" placeholder="OfficeCode" value="" required>
-            <div class="invalid-feedback">
-            Please enter OfficeCode.
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <input type="text" name=reportsTo class="form-control" id="reportsTo" placeholder="Reports To" required>
-            <div class="invalid-feedback">
-              Reports To required.
-            </div>
+          <div class="col-md-6 mb-3">
+            <select class="custom-select" name=OfficeCode id="OfficeCode">
+              <option selected>OfficeCode</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
           </div>
         </div>
 
-        <div class="mb-3">
-            <input type="text" name=jobTitle class="form-control" id="jobTitle" placeholder="Job Title" required>
-            <div class="invalid-feedback">
-              Please enter Job Title.
-            </div>
+          <div class="mb-3">
+          <select class="custom-select" name=jobTitle id="jobTitle">
+              <option selected>Job Title</option>
+              <option value="VP Sales">VP Sales</option>
+              <option value="VP Marketing">VP Marketing</option>
+              <option value="Sales Manager">Sales Manager</option>
+              <option value="Sales Rep">Sales Rep</option>
+            </select>
           </div>
         </div>
        

@@ -77,16 +77,16 @@
             </a>
             <a class="py-2 d-none d-md-inline-block">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"  style="color:dark blue">
-                   A 
-            </a>
+                    aria-expanded="false"  style="color:black">
+                    Menu
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Customer</a>
-                    <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
+                    <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                    <a class="dropdown-item" href="#">Employee</a>
                     <a class="dropdown-item" href="#">Key Order</a>
                     <a class="dropdown-item" href="#">Order list</a>
                     <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
                 </div>
             </a>
         </div>
