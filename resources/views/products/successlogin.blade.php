@@ -150,7 +150,7 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     @foreach ($User as $user )
-                        <a class="dropdown-item" href="#">Customer</a>
+                        <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
                         @if ($user->jobTitle != 'Sales Rep')
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif

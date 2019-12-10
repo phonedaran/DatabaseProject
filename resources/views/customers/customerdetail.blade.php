@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <div class="text-white bg-dark">
+<div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -54,49 +54,39 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <!--<a><span class="fas fa-user" style=" color: aliceblue"></span></a>-->
-                    </div>
-                    <div>
+                        <a class="text-muted" href="#"></a>
                     </div>
                 </div>
             </header>
         </div>
     </div>
 
+    
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}" style="color:black">add</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  style="color:black">
-                    Menu
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url('main/customer') }}">Customer</a>
-                    <a class="dropdown-item" href="#">Employee</a>
-                    <a class="dropdown-item" href="#">Key Order</a>
-                    <a class="dropdown-item" href="#">Order list</a>
-                    <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                </div>
-            <!-- </a> -->
+        <a class="py-2 d-none d-md-inline-block" ></a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"  style="color:dark blue">
+            <?php 
+                session_start();
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname']; 
+            ?>
+                <b>{{$Fname}} &nbsp {{$Lname}}</b>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <!-- <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a> -->
+            <!-- <a class="dropdown-item" href="#">Key Order</a>
+            <a class="dropdown-item" href="#">Order list</a>
+            <a class="dropdown-item" href="#">Promotion</a> -->
+            <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+        </div>
         </div>
     </nav>
-    <br>
 
 
-    <main role="main" style="background-color:powderblue;">
+
+    <main role="main" style="background-color:LightGray;">
         <?php
             $number = $_GET['number'];
             $jsonDecode = json_Decode($customers,true);
@@ -125,9 +115,10 @@
     </div>
 
      </div>
-
+    <br>
     </main>
 
+    <br> 
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
