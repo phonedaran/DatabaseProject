@@ -117,7 +117,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <form action="productlist/filter" method="get">
-
+                        <br>
                             <!--Type-->
                             <div class="list-group">
                                 <?php

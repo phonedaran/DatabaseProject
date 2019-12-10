@@ -47,7 +47,7 @@
 				@if (Session('warning'))
 				<div class="alert alert-danger alert-dismissable fade show" role="alert">
   					<!-- {{ Session::get('message') }} -->
-					<strong>Please try again</strong>
+					<h7>Please try again</h7>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     					<span aria-hidden="true">&times;</span>
  					</button>

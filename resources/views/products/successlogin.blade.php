@@ -35,6 +35,30 @@
             }
 
         }
+
+        .scrollbar {
+            margin-left: 0px;
+            float: left;
+            height: 400px;
+            background: #fff;
+            overflow-y: scroll;
+            margin-bottom: 0px;
+        }
+        .force-overflow {
+            min-height: 300px;
+        }
+
+        .scrollbar-gray::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5; 
+        }
+
+        .scrollbar-gray::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #A9A9A9; 
+        }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -119,7 +143,7 @@
                         <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
                     </div>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"  style="color:darkblue">
+                            aria-expanded="false"  style="color:dark blue">
                             @foreach ($User as $user )
                                 <b>{{$user->firstName}} &nbsp {{$user->lastName}}</b>
                             @endforeach
@@ -131,9 +155,14 @@
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif
                         @if ($user->jobTitle == 'Sales Rep')
-                            <a class="dropdown-item" href="#">Key Order</a>
+                            <?php 
+                                session_start();
+                                $_SESSION['Fname'] = $user->firstName;
+                                $_SESSION['Lname'] = $user->lastName;
+                            ?>
+                            <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                         @endif
-                        <a class="dropdown-item" href="#">Order list</a>
+                        <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                         @if ($user->jobTitle == 'VP Marketing')
                             <a class="dropdown-item" href="#">Promotion</a>
                         @endif
@@ -166,6 +195,8 @@
                     @foreach ($products as $product )
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
+                            <div class="scrollbar  scrollbar-gray ">
+                            <div class="force-overflow">
                                 <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
                                     onerror="this.src='../images/not.png'" width="100%" height="100%"  />
                                 <div class="card-body">
@@ -181,6 +212,7 @@
                                         <br>
                                         <td>Vendor : {{$product->productVendor}}</td>
                                     </tr>
+                                    
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="{{ URL::to('/productlist/view') }}" method="get">
@@ -191,6 +223,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     @endforeach

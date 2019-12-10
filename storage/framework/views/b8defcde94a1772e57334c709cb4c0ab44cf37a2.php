@@ -119,7 +119,7 @@
                         <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
                     </div>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"  style="color:darkblue">
+                            aria-expanded="false"  style="color:dark blue">
                             <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <b><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></b>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -131,9 +131,20 @@
                             <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                         <?php endif; ?>
                         <?php if($user->jobTitle == 'Sales Rep'): ?>
+<<<<<<< HEAD
+                            <?php 
+                                session_start();
+                                $_SESSION['Fname'] = $user->firstName;
+                                $_SESSION['Lname'] = $user->lastName;
+                            ?>
+                            <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                        <?php endif; ?>
+                        <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+=======
                             <a class="dropdown-item" href="#">Key Order</a>
                         <?php endif; ?>
                         <a class="dropdown-item" href="#">Order list</a>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
                         <?php if($user->jobTitle == 'VP Marketing'): ?>
                             <a class="dropdown-item" href="#">Promotion</a>
                         <?php endif; ?>

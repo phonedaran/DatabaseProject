@@ -7,11 +7,23 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
+<<<<<<< HEAD
+    
+    <title>Employee List</title>
+
+    <style>
+        .error {color: #FF0000;}
+    </style>
+=======
     <title>SuccessProductlist</title>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
+<<<<<<< HEAD
+    <script src="../resources/js/jquery-3.4.1.js"></script>
+=======
     <link rel="icon" type="image/png" href="<?php echo e(URL::asset('loginFrom\Login_v15\images\icons\favicon.ico')); ?>"/>
 
     <!-- Bootstrap core js -->
@@ -19,10 +31,13 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+<<<<<<< HEAD
+=======
 
     <style>
         .bd-placeholder-img {
@@ -39,6 +54,7 @@
             }
         }
     </style>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -48,7 +64,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+<div class="text-white bg-dark">
+=======
     <div class="text-white bg-dark">
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -59,14 +79,42 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
+<<<<<<< HEAD
+                        <a class="text-muted" href="#"></a>
+=======
 
                     </div>
                     <div>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
                     </div>
                 </div>
             </header>
         </div>
     </div>
+<<<<<<< HEAD
+
+    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/main/addemployee')); ?>">
+            <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
+        </a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"  style="color:dark blue">
+            <?php 
+                session_start();
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname']; 
+            ?>
+                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
+            <a class="dropdown-item" href="#">Key Order</a>
+            <a class="dropdown-item" href="#">Order list</a>
+            <a class="dropdown-item" href="#">Promotion</a>
+            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
+        </div>
+=======
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
 
@@ -87,6 +135,7 @@
                     <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
                 </div>
             </a>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
         </div>
     </nav>
 
@@ -96,7 +145,11 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
+<<<<<<< HEAD
+                <h2>EMPLOYEE</h2>
+=======
                 <h4 class="display-5">EMPLOYEE</h4>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
                 <div>
                     <table class="table table-hover">
                     <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -127,7 +180,13 @@
                 <a href="#">Back to top</a>
             </p>
             <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+<<<<<<< HEAD
+            <p>New to Bootstrap?
+                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
+                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+=======
 
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
