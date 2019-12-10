@@ -23,6 +23,30 @@
         }
 
         tr:hover {background-color:#f5f5f5;}
+
+        .scrollbar {
+            margin-left: 0px;
+            float: left;
+            height: 400px;
+            background: #fff;
+            overflow-y: scroll;
+            margin-bottom: 0px;
+        }
+        .force-overflow {
+            min-height: 300px;
+        }
+
+        .scrollbar-default::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5; 
+        }
+
+        .scrollbar-default::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #2BBBAD; 
+        }
+
     </style>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -97,10 +121,10 @@
 
     <!-- show order list -->
     <div class="container">
-        <strong><h2>ORDER LISTS</h2></strong>
+        <h2>ORDER LISTS</h2>
         
-        <table style="width:100%">
-            <thead>
+        <table class="table table-striped" style="width:100%">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col" >Order Number</th>
                     <th scope="col" >Customer Number</th>
@@ -134,7 +158,7 @@
                                             <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
-                                </td>    
+                                </td> 
                                 <td schop="row"><textarea rows="3"  id="comment" name="comment"><?php echo e($order->comments); ?></textarea></td>
                                 <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/orderlist/updateOrder')); ?>'; submit()">
                                 <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='<?php echo e(URL::to('/orderlist/detail')); ?>'; submit()"> 
@@ -145,6 +169,7 @@
             </tbody>
         </table>        
     </div>
+    <br>
     <!-- show order list -->
 
     <!-- end -->

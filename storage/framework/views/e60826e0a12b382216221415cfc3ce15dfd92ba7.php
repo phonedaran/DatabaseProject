@@ -7,7 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
+<<<<<<< HEAD
+    <title>Add Customer</title>
+=======
     <title>Customer</title>
+>>>>>>> 464cbd790db55502b323a6f1a2cac142003a0942
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -44,7 +48,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+<div class="text-white bg-dark">
+=======
     <div class="text-white bg-dark">
+>>>>>>> 464cbd790db55502b323a6f1a2cac142003a0942
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -55,6 +63,9 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
+<<<<<<< HEAD
+                        <a class="text-muted" href="#"></a>
+=======
                         <a class="text-muted" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
@@ -64,6 +75,7 @@
                         </svg>
                         </a>
                         <!-- <a><span class="fas fa-user" style=" color: aliceblue"></span></a> -->
+>>>>>>> 464cbd790db55502b323a6f1a2cac142003a0942
                     </div>
                 </div>
             </header>
@@ -72,6 +84,24 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
+<<<<<<< HEAD
+        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"  style="color:dark blue">
+                <?php 
+                    session_start();
+                        $Fname = $_SESSION['Fname'];
+                        $Lname = $_SESSION['Lname']; 
+                ?>
+                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>       
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+               
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                
+            </div>
+=======
         <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('main/customer/add')); ?>" style="color:black">add</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
@@ -89,15 +119,24 @@
                     <a class="dropdown-item" href="#">Promotion</a>
                     <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
                 </div>
+>>>>>>> 464cbd790db55502b323a6f1a2cac142003a0942
         </div>
     </nav>
         <!-- after field -->
 
+<<<<<<< HEAD
+    <main role="main" style="background-color:LightGray;"><br>
+    <div class="container col-md-8 bg-white " >
+    <br>
+    <div class="col-md-12 ">
+      <h2 class="mb-5" style="text-align:center;">ADD CUSTUMER</h2>
+=======
     <main role="main" style="background-color:SlateGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <div class="col-md-12 ">
       <h4 class="mb-5" style="text-align:center;">Add Customer</h4>
+>>>>>>> 464cbd790db55502b323a6f1a2cac142003a0942
 
       <form class="needs-validation" novalidate action="<?php echo e(URL::to('/main/customer/add/check')); ?>">
 
@@ -173,7 +212,11 @@
         </div>
 
         <hr class="mb-5" >
+<<<<<<< HEAD
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
+=======
         <button class="btn  btn-lg btn-block" type="submit" style="background-color:SlateGray;" >Submit</button>
+>>>>>>> 464cbd790db55502b323a6f1a2cac142003a0942
         <br>
       </form>
     </div>

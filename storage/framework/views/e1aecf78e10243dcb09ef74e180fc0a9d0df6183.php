@@ -7,7 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Customer</title>
+    <title>SuccessProductlist</title>
+
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -17,8 +18,6 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-
-    <link href="forcreate.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -44,30 +43,28 @@
 </head>
 
 <body>
-    <div class="text-white bg-dark">
+<div class="text-white bg-dark">
         <div class="container">
-                <header class="blog-header py-3">
-                    <div class="row flex-nowrap justify-content-between align-items-center">
-                        <div class="col-4 pt-1">
-                            <a class="text-muted" href="#"></a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <h1 class="display-4">K I K K O K</h1>
-                        </div>
-                        <div class="col-4 d-flex justify-content-end align-items-center">
-                            <a class="text-muted" href="#"></a>
-                        </div>
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1">
+                        <a class="text-muted" href="#"></a>
                     </div>
-                </header>
-            </div>
+                    <div class="col-4 text-center">
+                        <h1 class="display-4">K I K K O K</h1>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end align-items-center">
+                        <a class="text-muted" href="#"></a>
+                    </div>
+                </div>
+            </header>
         </div>
     </div>
 
+    
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}">
-            <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
-        </a>
+        <a class="py-2 d-none d-md-inline-block" ></a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
             <?php 
@@ -75,47 +72,53 @@
                     $Fname = $_SESSION['Fname'];
                     $Lname = $_SESSION['Lname']; 
             ?>
-                <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a> -->
+            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a> -->
             <!-- <a class="dropdown-item" href="#">Key Order</a>
             <a class="dropdown-item" href="#">Order list</a>
             <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
         </div>
         </div>
     </nav>
 
 
-    <main role="main">
-        <div class="container col-md-9">
-            <div style="text-align :center;">
-                <h2>POINT</h2>
-            </div>
-            <br>
 
-        @foreach ($customers as $cus)
-            <form action="customer/view" method="get">
-                <input type="hidden" value={{$cus->customerNumber}} name="number">
-                <button class="btn btn-lg btn-secondary btn-block col-md-14" type="submit">
-                    <div class="row"><div class="col" style="text-align :left;">
-                        <h3> {{$cus->customerName}}</h3>
-                    </div>
-                    <div class="col" style="text-align :right;">
-                        <h3>{{$cus->point}}</h3>
-                    </div>
-                </button>
-            </form>
-        <div class="mb-2" ></div>
-        
-        @endforeach
+    <main role="main" style="background-color:LightGray;">
+        <?php
+            $number = $_GET['number'];
+            $jsonDecode = json_Decode($customers,true);
+            foreach ($jsonDecode as $result) {
+                if($result['customerNumber'] == $number){
+                    $name = $result['customerName'];
+                    $conF = $result['contactFirstName'];
+                    $conL = $result['contactLastName'];
+                    $phone = $result['phone'];
+                    $addr = $result['addressLine1'];
+                    $city = $result['city'];
+                    $state = $result['state'];
+                    $pos = $result['postalCode'];
+                    $sales = $result['salesRepEmployeeNumber'];
+                    $point = $result['point'];
+                    $credit = $result['creditLimit'];
+                }
+            }
+        ?>
         <br>
-        {{ $customers->links() }}
-        </div>
-    </main>
-    <br>
+     <div class="container col-md-8 bg-white " >
+     <br>
+     <div class="col-md-12 ">
+     <h2 class="mb-4" style="text-align:left;"><?php echo e($name); ?></h2>
+     <h2 class="mb-4" style="text-align:left;">Contact : <h3><?php echo e($conF); ?>       <?php echo e($conL); ?></h3></h2>
+    </div>
 
+     </div>
+    <br>
+    </main>
+
+    <br> 
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -127,7 +130,6 @@
                 <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
         </div>
     </footer>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
@@ -142,3 +144,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/customers/customerdetail.blade.php ENDPATH**/ ?>

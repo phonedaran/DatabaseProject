@@ -65,7 +65,7 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}">
+        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('main/customer/add')); ?>">
             <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
         </a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -75,14 +75,14 @@
                     $Fname = $_SESSION['Fname'];
                     $Lname = $_SESSION['Lname']; 
             ?>
-                <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a> -->
+            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a> -->
             <!-- <a class="dropdown-item" href="#">Key Order</a>
             <a class="dropdown-item" href="#">Order list</a>
             <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
         </div>
         </div>
     </nav>
@@ -95,23 +95,24 @@
             </div>
             <br>
 
-        @foreach ($customers as $cus)
+        <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <form action="customer/view" method="get">
-                <input type="hidden" value={{$cus->customerNumber}} name="number">
+                <input type="hidden" value=<?php echo e($cus->customerNumber); ?> name="number">
                 <button class="btn btn-lg btn-secondary btn-block col-md-14" type="submit">
                     <div class="row"><div class="col" style="text-align :left;">
-                        <h3> {{$cus->customerName}}</h3>
+                        <h3> <?php echo e($cus->customerName); ?></h3>
                     </div>
                     <div class="col" style="text-align :right;">
-                        <h3>{{$cus->point}}</h3>
+                        <h3><?php echo e($cus->point); ?></h3>
                     </div>
                 </button>
             </form>
         <div class="mb-2" ></div>
         
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <br>
-        {{ $customers->links() }}
+        <?php echo e($customers->links()); ?>
+
         </div>
     </main>
     <br>
@@ -142,3 +143,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/customers/customer.blade.php ENDPATH**/ ?>

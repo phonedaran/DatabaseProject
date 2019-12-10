@@ -17,7 +17,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-
+    
     <link href="forcreate.css" rel="stylesheet">
 
     <style>
@@ -79,20 +79,20 @@
                     <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
+               
                 <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-
+                
             </div>
         </div>
     </nav>
         <!-- after field -->
-
-    <main role="main" style="background-color:SlateGray;"><br>
+    
+    <main role="main" style="background-color:LightGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <!-- add employee -->
     <div class="col-md-12 ">
-      <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
+      <h2 class="display-5" style="text-align:center;">ADD EMPLOYEE</h2>
 
       <!-- alert -->
       <?php if(Session('warning')): ?>
@@ -170,9 +170,9 @@
             </select>
           </div>
         </div>
-
+       
         <hr class="mb-5" >
-        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>
@@ -182,7 +182,7 @@
 
        <br>
     </main>
-
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>

@@ -86,13 +86,13 @@
         </div>
     </nav>
         <!-- after field -->
-
-    <main role="main" style="background-color:SlateGray;"><br>
+    
+    <main role="main" style="background-color:LightGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <!-- add employee -->
     <div class="col-md-12 ">
-      <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
+      <h2 class="display-5" style="text-align:center;">ADD EMPLOYEE</h2>
 
       <!-- alert -->
       @if (Session('warning'))
@@ -110,11 +110,7 @@
       @if (Session('success'))
       <div class="alert alert-dismissible alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> &nbsp You successfully.
-      </div>
-      @endif
-
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
+        <strong>Well done!</strong> &nbsp You successfully.yee/add/check') }} ">
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -128,6 +124,10 @@
             <input type="text" name=LName class="form-control" id="lastName" placeholder="Last Name" required>
             <div class="invalid-feedback">
               Valid last name is required.
+      </div>
+      @endif
+
+      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/emplo
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@
         </div>
 
         <hr class="mb-5" >
-        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>
