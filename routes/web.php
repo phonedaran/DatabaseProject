@@ -31,13 +31,11 @@ Route::get('/product/add','ProductController@add');     //addproduct
 Route::get('main/employee','EmployeeController@showEmployees');     //ok
 Route::get('main/addemployee', function () {
     session_start();
-    if(isset($_SESSION['user'])){
-        return view('employees.addemployee');       //ok
-    }else{
-        return redirect('/main');
-    }
+    $jobTitle = $_SESSION['job'];
+    return view('employees.addemployee',['jobTitle' => $jobTitle]);
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
+Route::get('main/employee/fire','EmployeeController@fireEmployee');
 
 //Product
 Route::get('/productlist/view','ViewController@index');         //public

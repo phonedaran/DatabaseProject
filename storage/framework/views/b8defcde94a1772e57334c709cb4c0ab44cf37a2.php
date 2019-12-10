@@ -88,11 +88,12 @@
     </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
-            <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/product/add')); ?>">
-                <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
-            </a>
+
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
+                    <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/product/add')); ?>">
+                        <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
+                    </a>
                     <div class="py-2 d-none d-md-inline-block">
                         <a>Product Filter</a>
                     </div>
@@ -153,7 +154,7 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a class="dropdown-item" href="#">Customer</a>
+                        <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
                         <?php if($user->jobTitle != 'Sales Rep'): ?>
                             <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                         <?php endif; ?>
@@ -178,6 +179,7 @@
                 $_SESSION['Fname'] = $user->firstName;
                 $_SESSION['Lname'] = $user->lastName;
                 $Enumber = $user->employeeNumber;
+                $_SESSION['job'] = $user->jobTitle;
             }
         ?>
         <?php

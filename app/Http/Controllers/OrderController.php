@@ -59,7 +59,7 @@ class OrderController extends Controller
             ->where(['productCode' => $productCode])
             ->value('buyPrice');
         $amount = $quantity*$priceEach;
-        
+
         $orderLineNumber =(DB::table('orderdetails') //หา orderLineNumber ของออเดอร์นี้
             ->where(['orderNumber' => $orderNumber])
             ->max('orderLineNumber'))+1;
@@ -111,16 +111,16 @@ class OrderController extends Controller
     }
     public function index(){
         $orders = Order::all();
-        $status = array("In Process","Waiting","On Hold","Resolved","Shipped","Cancelled");   
-        
+        $status = array("In Process","Waiting","Disputed","On Hold","Resolved","Shipped","Cancelled");
+
         //orders ที่จ่ายแล้วแต่ของไม่พอ
         $orderOutOfStocks = DB::table('orders')
         ->where(['status' => 'Waiting'])->get();
-        
+
         //check stock สำหรับ orderนี้
         foreach ($orderOutOfStocks as $orderOutOfStock){
-            $enough = DB::select('SELECT * FROM orderdetails 
-            join products using (productCode) 
+            $enough = DB::select('SELECT * FROM orderdetails
+            join products using (productCode)
             WHERE orderdetails.orderNumber = ?
             and orderdetails.quantityOrdered < products.quantityInStock',[$orderOutOfStock->orderNumber]);
             if(count($enough)!=0){ //ถ้าของใน stock พอ
@@ -128,8 +128,8 @@ class OrderController extends Controller
                 DB::table('orders') //update status , shippedDate and comments
                 ->where(['orderNumber' => $orderOutOfStock->orderNumber])
                 ->update(['status' => 'Shipped', 'shippedDate' => $date, 'comments' => '']);
-                
-                $orderdetails = DB::table('orderdetails') 
+
+                $orderdetails = DB::table('orderdetails')
                 ->where(['orderNumber' => ($orderOutOfStock->orderNumber)])->get();
                 foreach ($orderdetails as $orderdetail){ //update quantityInStock
                     DB::update('UPDATE products
@@ -149,7 +149,7 @@ class OrderController extends Controller
             ")]);
 
 
-        
+
 
         return view('orders.orderlist',['orders' => $orders, 'status' => $status]);
     }

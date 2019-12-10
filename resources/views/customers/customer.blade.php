@@ -55,62 +55,65 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <!-- <a><span class="fas fa-user" style=" color: aliceblue"></span></a> -->
+                        <a class="text-muted" href="#"></a>
                     </div>
                 </div>
             </header>
         </div>
     </div>
+    </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}" style="color:black">add</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
+            <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}">
+                <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
+            </a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  style="color:black">
-                    Menu
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url('main/customer') }}">Customer</a>
-                    <a class="dropdown-item" href="#">Employee</a>
-                    <a class="dropdown-item" href="#">Key Order</a>
-                    <a class="dropdown-item" href="#">Order list</a>
-                    <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                </div>
+                aria-expanded="false"  style="color:dark blue">
+                <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                ?>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <!-- <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a> -->
+                <!-- <a class="dropdown-item" href="#">Key Order</a>
+                <a class="dropdown-item" href="#">Order list</a>
+                <a class="dropdown-item" href="#">Promotion</a> -->
+                <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+            </div>
         </div>
     </nav>
 
 
     <main role="main">
-    <div class="container col-md-9">
-    <br>
+        <div class="container col-md-9">
+            <div class="container col-md-9">
+                <div style="text-align :center;">
+                    <h2>POINT</h2>
+                </div>
+                <br>
 
-    @foreach ($customers as $cus)
-       <form action="customer/view" method="get">
-        <input type="hidden" value={{$cus->customerNumber}} name="number">
-        <button class="btn btn-lg btn-block col-md-14" style="background-color:pink;" type="submit">
-        <div class="row"><div class="col" style="text-align :left;"><h2> {{$cus->customerName}}</h2></div>
-        <div class="col" style="text-align :right;"><h2>{{$cus->point}}</h2></div></div>
-     </button></form>
-     <div class="mb-2" ></div>
-    @endforeach
-    <br>
-    {{ $customers->links() }}
-</div>
+                @foreach ($customers as $cus)
+                    <form action="customer/view" method="get">
+                        <input type="hidden" value={{$cus->customerNumber}} name="number">
+                        <button class="btn btn-lg btn-secondary btn-block col-md-14" type="submit">
+                            <div class="row"><div class="col" style="text-align :left;">
+                                <h3> {{$cus->customerName}}</h3>
+                            </div>
+                            <div class="col" style="text-align :right;">
+                                <h3>{{$cus->point}}</h3>
+                            </div>
+                        </button>
+                    </form>
+                <div class="mb-2" ></div>
 
-
+                @endforeach
+                <br>
+                {{ $customers->links() }}
+            </div>
+        </div>
     </main>
 
     <footer class="text-muted">
