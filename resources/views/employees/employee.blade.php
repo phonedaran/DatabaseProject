@@ -90,15 +90,15 @@
                 <div>
                     <table class="table table-hover">
                     @foreach ( $employees as $Emp)
-                        <form action="productlist/view" method="post">
+                        <form action="productlist/view" method="get">
                             <tr class="table-secondary">
-                                <th scope="row">{{$Emp->firstName}}<input type="hidden" value={{$Emp->firstName}} name="Fname"></th>
-                                <th scope="row">{{$Emp->lastName}}<input type="hidden" value={{$Emp->lastName}} name="Lname"></th>
+                                <th scope="row">{{$Emp->firstName}}<input type="hidden" value="{{$Emp->firstName}}" name="Fname"></th>
+                                <th scope="row">{{$Emp->lastName}}<input type="hidden" value="{{$Emp->lastName}}" name="Lname"></th>
 
-                                <td>{{$Emp->jobTitle}}<input type="hidden" value={{$Emp->jobTitle}} name="jobtype"></td>
+                                <td>{{$Emp->jobTitle}}<input type="hidden" value="{{$Emp->jobTitle}}" name="jobtype"></td>
                                 <td>
                                     <input type="submit" class="btn btn-outline-primary" name="edit" value="EDIT"></button>
-                                    <input type="submit" class="btn btn-outline-danger" name="fired" value="FIRED"></button>
+                                    <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
                                 </td>
                             </tr>
                         </form>

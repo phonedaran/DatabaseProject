@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,10 +8,17 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
 
-    <title>Employee List</title>
+    <title>Payment</title>
 
     <style>
         .error {color: #FF0000;}
+        fieldset {
+            display: none;
+            overflow: hidden;
+        }
+        fieldset:target {
+            display: block;
+        }
     </style>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -30,8 +37,10 @@
     <link href="blog.css" rel="stylesheet">
 </head>
 
+
 <body>
-<div class="text-white bg-dark">
+    <!-- header -->
+    <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -48,69 +57,60 @@
             </header>
         </div>
     </div>
-
-    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+    
+    <!-- <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/main/addemployee')); ?>">
-            <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
-        </a>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-            <?php
-                    $Fname = $_SESSION['Fname'];
-                    $Lname = $_SESSION['Lname'];
-            ?>
-                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
-            <!-- <a class="dropdown-item" href="#">Key Order</a>
-            <a class="dropdown-item" href="#">Order list</a>
-            <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
+            <a class="py-2" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
         </div>
+    </nav> -->
+    <!-- header -->
+
+    <!-- alert -->
+    <?php if(\Session::has('null')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> Please complete all required fields.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </nav>
+    <?php endif; ?>
+    <!-- alert -->
 
+    <!-- form -->
+    <div class="container">
+    <p><span class="error">* required field</span></p>
+    <form method ="get" action="<?php echo e(URL::to('/payment/paymentDetail/check')); ?> ">
+        <label class="my-1 mr-2" for="order">Chooes Order</label> <span class="error">*</span>
+        <select class="custom-select my-1 mr-sm-2" id="order" name="order">
+        <option selected value="0">Choose...</option>
+        <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($order->orderNumber); ?>">OrderNumber : <?php echo e($order->orderNumber); ?> , Amount : <?php echo e($order->totalAmount); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <br>
+        </select>
 
-
-    <main role="main">
-            <?php
-            //for test
-            if(isset($_SESSION['user'])){
-                //secho $_SESSION['user'];
-            }else{
-                //echo "No user";
-            }
-        ?>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <h2>EMPLOYEE</h2>
-                <div>
-                    <table class="table table-hover">
-                    <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <form action="productlist/view" method="get">
-                            <tr class="table-secondary">
-                                <th scope="row"><?php echo e($Emp->firstName); ?><input type="hidden" value=<?php echo e($Emp->firstName); ?> name="Fname"></th>
-                                <th scope="row"><?php echo e($Emp->lastName); ?><input type="hidden" value=<?php echo e($Emp->lastName); ?> name="Lname"></th>
-
-                                <td><?php echo e($Emp->jobTitle); ?><input type="hidden" value=<?php echo e($Emp->jobTitle); ?> name="jobtype"></td>
-                                <td>
-                                    <input type="submit" class="btn btn-outline-primary" name="edit" value="EDIT"></button>
-                                    <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='<?php echo e(URL::to('/main/employee/fire')); ?>'; submit()">
-                                </td>
-                            </tr>
-                        </form>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </table>
-                </div>
-                <br>
-            </div>
-        </div>
-
-    </main>
-
+        <label class="my-1 mr-2" for="discount">Chooes Discount Coupon</label> <span class="error">*</span>
+        <select class="custom-select my-1 mr-sm-2" id="discount" name="discount">
+        <option selected value="0">Choose...</option>
+        <?php $__currentLoopData = $discounts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $discount): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($discount->discountCode); ?>">Discount Code : <?php echo e($discount->discountCode); ?> ,  Amount : <?php echo e($discount->amount); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+        <option value="-">No</option>
+        </select> 
+        <input type="hidden" id="customerNumber" name="customerNumber" value="<?php echo e($customerNumber); ?>">
+        <input type="hidden" id="chequeNumber" name="chequeNumber" value="<?php echo e($chequeNumber); ?>">
+        <input type="hidden" id="paymentDate" name="paymentDate" value="<?php echo e($paymentDate); ?>">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <!-- form -->
+    </div>
+    <br>
+    <!-- end -->
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -133,7 +133,6 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <!-- end -->
 </body>
-
-</html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/employees/employee.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/payments/paymentDetail.blade.php ENDPATH**/ ?>

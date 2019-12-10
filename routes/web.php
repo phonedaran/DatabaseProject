@@ -33,6 +33,7 @@ Route::get('main/addemployee', function () {
     return view('employees.addemployee');
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
+Route::get('main/employee/fire','EmployeeController@fireEmployee');
 
 Route::get('/productlist/view','ViewController@index');
 Route::get('/productlist/filter','ProductController@filter'); // Filter

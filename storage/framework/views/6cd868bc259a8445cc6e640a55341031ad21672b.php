@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,10 +8,17 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
 
-    <title>Employee List</title>
+    <title>Payment</title>
 
     <style>
         .error {color: #FF0000;}
+        fieldset {
+            display: none;
+            overflow: hidden;
+        }
+        fieldset:target {
+            display: block;
+        }
     </style>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -30,8 +37,10 @@
     <link href="blog.css" rel="stylesheet">
 </head>
 
+
 <body>
-<div class="text-white bg-dark">
+    <!-- header -->
+    <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -49,68 +58,61 @@
         </div>
     </div>
 
-    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/main/addemployee')); ?>">
-            <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
-        </a>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-            <?php
-                    $Fname = $_SESSION['Fname'];
-                    $Lname = $_SESSION['Lname'];
-            ?>
-                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
-            <!-- <a class="dropdown-item" href="#">Key Order</a>
-            <a class="dropdown-item" href="#">Order list</a>
-            <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
+   
+    <!-- header -->
+
+    <!-- alert -->
+    <?php if(\Session::has('null')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> Please complete all required fields.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+    <?php endif; ?>
+    <?php if(\Session::has('noCustomer')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> There is no this Customer Number.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </nav>
+    <?php endif; ?>
+    <?php if(\Session::has('noOrder')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> The customer has no any order for payment.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
 
+    <!-- alert -->
 
-
-    <main role="main">
-            <?php
-            //for test
-            if(isset($_SESSION['user'])){
-                //secho $_SESSION['user'];
-            }else{
-                //echo "No user";
-            }
-        ?>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <h2>EMPLOYEE</h2>
-                <div>
-                    <table class="table table-hover">
-                    <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <form action="productlist/view" method="get">
-                            <tr class="table-secondary">
-                                <th scope="row"><?php echo e($Emp->firstName); ?><input type="hidden" value=<?php echo e($Emp->firstName); ?> name="Fname"></th>
-                                <th scope="row"><?php echo e($Emp->lastName); ?><input type="hidden" value=<?php echo e($Emp->lastName); ?> name="Lname"></th>
-
-                                <td><?php echo e($Emp->jobTitle); ?><input type="hidden" value=<?php echo e($Emp->jobTitle); ?> name="jobtype"></td>
-                                <td>
-                                    <input type="submit" class="btn btn-outline-primary" name="edit" value="EDIT"></button>
-                                    <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='<?php echo e(URL::to('/main/employee/fire')); ?>'; submit()">
-                                </td>
-                            </tr>
-                        </form>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </table>
-                </div>
-                <br>
+    <!-- payment form -->
+    <div class="container">
+        <form action="<?php echo e(URL::to('/payment/paymentDetail')); ?> ">
+            <strong><h2>PAYMENT</h2></strong>
+            <p><span class="error">* required field</span></p>
+            <div class="form-group">
+                <label>Customer Number</label> <span class="error">*</span>
+                <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
             </div>
-        </div>
+            <div class="form-group">
+                <label>Cheque Number</label> <span class="error">*</span>
+                <input type="text" name="chequeNumber" class="form-control" placeholder="Enter Cheque Number">
+            </div>
+            <div class="form-group">
+                <label>Payment Date</label> <span class="error">*</span>
+                <input type="date" name="paymentDate" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Next</button>
+        </form>
+    </div>
+    <br>
+    <!-- payment form -->
 
-    </main>
-
+    <!-- end -->
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -133,7 +135,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <!-- end -->
 </body>
-
 </html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/employees/employee.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/payments/payment.blade.php ENDPATH**/ ?>

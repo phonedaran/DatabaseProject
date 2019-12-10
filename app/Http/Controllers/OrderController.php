@@ -26,6 +26,7 @@ class OrderController extends Controller
         if($orderNumber === null or $customerNumber === null or empty($orderDate) or empty($requiredDate)) {
             return redirect()->back()->with('null','Please fill all required field.');
         }
+
         $data=DB::table('orders')->where(['orderNumber' => $orderNumber])->exists();
         $customer=DB::table('customers')->where(['customerNumber' => $customerNumber])->doesntExist();
         if($customer == 1){
@@ -111,7 +112,7 @@ class OrderController extends Controller
     }
     public function index(){
         $orders = Order::all();
-        $status = array("In Process","Waiting","On Hold","Resolved","Shipped","Cancelled");   
+        $status = array("In Process","Waiting","Disputed","On Hold","Resolved","Shipped","Cancelled");   
         
         //orders ที่จ่ายแล้วแต่ของไม่พอ
         $orderOutOfStocks = DB::table('orders')

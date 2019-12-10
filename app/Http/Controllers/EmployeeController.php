@@ -22,6 +22,10 @@ class EmployeeController extends Controller
 
     }
 
+    function fireEmployee(){
+        $Fname = $_GET['']
+    }
+
     function addEmployee(request $request)
     {
         $Enumber = Employee::max('employeeNumber') + 1;
