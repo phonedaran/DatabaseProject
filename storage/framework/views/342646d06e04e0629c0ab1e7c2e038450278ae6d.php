@@ -75,13 +75,12 @@
                     session_start();
                         $Fname = $_SESSION['Fname'];
                         $Lname = $_SESSION['Lname']; 
-                        $jobTitle = $_SESSION['job'];
                 ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>       
+                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>       
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                
-                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
                 
             </div>
         </div>
@@ -96,20 +95,20 @@
       <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
 
       <!-- alert -->
-      @if (Session('nodata'))
+      <?php if(Session('nodata')): ?>
       <div class="alert alert-dismissible alert-danger">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
       </div>
-      @endif
-      @if (Session('success'))
+      <?php endif; ?>
+      <?php if(Session('success')): ?>
       <div class="alert alert-dismissible alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Well done!</strong> &nbsp You successfully.
       </div>
-      @endif
+      <?php endif; ?>
 
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
+      <form class="needs-validation" method ="get" novalidate action="<?php echo e(URL::to('/employee/add/check')); ?> ">
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -158,18 +157,10 @@
           <div class="mb-3">
           <select class="custom-select" name=jobTitle id="jobTitle">
               <option selected>Job Title</option>
-              @if($jobTitle == 'President')
-                <option value="VP Sales">VP Sales</option>
-                <option value="VP Marketing">VP Marketing</option>
-                <option value="Sales Manager">Sales Manager</option>
-                <option value="Sales Rep">Sales Rep</option>
-              @else
-                @if($jobTitle == 'VP Sales')
-                <option value="Sales Manager">Sales Manager</option>
-                @else
-                <option value="Sales Rep">Sales Rep</option>
-                @enif
-              @enif
+              <option value="VP Sales">VP Sales</option>
+              <option value="VP Marketing">VP Marketing</option>
+              <option value="Sales Manager">Sales Manager</option>
+              <option value="Sales Rep">Sales Rep</option>
             </select>
           </div>
         </div>
@@ -200,3 +191,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp1\htdocs\DatabaseProject\resources\views/employees/addemployee.blade.php ENDPATH**/ ?>

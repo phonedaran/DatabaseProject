@@ -156,9 +156,8 @@
                         @endif
                         @if ($user->jobTitle == 'Sales Rep')
                             <?php 
-                                session_start();
-                                $_SESSION['Fname'] = $user->firstName;
-                                $_SESSION['Lname'] = $user->lastName;
+                                
+
                             ?>
                             <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                         @endif
@@ -176,7 +175,10 @@
     <main role="main">
         <?php
             foreach ($User as $user ){
+                $_SESSION['Fname'] = $user->firstName;
+                $_SESSION['Lname'] = $user->lastName;
                 $Enumber = $user->employeeNumber;
+                $_SESSION['job'] = $user->jobTitle;
             }
         ?>
         <?php

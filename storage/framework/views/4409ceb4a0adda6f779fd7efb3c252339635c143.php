@@ -51,13 +51,13 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        @if($jobTitle != 'VP Marketing')
-        <a class="py-2 d-none d-md-inline-block" href="{{url('/main/addemployee')}}">
+        <?php if($jobTitle != 'VP Marketing'): ?>
+        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/main/addemployee')); ?>">
             <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
         </a>
-        @else
+        <?php else: ?>
         <a class="py-2 d-none d-md-inline-block" href="#"></a>
-        @endif
+        <?php endif; ?>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
             <?php 
@@ -65,14 +65,14 @@
                     $Fname = $_SESSION['Fname'];
                     $Lname = $_SESSION['Lname']; 
             ?>
-                <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a>
+            <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
             <!-- <a class="dropdown-item" href="#">Key Order</a>
             <a class="dropdown-item" href="#">Order list</a>
             <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
         </div>
         </div>
     </nav>
@@ -86,32 +86,32 @@
                 <h2>EMPLOYEE</h2>
                 <div>
                     <table class="table table-hover">
-                    @foreach ( $employees as $Emp)
+                    <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <form action="productlist/view" method="post">
                                 <tr class="table-secondary">
-                                    <th scope="row">{{$Emp->firstName}}<input type="hidden" value={{$Emp->firstName}} name="Fname"></th>
-                                    <th scope="row">{{$Emp->lastName}}<input type="hidden" value={{$Emp->lastName}} name="Lname"></th>
+                                    <th scope="row"><?php echo e($Emp->firstName); ?><input type="hidden" value=<?php echo e($Emp->firstName); ?> name="Fname"></th>
+                                    <th scope="row"><?php echo e($Emp->lastName); ?><input type="hidden" value=<?php echo e($Emp->lastName); ?> name="Lname"></th>
 
-                                    <td>{{$Emp->jobTitle}}<input type="hidden" value={{$Emp->jobTitle}} name="jobtype"></td>
+                                    <td><?php echo e($Emp->jobTitle); ?><input type="hidden" value=<?php echo e($Emp->jobTitle); ?> name="jobtype"></td>
                                     <td>
-                                        @if($jobTitle == 'President')
+                                        <?php if($jobTitle == 'President'): ?>
                                             <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
-                                            @if($Emp->jobTitle != 'President')    
+                                            <?php if($Emp->jobTitle != 'President'): ?>    
                                                 <input type="submit" class="btn btn-outline-danger" href="#" name="fired" value="FIRED"></button>
-                                            @endif
-                                        @endif
-                                        @if($jobTitle != 'President' and $jobTitle != 'VP Marketing')
-                                            @foreach ( $firedEmp as $fired)
-                                                @if($Emp->employeeNumber == $fired->employeeNumber)
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                        <?php if($jobTitle != 'President' and $jobTitle != 'VP Marketing'): ?>
+                                            <?php $__currentLoopData = $firedEmp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fired): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($Emp->employeeNumber == $fired->employeeNumber): ?>
                                                 <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
                                                 <input type="submit" class="btn btn-outline-danger" href="#" name="fired" value="FIRED"></button>
-                                                @endif
-                                            @endforeach
-                                        @endif
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             </form>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </table>
                 </div>
                 <br>
@@ -145,3 +145,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp1\htdocs\DatabaseProject\resources\views/employees/employee.blade.php ENDPATH**/ ?>
