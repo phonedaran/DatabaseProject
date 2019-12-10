@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    
+
     <title>Employee List</title>
 
     <style>
@@ -56,10 +56,9 @@
         </a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-            <?php 
-                session_start();
+            <?php
                     $Fname = $_SESSION['Fname'];
-                    $Lname = $_SESSION['Lname']; 
+                    $Lname = $_SESSION['Lname'];
             ?>
                 <b>{{$Fname}} &nbsp {{$Lname}}</b>
         </a>
@@ -76,6 +75,14 @@
 
 
     <main role="main">
+            <?php
+            //for test
+            if(isset($_SESSION['user'])){
+                //secho $_SESSION['user'];
+            }else{
+                //echo "No user";
+            }
+        ?>
 
         <div class="album py-5 bg-light">
             <div class="container">

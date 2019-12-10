@@ -17,7 +17,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    
+
     <link href="forcreate.css" rel="stylesheet">
 
     <style>
@@ -71,17 +71,17 @@
             <a class="py-2 d-none d-md-inline-block"></a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-                <?php 
+                <?php
                     session_start();
                         $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
+                        $Lname = $_SESSION['Lname'];
                 ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>       
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-               
+
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                
+
             </div>
         </div>
     </nav>
@@ -110,11 +110,7 @@
       @if (Session('success'))
       <div class="alert alert-dismissible alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> &nbsp You successfully.
-      </div>
-      @endif
-
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
+        <strong>Well done!</strong> &nbsp You successfully.yee/add/check') }} ">
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -128,6 +124,10 @@
             <input type="text" name=LName class="form-control" id="lastName" placeholder="Last Name" required>
             <div class="invalid-feedback">
               Valid last name is required.
+      </div>
+      @endif
+
+      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/emplo
             </div>
           </div>
         </div>
@@ -170,7 +170,7 @@
             </select>
           </div>
         </div>
-       
+
         <hr class="mb-5" >
         <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
         <br>
@@ -182,7 +182,7 @@
 
        <br>
     </main>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>

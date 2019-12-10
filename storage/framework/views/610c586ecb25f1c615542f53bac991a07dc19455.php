@@ -161,7 +161,7 @@
             let price = result*p
             if(result < 0){
                 document.getElementById('qtyTotal').value = 0;
-                document.getElementById('priceTotal').value = 0
+                document.getElementById('priceTotal').value = 0;
             }else{
                 document.getElementById('qtyTotal').value = result;
                 document.getElementById('priceTotal').value = price.toFixed(2);

@@ -156,6 +156,16 @@
     </div>
 
     <main role="main">
+
+        <?php
+            //for test
+            session_start();
+            if(isset($_SESSION['user'])){
+                echo $_SESSION['user'];
+            }else{
+                echo "No user";
+            }
+        ?>
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
@@ -180,7 +190,6 @@
                                         <br>
                                         <td>Vendor : <?php echo e($product->productVendor); ?></td>
                                     </tr>
-                                    
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="productlist/view" method="get">

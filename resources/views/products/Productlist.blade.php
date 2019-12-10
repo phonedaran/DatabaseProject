@@ -52,13 +52,13 @@
 
         .scrollbar-gray::-webkit-scrollbar {
             width: 5px;
-            background-color: #F5F5F5; 
+            background-color: #F5F5F5;
         }
 
         .scrollbar-gray::-webkit-scrollbar-thumb {
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #A9A9A9; 
+            background-color: #A9A9A9;
         }
 
     </style>
@@ -156,6 +156,16 @@
     </div>
 
     <main role="main">
+
+        <?php
+            //for test
+            session_start();
+            if(isset($_SESSION['user'])){
+                //echo $_SESSION['user'];
+            }else{
+                //echo "No user";
+            }
+        ?>
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
@@ -180,7 +190,7 @@
                                         <br>
                                         <td>Vendor : {{$product->productVendor}}</td>
                                     </tr>
-                                    
+
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="productlist/view" method="get">

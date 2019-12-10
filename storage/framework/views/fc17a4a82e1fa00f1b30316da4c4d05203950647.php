@@ -71,12 +71,12 @@
             <a class="py-2 d-none d-md-inline-block"></a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-                <?php 
+                <?php
                     session_start();
                         $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
+                        $Lname = $_SESSION['Lname'];
                 ?>
-                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>       
+                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                

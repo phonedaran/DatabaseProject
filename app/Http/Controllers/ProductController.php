@@ -14,9 +14,6 @@ class ProductController extends Controller
 
         return view('products.productlist',['products' => $products ]);
 
-       // $productName = 'Coke';
-
-        //return view('products.index',['productName' => $productName ]);  //ส่งตัวแปรไปที่ view
     }
 
 

@@ -21,7 +21,7 @@ class MainController extends Controller
 
     function login(request $request)
     {
-        
+
         $Enumber = $request->input('name');
         $password = $request->input('pass');
         $checkpass = md5($password);
@@ -31,6 +31,8 @@ class MainController extends Controller
 
         if (count($data))
         {
+            session_start();
+            $_SESSION['user']=$Enumber;
             return view('products.successlogin',['User' => $User, 'products' => $products]);
         }
         else
@@ -41,6 +43,8 @@ class MainController extends Controller
 
     function logout()
     {
+        session_start(); //logout
+        session_destroy();
         return redirect('/');
     }
 }
