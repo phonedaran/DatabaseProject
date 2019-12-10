@@ -88,6 +88,9 @@
     </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
+            <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/product/add')); ?>">
+                <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
+            </a>
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <div class="py-2 d-none d-md-inline-block">

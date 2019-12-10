@@ -72,9 +72,25 @@
     <!-- header -->
 
     <!-- alert  -->
+    @if (\Session::has('promo'))
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Wow!</strong> The product has "Get 1 buy 1" promotion.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     @if (\Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Please fill order detail.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if (\Session::has('complete'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> The order updated.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -123,7 +139,8 @@
                 <label>Quantity Ordered</label> <span class="error">*</span>
                 <input type="number" name="quantity" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="button" class="btn btn-outline-success" value="ADD" onClick="this.form.action='{{ URL::to('/keyOrder/orderDetail/check') }}'; submit()">
+            <input type="button" class="btn btn-outline-primary" value="View Order list" onClick="this.form.action='{{ URL::to('/orderlist') }}'; submit()">
         </form>
     </div>
     <!-- form for filling detail -->
