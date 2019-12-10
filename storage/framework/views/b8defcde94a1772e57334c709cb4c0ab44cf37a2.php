@@ -131,6 +131,7 @@
                             <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                         <?php endif; ?>
                         <?php if($user->jobTitle == 'Sales Rep'): ?>
+<<<<<<< HEAD
                             <?php 
                                 session_start();
                                 $_SESSION['Fname'] = $user->firstName;
@@ -139,6 +140,11 @@
                             <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
                         <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+=======
+                            <a class="dropdown-item" href="#">Key Order</a>
+                        <?php endif; ?>
+                        <a class="dropdown-item" href="#">Order list</a>
+>>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
                         <?php if($user->jobTitle == 'VP Marketing'): ?>
                             <a class="dropdown-item" href="#">Promotion</a>
                         <?php endif; ?>

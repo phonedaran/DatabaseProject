@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Add Employee</title>
+    <title>Customer</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -17,7 +17,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    
+
     <link href="forcreate.css" rel="stylesheet">
 
     <style>
@@ -29,14 +29,11 @@
             -ms-user-select: none;
             user-select: none;
         }
-
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
-
         }
-
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -58,7 +55,15 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#"></a>
+                        <a class="text-muted" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
+                            <title>Search</title>
+                            <circle cx="10.5" cy="10.5" r="7.5" />
+                            <path d="M21 21l-5.2-5.2" />
+                        </svg>
+                        </a>
+                        <!-- <a><span class="fas fa-user" style=" color: aliceblue"></span></a> -->
                     </div>
                 </div>
             </header>
@@ -67,78 +72,55 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block"></a>
+        <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}" style="color:black">add</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-                <?php 
-                    session_start();
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
-                ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>       
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <!-- <a class="dropdown-item" href="{{ url('/main/success') }}">Product</a> -->
-                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                <!-- <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a> -->
-            </div>
+                    aria-expanded="false"  style="color:black">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url('main/customer') }}">Customer</a>
+                    <a class="dropdown-item" href="#">Employee</a>
+                    <a class="dropdown-item" href="#">Key Order</a>
+                    <a class="dropdown-item" href="#">Order list</a>
+                    <a class="dropdown-item" href="#">Promotion</a>
+                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                </div>
         </div>
     </nav>
         <!-- after field -->
-    
+
     <main role="main" style="background-color:SlateGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
-    <!-- add employee -->
     <div class="col-md-12 ">
-<<<<<<< HEAD
-      <h2 class="mb-5" style="text-align:center;">Add Employee</h2>
+      <h4 class="mb-5" style="text-align:center;">Add Customer</h4>
 
-      <form class="needs-validation" novalidate action="{{ URL::to('/employee/add/check') }} ">
+      <form class="needs-validation" novalidate action="{{ URL::to('/main/customer/add/check') }}">
 
-          <div class="mb-3">
-            <input type="text" name=Enumber class="form-control" id="Enumber" placeholder="Employee Number" required>
-            <div class="invalid-feedback">
-              Please enter Employee Number.
-            </div>
+        <div class="mb-3">
+          <label for="name">Customer Name</label>
+          <input type="text" name=customerName class="form-control" id="customername" placeholder="Enter Customer Name" required>
+          <div class="invalid-feedback">
+            Please enter Customer name.
           </div>
-=======
-      <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
-
-      <!-- alert -->
-      @if (Session('warning'))
-      <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oops!</strong> &nbsp Change a few Report To and try submitting again.
-      </div>
-      @endif
-      @if (Session('nodata'))
-      <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
-      </div>
-      @endif
-      @if (Session('success'))
-      <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> &nbsp You successfully.
-      </div>
-      @endif
-
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
->>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
+        </div>
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <input type="text" name=FName class="form-control" id="firstName" placeholder="First Name" required>
+            <label for="firstName">Contact First name</label>
+            <input type="text" name=conFName class="form-control" id="firstName" placeholder="...." value="" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
-            <input type="text" name=LName class="form-control" id="lastName" placeholder="Last Name" required>
+            <label for="lastName">Contact Last name</label>
+            <input type="text" name=conLName class="form-control" id="lastName" placeholder="...." value="" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -146,46 +128,52 @@
         </div>
 
         <div class="mb-3">
-          <input type="text" name=email class="form-control" id="mail" placeholder="E-mail" required>
+          <label for="address">Address</label>
+          <input type="text" name=addr class="form-control" id="address" placeholder="Enter Customer Address" required>
           <div class="invalid-feedback">
-            Please enter E-mail.
+            Please enter your shipping address.
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <input type="text" name=extension class="form-control" id="extension" placeholder="Extension" value="" required>
-            <div class="invalid-feedback">
-            Please enter Extension.
-            </div>
+            <label for="postal">Postal Code</label>
+            <input type="text" name=postal class="form-control" id="postal" placeholder="...." value="" required>
           </div>
 
           <div class="col-md-6 mb-3">
-            <select class="custom-select" name=OfficeCode id="OfficeCode">
-              <option selected>OfficeCode</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
+            <label for="phone">Phone Number</label>
+            <input type="phone" name=phone class="form-control" id="lastName" placeholder="...." value="" required>
+            <div class="invalid-feedback">
+              Valid phone number is required.
+            </div>
           </div>
         </div>
 
-          <div class="mb-3">
-          <select class="custom-select" name=jobTitle id="jobTitle">
-              <option selected>Job Title</option>
-              <option value="VP Sales">VP Sales</option>
-              <option value="VP Marketing">VP Marketing</option>
-              <option value="Sales Manager">Sales Manager</option>
-              <option value="Sales Rep">Sales Rep</option>
-            </select>
+
+        <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="country">Country</label>
+            <input type="text" name=country class="form-control" id="country" placeholder="" required>
+            <div class="invalid-feedback">
+              Country required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            <input type="text" name=state class="form-control" id="state" placeholder="" required>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="city">City</label>
+            <input type="text" name=city class="form-control" id="city" placeholder="" required>
+            <div class="invalid-feedback">
+              City required.
+            </div>
           </div>
         </div>
-       
+
         <hr class="mb-5" >
-        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn  btn-lg btn-block" type="submit" style="background-color:SlateGray;" >Submit</button>
         <br>
       </form>
     </div>
@@ -195,7 +183,7 @@
 
        <br>
     </main>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
