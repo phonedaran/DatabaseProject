@@ -17,7 +17,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    
+
     <link href="forcreate.css" rel="stylesheet">
 
     <style>
@@ -71,39 +71,27 @@
             <a class="py-2 d-none d-md-inline-block"></a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-                <?php 
+                <?php
                     session_start();
                         $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
+                        $Lname = $_SESSION['Lname'];
                 ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>       
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-               
+
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                
+
             </div>
         </div>
     </nav>
         <!-- after field -->
-    
+
     <main role="main" style="background-color:SlateGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <!-- add employee -->
     <div class="col-md-12 ">
-<<<<<<< HEAD
-      <h2 class="mb-5" style="text-align:center;">Add Employee</h2>
-
-      <form class="needs-validation" novalidate action="{{ URL::to('/employee/add/check') }} ">
-
-          <div class="mb-3">
-            <input type="text" name=Enumber class="form-control" id="Enumber" placeholder="Employee Number" required>
-            <div class="invalid-feedback">
-              Please enter Employee Number.
-            </div>
-          </div>
-=======
       <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
 
       <!-- alert -->
@@ -127,7 +115,6 @@
       @endif
 
       <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
->>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -183,7 +170,7 @@
             </select>
           </div>
         </div>
-       
+
         <hr class="mb-5" >
         <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
         <br>
@@ -195,7 +182,7 @@
 
        <br>
     </main>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>

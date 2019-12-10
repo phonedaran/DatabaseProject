@@ -50,13 +50,13 @@
 
         .scrollbar-gray::-webkit-scrollbar {
             width: 5px;
-            background-color: #F5F5F5; 
+            background-color: #F5F5F5;
         }
 
         .scrollbar-gray::-webkit-scrollbar-thumb {
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #A9A9A9; 
+            background-color: #A9A9A9;
         }
 
     </style>
@@ -155,11 +155,7 @@
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif
                         @if ($user->jobTitle == 'Sales Rep')
-                            <?php 
-                                session_start();
-                                $_SESSION['Fname'] = $user->firstName;
-                                $_SESSION['Lname'] = $user->lastName;
-                            ?>
+
                             <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                         @endif
                         <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
@@ -176,6 +172,8 @@
     <main role="main">
         <?php
             foreach ($User as $user ){
+                $_SESSION['Fname'] = $user->firstName;
+                $_SESSION['Lname'] = $user->lastName;
                 $Enumber = $user->employeeNumber;
             }
         ?>
@@ -212,7 +210,7 @@
                                         <br>
                                         <td>Vendor : {{$product->productVendor}}</td>
                                     </tr>
-                                    
+
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="{{ URL::to('/productlist/view') }}" method="get">

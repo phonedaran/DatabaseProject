@@ -35,6 +35,30 @@
             }
 
         }
+
+        .scrollbar {
+            margin-left: 0px;
+            float: left;
+            height: 400px;
+            background: #fff;
+            overflow-y: scroll;
+            margin-bottom: 0px;
+        }
+        .force-overflow {
+            min-height: 300px;
+        }
+
+        .scrollbar-gray::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+
+        .scrollbar-gray::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #A9A9A9;
+        }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -131,20 +155,10 @@
                             <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                         <?php endif; ?>
                         <?php if($user->jobTitle == 'Sales Rep'): ?>
-<<<<<<< HEAD
-                            <?php 
-                                session_start();
-                                $_SESSION['Fname'] = $user->firstName;
-                                $_SESSION['Lname'] = $user->lastName;
-                            ?>
+
                             <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
                         <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
-=======
-                            <a class="dropdown-item" href="#">Key Order</a>
-                        <?php endif; ?>
-                        <a class="dropdown-item" href="#">Order list</a>
->>>>>>> 35455c5e08c0bac8a56b9b5a24c2f22e69d451b0
                         <?php if($user->jobTitle == 'VP Marketing'): ?>
                             <a class="dropdown-item" href="#">Promotion</a>
                         <?php endif; ?>
@@ -158,15 +172,17 @@
     <main role="main">
         <?php
             foreach ($User as $user ){
+                $_SESSION['Fname'] = $user->firstName;
+                $_SESSION['Lname'] = $user->lastName;
                 $Enumber = $user->employeeNumber;
             }
         ?>
         <?php
         //for test
         if(isset($_SESSION['user'])){
-            echo $_SESSION['user'];
+            //echo $_SESSION['user'];
         }else{
-            echo "No user";
+            //echo "No user";
         }
     ?>
 
@@ -177,6 +193,8 @@
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
+                            <div class="scrollbar  scrollbar-gray ">
+                            <div class="force-overflow">
                                 <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
                                     onerror="this.src='../images/not.png'" width="100%" height="100%"  />
                                 <div class="card-body">
@@ -192,6 +210,7 @@
                                         <br>
                                         <td>Vendor : <?php echo e($product->productVendor); ?></td>
                                     </tr>
+
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="<?php echo e(URL::to('/productlist/view')); ?>" method="get">
@@ -202,6 +221,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

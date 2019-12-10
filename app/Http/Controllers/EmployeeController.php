@@ -30,11 +30,11 @@ class EmployeeController extends Controller
         $extension = $request->input('extension');
         $email = $request->input('email');
         $officeCode = $_GET['OfficeCode'];
-        // $reportsTo = $request->input('reportsTo'); 
+        // $reportsTo = $request->input('reportsTo');
         $jobTitle = $request->input('jobTitle');
 
         $employee = DB::table('employees')->where(['employeeNumber'=> $reportsTo])->get();
-        
+
         if ($Enumber===null or $Fname===null or $Lname===null or $extension===null or $email===null or $officeCode===null or $jobTitle===null){
             return redirect()->back()->with('nodata','Please try again');
         }else{
@@ -49,9 +49,9 @@ class EmployeeController extends Controller
                     'reportsTo' => $reportsTo,
                     'jobTitle' => $jobTitle
                 ]);
-                return redirect()->back()->with('success','complete!'); 
+                return redirect()->back()->with('success','complete!');
             }else{
-                return redirect()->back()->with('warning','Please try again'); 
+                return redirect()->back()->with('warning','Please try again');
             }
         }
     }
