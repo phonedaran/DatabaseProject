@@ -79,9 +79,9 @@
                     <b>{{$Fname}} &nbsp {{$Lname}}</b>       
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <!-- <a class="dropdown-item" href="{{ url('/main/success') }}">Product</a> -->
+               
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                <!-- <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a> -->
+                
             </div>
         </div>
     </nav>

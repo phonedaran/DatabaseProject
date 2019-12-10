@@ -65,9 +65,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a>
-            <a class="dropdown-item" href="#">Key Order</a>
+            <!-- <a class="dropdown-item" href="#">Key Order</a>
             <a class="dropdown-item" href="#">Order list</a>
-            <a class="dropdown-item" href="#">Promotion</a>
+            <a class="dropdown-item" href="#">Promotion</a> -->
             <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
         </div>
         </div>
