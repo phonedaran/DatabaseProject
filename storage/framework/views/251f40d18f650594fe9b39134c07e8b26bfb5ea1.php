@@ -7,21 +7,34 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    
-    <title>Employee List</title>
-
-    <style>
-        .error {color: #FF0000;}
-    </style>
-
+    <title>Customer</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
-    <script src="../resources/js/jquery-3.4.1.js"></script>
+
+
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+
+    <link href="forcreate.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -31,27 +44,28 @@
 </head>
 
 <body>
-<div class="text-white bg-dark">
+    <div class="text-white bg-dark">
         <div class="container">
-            <header class="blog-header py-3">
-                <div class="row flex-nowrap justify-content-between align-items-center">
-                    <div class="col-4 pt-1">
-                        <a class="text-muted" href="#"></a>
+                <header class="blog-header py-3">
+                    <div class="row flex-nowrap justify-content-between align-items-center">
+                        <div class="col-4 pt-1">
+                            <a class="text-muted" href="#"></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <h1 class="display-4">K I K K O K</h1>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end align-items-center">
+                            <a class="text-muted" href="#"></a>
+                        </div>
                     </div>
-                    <div class="col-4 text-center">
-                        <h1 class="display-4">K I K K O K</h1>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#"></a>
-                    </div>
-                </div>
-            </header>
+                </header>
+            </div>
         </div>
     </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/main/addemployee')); ?>">
+        <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('main/customer/add')); ?>">
             <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
         </a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -64,7 +78,7 @@
                 <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
+            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a> -->
             <!-- <a class="dropdown-item" href="#">Key Order</a>
             <a class="dropdown-item" href="#">Order list</a>
             <a class="dropdown-item" href="#">Promotion</a> -->
@@ -74,35 +88,34 @@
     </nav>
 
 
-
     <main role="main">
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <h2>EMPLOYEE</h2>
-                <div>
-                    <table class="table table-hover">
-                    <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <form action="productlist/view" method="post">
-                            <tr class="table-secondary">
-                                <th scope="row"><?php echo e($Emp->firstName); ?><input type="hidden" value=<?php echo e($Emp->firstName); ?> name="Fname"></th>
-                                <th scope="row"><?php echo e($Emp->lastName); ?><input type="hidden" value=<?php echo e($Emp->lastName); ?> name="Lname"></th>
-
-                                <td><?php echo e($Emp->jobTitle); ?><input type="hidden" value=<?php echo e($Emp->jobTitle); ?> name="jobtype"></td>
-                                <td>
-                                    <input type="submit" class="btn btn-outline-primary" name="edit" value="EDIT"></button>
-                                    <input type="submit" class="btn btn-outline-danger" name="fired" value="FIRED"></button>
-                                </td>
-                            </tr>
-                        </form>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </table>
-                </div>
-                <br>
+        <div class="container col-md-9">
+            <div style="text-align :center;">
+                <h2>POINT</h2>
             </div>
-        </div>
+            <br>
 
+        <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <form action="customer/view" method="get">
+                <input type="hidden" value=<?php echo e($cus->customerNumber); ?> name="number">
+                <button class="btn btn-lg btn-secondary btn-block col-md-14" type="submit">
+                    <div class="row"><div class="col" style="text-align :left;">
+                        <h3> <?php echo e($cus->customerName); ?></h3>
+                    </div>
+                    <div class="col" style="text-align :right;">
+                        <h3><?php echo e($cus->point); ?></h3>
+                    </div>
+                </button>
+            </form>
+        <div class="mb-2" ></div>
+        
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <br>
+        <?php echo e($customers->links()); ?>
+
+        </div>
     </main>
+    <br>
 
     <footer class="text-muted">
         <div class="container">
@@ -115,6 +128,7 @@
                 <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
@@ -129,4 +143,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/employees/employee.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/customers/customer.blade.php ENDPATH**/ ?>

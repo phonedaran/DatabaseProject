@@ -7,21 +7,33 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-
-    <title>Key Order</title>
-
-    <style>
-        .error {color: #FF0000;}
-    </style>
+    <title>SuccessProductlist</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
-    <script src="../resources/js/jquery-3.4.1.js"></script>
+
+
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -31,8 +43,7 @@
 </head>
 
 <body>
-    <!-- header -->
-    <div class="text-white bg-dark">
+<div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -50,88 +61,64 @@
         </div>
     </div>
 
+    
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block"></a>
+        <a class="py-2 d-none d-md-inline-block" ></a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-                <?php 
-                    session_start();
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
-                ?>
-                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-                        
+            <?php 
+                session_start();
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname']; 
+            ?>
+                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            
-            <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-           
+            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a> -->
+            <!-- <a class="dropdown-item" href="#">Key Order</a>
+            <a class="dropdown-item" href="#">Order list</a>
+            <a class="dropdown-item" href="#">Promotion</a> -->
+            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
         </div>
         </div>
     </nav>
-    <!-- header -->
 
-    <!-- alert after fill -->
-    <?php if(\Session::has('null')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> Please complete all required fields.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <?php if(\Session::has('noCustomer')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> There is no this Customer Number.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <?php if(\Session::has('warning')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> The order number is already in use.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <!-- alert after fill -->
 
-    <!-- form for filling order -->
-    <div class="container">
-        <form action="<?php echo e(URL::to('/keyOrder/check')); ?> ">
-            <strong><h2>ORDER</h2></strong>
-            <p><span class="error">* required field</span></p>
-            <div class="form-group">
-                <label>Customer Number</label> <span class="error">*</span>
-                <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
-            </div>
-            <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
-            </div>
-            <div class="form-group">
-                <label>Order Date</label> <span class="error">*</span>
-                <input type="date" name="orderDate" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Required Date</label> <span class="error">*</span>
-                <input type="date" name="requiredDate" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Comment</label>
-                <textarea rows="3" name="comment" class="form-control" placeholder="Enter Comment"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+
+    <main role="main" style="background-color:LightGray;">
+        <?php
+            $number = $_GET['number'];
+            $jsonDecode = json_Decode($customers,true);
+            foreach ($jsonDecode as $result) {
+                if($result['customerNumber'] == $number){
+                    $name = $result['customerName'];
+                    $conF = $result['contactFirstName'];
+                    $conL = $result['contactLastName'];
+                    $phone = $result['phone'];
+                    $addr = $result['addressLine1'];
+                    $city = $result['city'];
+                    $state = $result['state'];
+                    $pos = $result['postalCode'];
+                    $sales = $result['salesRepEmployeeNumber'];
+                    $point = $result['point'];
+                    $credit = $result['creditLimit'];
+                }
+            }
+        ?>
+        <br>
+     <div class="container col-md-8 bg-white " >
+     <br>
+     <div class="col-md-12 ">
+     <h2 class="mb-4" style="text-align:left;"><?php echo e($name); ?></h2>
+     <h2 class="mb-4" style="text-align:left;">Contact : <h3><?php echo e($conF); ?>       <?php echo e($conL); ?></h3></h2>
     </div>
+
+     </div>
     <br>
-    <!-- form for filling order -->
+    </main>
 
-
-    <!-- end -->
+    <br> 
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -154,9 +141,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <!-- end -->
-
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/orders/keyOrder.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/customers/customerdetail.blade.php ENDPATH**/ ?>
