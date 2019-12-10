@@ -67,7 +67,7 @@
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <div class="py-2 d-none d-md-inline-block">
-                        <b>Product Filter</b>
+                        <a>Product Filter</a>
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
                         <a>Type : </a>
@@ -119,18 +119,31 @@
                         <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
                     </div>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"  style="color:darkblue">
+                            aria-expanded="false"  style="color:dark blue">
                             <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <b><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></b>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <a class="dropdown-item" href="#">Customer</a>
-                        <a class="dropdown-item" href="#">Employee</a>
-                        <a class="dropdown-item" href="#">Key Order</a>
-                        <a class="dropdown-item" href="#">Order list</a>
-                        <a class="dropdown-item" href="#">Promotion</a>
+                        <?php if($user->jobTitle != 'Sales Rep'): ?>
+                            <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                        <?php endif; ?>
+                        <?php if($user->jobTitle == 'Sales Rep'): ?>
+                            <?php 
+                                session_start();
+                                $_SESSION['Fname'] = $user->firstName;
+                                $_SESSION['Lname'] = $user->lastName;
+                            ?>
+                            <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                        <?php endif; ?>
+                        <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                        <?php if($user->jobTitle == 'VP Marketing'): ?>
+                            <a class="dropdown-item" href="#">Promotion</a>
+                        <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </form>
