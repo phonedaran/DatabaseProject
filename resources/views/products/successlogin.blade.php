@@ -158,14 +158,6 @@
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif
                         @if ($user->jobTitle == 'Sales Rep')
-<<<<<<< HEAD
-                            <?php 
-                                
-
-                            ?>
-=======
-
->>>>>>> 148fd439ce144b393b5a5c49e56d1ab93409e61c
                             <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                         @endif
                         <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>

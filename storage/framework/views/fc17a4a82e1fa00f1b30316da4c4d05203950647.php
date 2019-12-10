@@ -17,7 +17,7 @@
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    
+
     <link href="forcreate.css" rel="stylesheet">
 
     <style>
@@ -47,75 +47,67 @@
 </head>
 
 <body>
-    <div class="text-white bg-dark">
-        <div class="container">
-            <header class="blog-header py-3">
-                <div class="row flex-nowrap justify-content-between align-items-center">
-                    <div class="col-4 pt-1">
-                        <a class="text-muted" href="#"></a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <h1 class="display-4">K I K K O K</h1>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#"></a>
-                    </div>
-                </div>
-            </header>
+  <!-- header -->
+  <div class="text-white bg-dark">
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1">
+            <a class="text-muted" href="#"></a>
+          </div>
+          <div class="col-4 text-center">
+            <h1 class="display-4">K I K K O K</h1>
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            <a class="text-muted" href="#"></a>
+          </div>
         </div>
+      </header>
     </div>
+  </div>
 
-    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block"></a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-                <?php
-                    session_start();
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname'];
-                ?>
-                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-               
-                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-                
-            </div>
-        </div>
-    </nav>
-        <!-- after field -->
-    
-    <main role="main" style="background-color:LightGray;"><br>
-    <div class="container col-md-8 bg-white " >
-    <br>
-    <!-- add employee -->
-    <div class="col-md-12 ">
-      <h2 class="display-5" style="text-align:center;">ADD EMPLOYEE</h2>
+  <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+        <a class="py-2 d-none d-md-inline-block"></a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
+            <?php
+              
+              $Fname = $_SESSION['Fname'];
+              $Lname = $_SESSION['Lname'];
+            ?>
+            <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+          </div>
+        </a>
+      </a>
+    </div>
+  </nav>
+  <!-- header -->
+  
+  <!-- alert -->
+  <?php if(Session('nodata')): ?>
+    <div class="alert alert-dismissible alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
+    </div>
+  <?php endif; ?>
+  <?php if(Session('success')): ?>
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Well done!</strong> &nbsp You successfully.
+    </div>
+  <?php endif; ?>
+  <!-- alert -->
 
-      <!-- alert -->
-      <?php if(Session('warning')): ?>
-      <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oops!</strong> &nbsp Change a few Report To and try submitting again.
-      </div>
-      <?php endif; ?>
-      <?php if(Session('nodata')): ?>
-      <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
-      </div>
-      <?php endif; ?>
-      <?php if(Session('success')): ?>
-      <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> &nbsp You successfully.
-      </div>
-      <?php endif; ?>
-
-      <form class="needs-validation" method ="get" novalidate action="<?php echo e(URL::to('/employee/add/check')); ?> ">
-
+  <!-- main -->
+<main role="main" style="background-color:LightGray;"><br>
+  <div class="container col-md-8 bg-white"><br>
+      <div class="col-md-12 ">
+        <h2 class="display-5" style="text-align:center;">ADD EMPLOYEE</h2>
+      <form class="needs-validation" method ="get" novalidate action="<?php echo e(URL::to('employee/add/check')); ?> ">
         <div class="row">
           <div class="col-md-6 mb-3">
             <input type="text" name=FName class="form-control" id="firstName" placeholder="First Name" required>
@@ -123,7 +115,6 @@
               Valid first name is required.
             </div>
           </div>
-
           <div class="col-md-6 mb-3">
             <input type="text" name=LName class="form-control" id="lastName" placeholder="Last Name" required>
             <div class="invalid-feedback">
@@ -143,10 +134,10 @@
           <div class="col-md-6 mb-3">
             <input type="text" name=extension class="form-control" id="extension" placeholder="Extension" value="" required>
             <div class="invalid-feedback">
-            Please enter Extension.
+              Please enter Extension.
             </div>
           </div>
-
+        
           <div class="col-md-6 mb-3">
             <select class="custom-select" name=OfficeCode id="OfficeCode">
               <option selected>OfficeCode</option>
@@ -160,29 +151,41 @@
           </div>
         </div>
 
-          <div class="mb-3">
+        <div class="mb-3">
           <select class="custom-select" name=jobTitle id="jobTitle">
-              <option selected>Job Title</option>
+            <option selected>Job Title</option>
+            <?php if($jobTitle == 'President'): ?>
               <option value="VP Sales">VP Sales</option>
               <option value="VP Marketing">VP Marketing</option>
               <option value="Sales Manager">Sales Manager</option>
               <option value="Sales Rep">Sales Rep</option>
-            </select>
-          </div>
+            <?php else: ?>
+              <?php if($jobTitle == 'VP Sales'): ?>
+                <option value="Sales Manager">Sales Manager</option>
+              <?php else: ?>
+                <option value="Sales Rep">Sales Rep</option>
+              <?php endif; ?>
+            <?php endif; ?>
+          </select>
         </div>
-       
-        <hr class="mb-5" >
-        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
-        <br>
+
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button><br>
+
       </form>
-    </div>
   </div>
+</main>
 
-    </div>
-
-       <br>
-    </main>
-    
+  <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p>New to Bootstrap?
+                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
+                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
@@ -196,5 +199,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/employees/addemployee.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/employees/addemployee.blade.php ENDPATH**/ ?>

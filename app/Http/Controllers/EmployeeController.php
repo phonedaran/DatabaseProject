@@ -18,35 +18,6 @@ class EmployeeController extends Controller
             $employees = Employee::all();
             $Enumber = $_SESSION['user'];
 
-            switch($jobTitle){
-                case "President":
-                    $type = 1;
-                break;
-
-                case "VP Sales":
-                    $type = 2;
-                break;
-
-                case "Sales Manager (APAC)":
-                    $type = 3;
-                break;
-
-                case "Sale Manager (EMEA)":
-                    $type = 3;
-                break;
-
-                case "Sale Manager (NA)":
-                    $type = 3;
-                break;
-
-                case "Sales Rep":
-                    $type = 4;
-                break;
-
-                default:
-                    $type = 5;
-
-            }
             if($jobTitle != "President" and $jobTitle != "VP Marketing"){
                 $firedEmp = DB::table('employees')->where(['reportsTo'=> $Enumber])->get();
                 return view('employees.employee', [ 'firedEmp' => $firedEmp, 'employees' => $employees ,'jobTitle' => $jobTitle]);
@@ -61,7 +32,9 @@ class EmployeeController extends Controller
     }
 
     function fireEmployee(){
-        $Fname = $_GET['']
+        $Fname = $_GET['Fname'];
+        $Lname = $_GET['Lname'];
+        DB::table('employees')->where(['Fname' => $Fname])->where(['Lname' => $Lname])->delete();
     }
 
     function addEmployee(request $request)

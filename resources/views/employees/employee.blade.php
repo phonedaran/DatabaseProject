@@ -60,12 +60,7 @@
         @endif
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-<<<<<<< HEAD
-            <?php 
-                
-=======
             <?php
->>>>>>> 148fd439ce144b393b5a5c49e56d1ab93409e61c
                     $Fname = $_SESSION['Fname'];
                     $Lname = $_SESSION['Lname'];
             ?>
@@ -99,17 +94,17 @@
                 <div>
                     <table class="table table-hover">
                     @foreach ( $employees as $Emp)
-                            <form action="productlist/view" method="post">
+                            <form action="productlist/view" method="get">
                                 <tr class="table-secondary">
-                                    <th scope="row">{{$Emp->firstName}}<input type="hidden" value={{$Emp->firstName}} name="Fname"></th>
-                                    <th scope="row">{{$Emp->lastName}}<input type="hidden" value={{$Emp->lastName}} name="Lname"></th>
+                                    <th scope="row">{{$Emp->firstName}}<input type="hidden" value="{{$Emp->firstName}}" name="Fname"></th>
+                                    <th scope="row">{{$Emp->lastName}}<input type="hidden" value="{{$Emp->lastName}}" name="Lname"></th>
 
-                                    <td>{{$Emp->jobTitle}}<input type="hidden" value={{$Emp->jobTitle}} name="jobtype"></td>
+                                    <td>{{$Emp->jobTitle}}<input type="hidden" value="{{$Emp->jobTitle}}" name="jobTitle" id="jobTitle"></td>
                                     <td>
                                         @if($jobTitle == 'President')
                                             <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
                                             @if($Emp->jobTitle != 'President')    
-                                                <input type="submit" class="btn btn-outline-danger" href="#" name="fired" value="FIRED"></button>
+                                            <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
                                             @endif
                                         @endif
                                         @if($jobTitle != 'President' and $jobTitle != 'VP Marketing')

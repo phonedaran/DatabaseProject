@@ -158,7 +158,6 @@
                             <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                         <?php endif; ?>
                         <?php if($user->jobTitle == 'Sales Rep'): ?>
-
                             <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
                         <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
@@ -178,6 +177,7 @@
                 $_SESSION['Fname'] = $user->firstName;
                 $_SESSION['Lname'] = $user->lastName;
                 $Enumber = $user->employeeNumber;
+                $_SESSION['job'] = $user->jobTitle;
             }
         ?>
         <?php

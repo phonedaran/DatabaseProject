@@ -30,7 +30,9 @@ Route::get('/product/add','ProductController@add');
 
 Route::get('main/employee','EmployeeController@showEmployees');
 Route::get('main/addemployee', function () {
-    return view('employees.addemployee');
+    session_start();
+    $jobTitle = $_SESSION['job'];
+    return view('employees.addemployee',['jobTitle' => $jobTitle]);
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
 Route::get('main/employee/fire','EmployeeController@fireEmployee');
