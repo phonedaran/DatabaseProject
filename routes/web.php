@@ -25,6 +25,9 @@ Route::post('/main/success','MainController@login');
 //Route::get('/main/success','ProductController@pdlogin');
 Route::get('main/logout','MainController@logout');
 
+Route::get('/product/add','ProductController@add');
+
+
 Route::get('main/employee','EmployeeController@showEmployees');
 Route::get('main/addemployee', function () {
     return view('employees.addemployee');
