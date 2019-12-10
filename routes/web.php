@@ -19,43 +19,52 @@ Route::get('/productlist', function () {
     return view('Productlist');
 });
 
-Route::get('/','ProductController@index');
-Route::get('/main','MainController@index');
-Route::post('/main/success','MainController@login');
-//Route::get('/main/success','ProductController@pdlogin');
-Route::get('main/logout','MainController@logout');
+Route::get('/','ProductController@index');      //main(public)
+Route::get('/main','MainController@index');     //login
 
-Route::get('/product/add','ProductController@add');
+Route::post('/main/success','MainController@login');    //main(login)
+Route::get('main/logout','MainController@logout');      //main(public)
 
+Route::get('/product/add','ProductController@add');     //addproduct
 
-Route::get('main/employee','EmployeeController@showEmployees');
+//Employee
+Route::get('main/employee','EmployeeController@showEmployees');     //ok
 Route::get('main/addemployee', function () {
-    return view('employees.addemployee');
+    session_start();
+    if(isset($_SESSION['user'])){
+        return view('employees.addemployee');       //ok
+    }else{
+        return redirect('/main');
+    }
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
 
-Route::get('/productlist/view','ViewController@index');
-Route::get('/productlist/filter','ProductController@filter'); // Filter
+//Product
+Route::get('/productlist/view','ViewController@index');         //public
+Route::get('/productlist/filter','ProductController@filter');       //public
 
+//Order
 Route::get('/keyOrder','OrderController@keyOrder');
 Route::get('/keyOrder/check','OrderController@check');
 Route::get('/keyOrder/orderDetail','OrderController@orderDetail');
 Route::get('/keyOrder/orderDetail/check','OrderController@checkDetail');
-
 Route::get('/orderlist','OrderController@index');
 Route::get('/orderlist/updateOrder','OrderController@updateOrder');
 Route::get('/orderlist/detail','OrderController@detail');
 
+//Promotion
 Route::get('/promotion','promotionController@index');
 Route::get('/promotion/update','promotionController@update');
 Route::get('/promotion/checkDiscount','promotionController@checkDiscount');
 Route::get('/promotion/checkBuy1Get1','promotionController@checkBuy1Get1');
 
-Route::get('main/customer','CustomerController@index');
-Route::get('main/customer/view','CustomerController@detail');
-Route::get('main/customer/add','CustomerController@add');
-Route::get('main/customer/add/check','CustomerController@addcheck');
+//Customer
+Route::get('main/customer','CustomerController@index');           //ok
+Route::get('main/customer/view','CustomerController@detail');       //ok
+Route::get('main/customer/add','CustomerController@add');           //ok
+Route::get('main/customer/add/check','CustomerController@addcheck');        //ok
 
+//Payment
 Route::get('/payment','paymentController@index');
 Route::get('/payment/paymentDetail','paymentController@paymentDetail');
 Route::get('/payment/paymentDetail/check','paymentController@check');
