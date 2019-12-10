@@ -150,6 +150,14 @@
                 $Enumber = $user->employeeNumber;
             }
         ?>
+        <?php
+        //for test
+        if(isset($_SESSION['user'])){
+            //echo $_SESSION['user'];
+        }else{
+            //echo "No user";
+        }
+    ?>
 
         <div class="album py-5 bg-light">
             <div class="container">

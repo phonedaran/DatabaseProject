@@ -68,10 +68,10 @@
         <form action="productlist/filter" method="get">
             <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <div class="py-2 d-none d-md-inline-block">
-                    <b>Product Filter</b>
+                    <a>Product Filter</a>
                 </div>
                 <div class="list-group py-2 d-none d-md-inline-block">
-                    <b>Type : </b>
+                    <a>Type : </a>
                         <select name="type">
                             <option value="Any">Any</option>
                             <option value="Classic Cars">Classic Cars</option>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="list-group py-2 d-none d-md-inline-block">
-                    <b>Scale : </b>
+                    <a>Scale : </a>
                         <select name="scale">
                             <option value="Any">Any </option>
                             <option value="1:10">1:10</option>
@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="list-group py-2 d-none d-md-inline-block">
-                    <b>Vendor : </b>
+                    <a>Vendor : </a>
                         <select name="vendor">
                             <option value="Any">Any </option>
                             <option value="Autoart Studio Design">Autoart Studio Design </option>
@@ -132,6 +132,16 @@
     </div>
 
     <main role="main">
+
+        <?php
+            //for test
+            session_start();
+            if(isset($_SESSION['user'])){
+                echo $_SESSION['user'];
+            }else{
+                echo "No user";
+            }
+        ?>
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">

@@ -67,7 +67,7 @@
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <div class="py-2 d-none d-md-inline-block">
-                        <b>Product Filter</b>
+                        <a>Product Filter</a>
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
                         <a>Type : </a>
@@ -150,6 +150,14 @@
                 $Enumber = $user->employeeNumber;
             }
         ?>
+        <?php
+        //for test
+        if(isset($_SESSION['user'])){
+            echo $_SESSION['user'];
+        }else{
+            echo "No user";
+        }
+    ?>
 
         <div class="album py-5 bg-light">
             <div class="container">

@@ -11,8 +11,15 @@ class EmployeeController extends Controller
 {
     function showEmployees()
     {
-        $employees = Employee::all();
-        return view('employees.employee', ['employees' => $employees ]);
+        //block url if no user
+        session_start();
+        if(isset($_SESSION['user'])){
+            $employees = Employee::all();
+            return view('employees.employee', ['employees' => $employees ]);
+        }else{
+            return redirect('/main');
+        }
+
     }
     function addEmployee()
     {
