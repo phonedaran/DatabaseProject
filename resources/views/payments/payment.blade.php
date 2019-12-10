@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,10 +8,17 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
 
-    <title>Key Order</title>
+    <title>Payment</title>
 
     <style>
         .error {color: #FF0000;}
+        fieldset {
+            display: none;
+            overflow: hidden;
+        }
+        fieldset:target {
+            display: block;
+        }
     </style>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -30,6 +37,7 @@
     <link href="blog.css" rel="stylesheet">
 </head>
 
+
 <body>
     <!-- header -->
     <div class="text-white bg-dark">
@@ -43,34 +51,17 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
+                        <a class="text-muted" href="#"></a>
                     </div>
                 </div>
-            </div>
-        </header>
-    </div>
-    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            </header>
         </div>
-    </nav>
+    </div>
+
+   
     <!-- header -->
 
-    <!-- alert after fill -->
+    <!-- alert -->
     @if (\Session::has('null'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Try again!</strong> Please complete all required fields.
@@ -87,47 +78,39 @@
             </button>
         </div>
     @endif
-    @if (\Session::has('warning'))
+    @if (\Session::has('noOrder'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> The order number is already in use.
+            <strong>Try again!</strong> The customer has no any order for payment.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
     @endif
-    <!-- alert after fill -->
 
-    <!-- form for filling order -->
+    <!-- alert -->
+
+    <!-- payment form -->
     <div class="container">
-        <form action="{{ URL::to('/keyOrder/check') }} ">
-            <strong><h2>ORDER</h2></strong>
+        <form action="{{ URL::to('/payment/paymentDetail') }} ">
+            <strong><h2>PAYMENT</h2></strong>
             <p><span class="error">* required field</span></p>
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>
                 <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
             </div>
             <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
+                <label>Cheque Number</label> <span class="error">*</span>
+                <input type="text" name="chequeNumber" class="form-control" placeholder="Enter Cheque Number">
             </div>
             <div class="form-group">
-                <label>Order Date</label> <span class="error">*</span>
-                <input type="date" name="orderDate" class="form-control">
+                <label>Payment Date</label> <span class="error">*</span>
+                <input type="date" name="paymentDate" class="form-control">
             </div>
-            <div class="form-group">
-                <label>Required Date</label> <span class="error">*</span>
-                <input type="date" name="requiredDate" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Comment</label>
-                <textarea rows="3" name="comment" class="form-control" placeholder="Enter Comment"></textarea>
-            </div>
-            <button type="submit" class="btn btn-outline-success">ADD ORDER</button>
+            <button type="submit" class="btn btn-primary">Next</button>
         </form>
     </div>
     <br>
-    <!-- form for filling order -->
-
+    <!-- payment form -->
 
     <!-- end -->
     <footer class="text-muted">
@@ -153,7 +136,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!-- end -->
-
 </body>
-
 </html>

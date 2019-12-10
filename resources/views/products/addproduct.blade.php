@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Add Customer</title>
+    <title>Add Product</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -29,11 +29,14 @@
             -ms-user-select: none;
             user-select: none;
         }
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
+
         }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -44,7 +47,7 @@
 </head>
 
 <body>
-<div class="text-white bg-dark">
+    <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -68,110 +71,144 @@
             <a class="py-2 d-none d-md-inline-block"></a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
-                <?php 
-                    session_start();
+                <?php
                         $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
+                        $Lname = $_SESSION['Lname'];
                 ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>       
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-               
+
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                
+
             </div>
         </div>
     </nav>
         <!-- after field -->
 
-    <main role="main" style="background-color:LightGray;"><br>
+    <main role="main" style="background-color:SlateGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
+    <!-- add employee -->
     <div class="col-md-12 ">
-      <h2 class="mb-5" style="text-align:center;">ADD CUSTUMER</h2>
+      <h4 class="display-5" style="text-align:center;">ADD PRODUCT</h4>
 
-      <form class="needs-validation" novalidate action="{{ URL::to('/main/customer/add/check') }}">
+      <!-- alert -->
+      @if (Session('warning'))
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oops!</strong> &nbsp Change a few Report To and try submitting again.
+      </div>
+      @endif
+      @if (Session('nodata'))
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
+      </div>
+      @endif
+      @if (Session('success'))
+      <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Well done!</strong> &nbsp You successfully.
+      </div>
+      @endif
 
-        <div class="mb-3">
-          <label for="name">Customer Name</label>
-          <input type="text" name=customerName class="form-control" id="customername" placeholder="Enter Customer Name" required>
-          <div class="invalid-feedback">
-            Please enter Customer name.
-          </div>
-        </div>
+      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/product/add/check') }} ">
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="firstName">Contact First name</label>
-            <input type="text" name=conFName class="form-control" id="firstName" placeholder="...." value="" required>
+            <input type="text" name="Pcode" class="form-control" id="Pcode" placeholder="Product Code" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
-            <label for="lastName">Contact Last name</label>
-            <input type="text" name=conLName class="form-control" id="lastName" placeholder="...." value="" required>
+            <input type="text" name=Pname class="form-control" id="Pname" placeholder="Product Name" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <select class="custom-select" name=type id="type">
+                    <option selected>Type</option>
+                    <option value="Classic Cars">Classic Cars</option>
+                    <option value="Motorcycles">Motorcycles </option>
+                    <option value="Planes">Planes</option>
+                    <option value="Ships">Ships</option>
+                    <option value="Trains">Trains</option>
+                    <option value="Trucks and Buses">Trucks and Buses</option>
+                    <option value="Vintage Cars">Vintage Cars</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <select class="custom-select" name=scale id="scale">
+                    <option selected>Scale</option>
+                    <option value="1:10">1:10</option>
+                    <option value="1:12">1:12</option>
+                    <option value="1:18">1:18</option>
+                    <option value="1:24">1:24</option>
+                    <option value="1:32">1:32</option>
+                    <option value="1:50">1:50</option>
+                    <option value="1:72">1:72</option>
+                    <option value="1:700">1:700</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <select class="custom-select" name=vendor id="vendor">
+                    <option selected>Vendor</option>
+                    <option value="Autoart Studio Design">Autoart Studio Design </option>
+                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                    <option value="Classic Metal Creations">Classic Metal Creations </option>
+                    <option value="Exoto Designs">Exoto Designs </option>
+                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                    <option value="Min Lin Diecast">Min Lin Diecast </option>
+                    <option value="Motor City Art Classics">Motor City Art Classics </option>
+                    <option value="Red Start Diecast">Red Start Diecast </option>
+                    <option value="Second Gear Diecast">Second Gear Diecast </option>
+                    <option value="Studio M Art Models">Studio M Art Models </option>
+                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                </select>
+            </div>
+        </div>
+
         <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" name=addr class="form-control" id="address" placeholder="Enter Customer Address" required>
+          <input type="text" name="Pdes" class="form-control" id="Pdes" placeholder="Product Description" required>
           <div class="invalid-feedback">
-            Please enter your shipping address.
+            Please enter E-mail.
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="postal">Postal Code</label>
-            <input type="text" name=postal class="form-control" id="postal" placeholder="...." value="" required>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="phone">Phone Number</label>
-            <input type="phone" name=phone class="form-control" id="lastName" placeholder="...." value="" required>
-            <div class="invalid-feedback">
-              Valid phone number is required.
+            <div class="col-md-6 mb-3">
+                <input type="text" name=qty class="form-control" id="qty" placeholder="Quantity In Stock" value="" required>
+                <div class="invalid-feedback">
+                Please enter Extension.
+                </div>
             </div>
-          </div>
-        </div>
 
-
-        <div class="row">
-        <div class="col-md-4 mb-3">
-            <label for="country">Country</label>
-            <input type="text" name=country class="form-control" id="country" placeholder="" required>
-            <div class="invalid-feedback">
-              Country required.
+            <div class="col-md-6 mb-3">
+                <input type="text" name=price class="form-control" id="price" placeholder="Buy Price" value="" required>
+                <div class="invalid-feedback">
+                Please enter Extension.
+                </div>
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="state">State</label>
-            <input type="text" name=state class="form-control" id="state" placeholder="" required>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="city">City</label>
-            <input type="text" name=city class="form-control" id="city" placeholder="" required>
-            <div class="invalid-feedback">
-              City required.
-            </div>
-          </div>
         </div>
 
         <hr class="mb-5" >
-        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>
   </div>
-
     </div>
-
        <br>
     </main>
 

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -8,13 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product Detail</title>
+    <title>SuccessProductlist</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
     <!-- Bootstrap core CSS -->
@@ -46,7 +43,7 @@
 </head>
 
 <body>
-    <div class="text-white bg-dark">
+<div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -58,72 +55,70 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <a class="text-muted" href="#"></a>
-                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
     </div>
 
+    
+    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2 d-none d-md-inline-block" ></a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"  style="color:dark blue">
+            <?php 
+                session_start();
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname']; 
+            ?>
+                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a> -->
+            <!-- <a class="dropdown-item" href="#">Key Order</a>
+            <a class="dropdown-item" href="#">Order list</a>
+            <a class="dropdown-item" href="#">Promotion</a> -->
+            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
+        </div>
+        </div>
+    </nav>
 
-    <main role="main">
+
+
+    <main role="main" style="background-color:LightGray;">
         <?php
-            $code = $_GET['code'];
-            $jsonDecode = json_Decode($products,true);
+            $number = $_GET['number'];
+            $jsonDecode = json_Decode($customers,true);
             foreach ($jsonDecode as $result) {
-                if($result['productCode'] == $code){
-                    $name = $result['productName'];
-                    $line = $result['productLine'];
-                    $scale = $result['productScale'];
-                    $vendor = $result['productVendor'];
-                    $des = $result['productDescription'];
-                    $stock = $result['quantityInStock'];
-                    $price = $result['buyPrice'];
+                if($result['customerNumber'] == $number){
+                    $name = $result['customerName'];
+                    $conF = $result['contactFirstName'];
+                    $conL = $result['contactLastName'];
+                    $phone = $result['phone'];
+                    $addr = $result['addressLine1'];
+                    $city = $result['city'];
+                    $state = $result['state'];
+                    $pos = $result['postalCode'];
+                    $sales = $result['salesRepEmployeeNumber'];
+                    $point = $result['point'];
+                    $credit = $result['creditLimit'];
                 }
             }
         ?>
+        <br>
+     <div class="container col-md-8 bg-white " >
+     <br>
+     <div class="col-md-12 ">
+     <h2 class="mb-4" style="text-align:left;"><?php echo e($name); ?></h2>
+     <h2 class="mb-4" style="text-align:left;">Contact : <h3><?php echo e($conF); ?>       <?php echo e($conL); ?></h3></h2>
+    </div>
 
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-6 shadow-sm">
-                            
-
-                            <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $name)); ?>.jpg'
-                            onerror="this.src='../images/not.png'" width="100%" height="100%"  />
-
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button class="w3-button w3-red" input type='button' onclick="del('qtyTotal',<?php echo e($price); ?>)" value='-'>-</button>
-                                    <input id="qtyTotal" type='text' value="1"/>
-                                    <button class="w3-button w3-black" input type='button' onclick="add('qtyTotal',<?php echo e($price); ?>)" value='+'>+</button>
-                                </div>
-                            </div>
-                            <br>
-                            <h4>price :
-                                    <input id="priceTotal" type='text' value="<?php echo e($price); ?>" readonly/>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+     </div>
+    <br>
     </main>
 
+    <br> 
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -146,30 +141,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-    <script>
-        function add(id,p) {
-            let x = Number(document.getElementById('qtyTotal').value);
-            let result = x + 1;
-            let price = result*p
-            document.getElementById('qtyTotal').value = result;
-            document.getElementById('priceTotal').value = price.toFixed(2);
-        }
-        function del(id, p) {
-            let x = Number(document.getElementById('qtyTotal').value);
-            let result = x - 1;
-            let price = result*p
-            if(result < 0){
-                document.getElementById('qtyTotal').value = 0;
-                document.getElementById('priceTotal').value = 0;
-            }else{
-                document.getElementById('qtyTotal').value = result;
-                document.getElementById('priceTotal').value = price.toFixed(2);
-            }
-        }
-    </script>
-
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/products/productdetail.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/customers/customerdetail.blade.php ENDPATH**/ ?>

@@ -37,6 +37,30 @@
             }
 
         }
+
+        .scrollbar {
+            margin-left: 0px;
+            float: left;
+            height: 400px;
+            background: #fff;
+            overflow-y: scroll;
+            margin-bottom: 0px;
+        }
+        .force-overflow {
+            min-height: 300px;
+        }
+
+        .scrollbar-gray::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5; 
+        }
+
+        .scrollbar-gray::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #A9A9A9; 
+        }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -137,9 +161,9 @@
             //for test
             session_start();
             if(isset($_SESSION['user'])){
-                echo $_SESSION['user'];
+                //echo $_SESSION['user'];
             }else{
-                echo "No user";
+                //echo "No user";
             }
         ?>
         <div class="album py-5 bg-light">
@@ -149,6 +173,8 @@
                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
+                            <div class="scrollbar  scrollbar-gray">
+                            <div class="force-overflow">
                                 <img src='images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
                                     onerror="this.src='images/not.png'" width="100%" height="100%"  />
                                 <div class="card-body">
@@ -174,6 +200,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

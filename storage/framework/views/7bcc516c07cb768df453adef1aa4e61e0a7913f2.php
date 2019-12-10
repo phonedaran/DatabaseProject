@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Add Employee</title>
+    <title>Add Product</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -72,133 +72,143 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
                 <?php
-                    session_start();
                         $Fname = $_SESSION['Fname'];
-<<<<<<< HEAD
-                        $Lname = $_SESSION['Lname']; 
-                        $jobTitle = $_SESSION['job'];
-=======
                         $Lname = $_SESSION['Lname'];
->>>>>>> 148fd439ce144b393b5a5c49e56d1ab93409e61c
                 ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
 
             </div>
         </div>
     </nav>
         <!-- after field -->
-    
-    <main role="main" style="background-color:LightGray;"><br>
+
+    <main role="main" style="background-color:SlateGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <!-- add employee -->
     <div class="col-md-12 ">
-<<<<<<< HEAD
-      <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4>
-=======
-      <h2 class="display-5" style="text-align:center;">ADD EMPLOYEE</h2>
->>>>>>> 148fd439ce144b393b5a5c49e56d1ab93409e61c
+      <h4 class="display-5" style="text-align:center;">ADD PRODUCT</h4>
 
       <!-- alert -->
-      @if (Session('nodata'))
+      <?php if(Session('warning')): ?>
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oops!</strong> &nbsp Change a few Report To and try submitting again.
+      </div>
+      <?php endif; ?>
+      <?php if(Session('nodata')): ?>
       <div class="alert alert-dismissible alert-danger">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
       </div>
-      @endif
-      @if (Session('success'))
+      <?php endif; ?>
+      <?php if(Session('success')): ?>
       <div class="alert alert-dismissible alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-<<<<<<< HEAD
         <strong>Well done!</strong> &nbsp You successfully.
       </div>
-      @endif
+      <?php endif; ?>
 
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/employee/add/check') }} ">
-=======
-        <strong>Well done!</strong> &nbsp You successfully.yee/add/check') }} ">
->>>>>>> 148fd439ce144b393b5a5c49e56d1ab93409e61c
+      <form class="needs-validation" method ="get" novalidate action="<?php echo e(URL::to('/product/add/check')); ?> ">
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <input type="text" name=FName class="form-control" id="firstName" placeholder="First Name" required>
+            <input type="text" name="Pcode" class="form-control" id="Pcode" placeholder="Product Code" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
-            <input type="text" name=LName class="form-control" id="lastName" placeholder="Last Name" required>
+            <input type="text" name=Pname class="form-control" id="Pname" placeholder="Product Name" required>
             <div class="invalid-feedback">
               Valid last name is required.
-      </div>
-      @endif
-
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/emplo
             </div>
           </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <select class="custom-select" name=type id="type">
+                    <option selected>Type</option>
+                    <option value="Classic Cars">Classic Cars</option>
+                    <option value="Motorcycles">Motorcycles </option>
+                    <option value="Planes">Planes</option>
+                    <option value="Ships">Ships</option>
+                    <option value="Trains">Trains</option>
+                    <option value="Trucks and Buses">Trucks and Buses</option>
+                    <option value="Vintage Cars">Vintage Cars</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <select class="custom-select" name=scale id="scale">
+                    <option selected>Scale</option>
+                    <option value="1:10">1:10</option>
+                    <option value="1:12">1:12</option>
+                    <option value="1:18">1:18</option>
+                    <option value="1:24">1:24</option>
+                    <option value="1:32">1:32</option>
+                    <option value="1:50">1:50</option>
+                    <option value="1:72">1:72</option>
+                    <option value="1:700">1:700</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <select class="custom-select" name=vendor id="vendor">
+                    <option selected>Vendor</option>
+                    <option value="Autoart Studio Design">Autoart Studio Design </option>
+                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                    <option value="Classic Metal Creations">Classic Metal Creations </option>
+                    <option value="Exoto Designs">Exoto Designs </option>
+                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                    <option value="Min Lin Diecast">Min Lin Diecast </option>
+                    <option value="Motor City Art Classics">Motor City Art Classics </option>
+                    <option value="Red Start Diecast">Red Start Diecast </option>
+                    <option value="Second Gear Diecast">Second Gear Diecast </option>
+                    <option value="Studio M Art Models">Studio M Art Models </option>
+                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                </select>
+            </div>
+        </div>
+
         <div class="mb-3">
-          <input type="text" name=email class="form-control" id="mail" placeholder="E-mail" required>
+          <input type="text" name="Pdes" class="form-control" id="Pdes" placeholder="Product Description" required>
           <div class="invalid-feedback">
             Please enter E-mail.
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <input type="text" name=extension class="form-control" id="extension" placeholder="Extension" value="" required>
-            <div class="invalid-feedback">
-            Please enter Extension.
+            <div class="col-md-6 mb-3">
+                <input type="text" name=qty class="form-control" id="qty" placeholder="Quantity In Stock" value="" required>
+                <div class="invalid-feedback">
+                Please enter Extension.
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6 mb-3">
-            <select class="custom-select" name=OfficeCode id="OfficeCode">
-              <option selected>OfficeCode</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-          </div>
-        </div>
-
-          <div class="mb-3">
-          <select class="custom-select" name=jobTitle id="jobTitle">
-              <option selected>Job Title</option>
-              @if($jobTitle == 'President')
-                <option value="VP Sales">VP Sales</option>
-                <option value="VP Marketing">VP Marketing</option>
-                <option value="Sales Manager">Sales Manager</option>
-                <option value="Sales Rep">Sales Rep</option>
-              @else
-                @if($jobTitle == 'VP Sales')
-                <option value="Sales Manager">Sales Manager</option>
-                @else
-                <option value="Sales Rep">Sales Rep</option>
-                @enif
-              @enif
-            </select>
-          </div>
+            <div class="col-md-6 mb-3">
+                <input type="text" name=price class="form-control" id="price" placeholder="Buy Price" value="" required>
+                <div class="invalid-feedback">
+                Please enter Extension.
+                </div>
+            </div>
         </div>
 
         <hr class="mb-5" >
-        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>
   </div>
-
     </div>
-
        <br>
     </main>
 
@@ -216,3 +226,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\DatabaseProject\resources\views/products/addproduct.blade.php ENDPATH**/ ?>

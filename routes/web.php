@@ -25,6 +25,9 @@ Route::post('/main/success','MainController@login');
 //Route::get('/main/success','ProductController@pdlogin');
 Route::get('main/logout','MainController@logout');
 
+Route::get('/product/add','ProductController@add');
+
+
 Route::get('main/employee','EmployeeController@showEmployees');
 Route::get('main/addemployee', function () {
     return view('employees.addemployee');
@@ -44,6 +47,7 @@ Route::get('/orderlist/updateOrder','OrderController@updateOrder');
 Route::get('/orderlist/detail','OrderController@detail');
 
 Route::get('/promotion','promotionController@index');
+Route::get('/promotion/update','promotionController@update');
 Route::get('/promotion/checkDiscount','promotionController@checkDiscount');
 Route::get('/promotion/checkBuy1Get1','promotionController@checkBuy1Get1');
 
@@ -51,3 +55,7 @@ Route::get('main/customer','CustomerController@index');
 Route::get('main/customer/view','CustomerController@detail');
 Route::get('main/customer/add','CustomerController@add');
 Route::get('main/customer/add/check','CustomerController@addcheck');
+
+Route::get('/payment','paymentController@index');
+Route::get('/payment/paymentDetail','paymentController@paymentDetail');
+Route::get('/payment/paymentDetail/check','paymentController@check');

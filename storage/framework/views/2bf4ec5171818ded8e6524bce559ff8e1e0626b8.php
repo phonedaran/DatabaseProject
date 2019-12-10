@@ -64,9 +64,9 @@
                         
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a> -->
+            
             <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a> -->
+           
         </div>
         </div>
     </nav>
@@ -127,6 +127,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <br>
     <!-- form for filling order -->
 
 

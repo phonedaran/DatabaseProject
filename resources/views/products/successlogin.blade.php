@@ -50,13 +50,13 @@
 
         .scrollbar-gray::-webkit-scrollbar {
             width: 5px;
-            background-color: #F5F5F5; 
+            background-color: #F5F5F5;
         }
 
         .scrollbar-gray::-webkit-scrollbar-thumb {
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #A9A9A9; 
+            background-color: #A9A9A9;
         }
 
     </style>
@@ -88,6 +88,9 @@
     </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
+            <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
+                <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
+            </a>
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <div class="py-2 d-none d-md-inline-block">
@@ -150,15 +153,19 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     @foreach ($User as $user )
-                        <a class="dropdown-item" href="#">Customer</a>
+                        <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
                         @if ($user->jobTitle != 'Sales Rep')
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif
                         @if ($user->jobTitle == 'Sales Rep')
+<<<<<<< HEAD
                             <?php 
                                 
 
                             ?>
+=======
+
+>>>>>>> 148fd439ce144b393b5a5c49e56d1ab93409e61c
                             <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                         @endif
                         <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
@@ -214,7 +221,7 @@
                                         <br>
                                         <td>Vendor : {{$product->productVendor}}</td>
                                     </tr>
-                                    
+
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form action="{{ URL::to('/productlist/view') }}" method="get">
