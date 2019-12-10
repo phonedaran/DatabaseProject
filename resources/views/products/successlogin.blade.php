@@ -119,7 +119,7 @@
                         <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
                     </div>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"  style="color:darkblue">
+                            aria-expanded="false"  style="color:dark blue">
                             @foreach ($User as $user )
                                 <b>{{$user->firstName}} &nbsp {{$user->lastName}}</b>
                             @endforeach
@@ -131,9 +131,14 @@
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif
                         @if ($user->jobTitle == 'Sales Rep')
-                            <a class="dropdown-item" href="#">Key Order</a>
+                            <?php 
+                                session_start();
+                                $_SESSION['Fname'] = $user->firstName;
+                                $_SESSION['Lname'] = $user->lastName;
+                            ?>
+                            <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                         @endif
-                        <a class="dropdown-item" href="#">Order list</a>
+                        <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                         @if ($user->jobTitle == 'VP Marketing')
                             <a class="dropdown-item" href="#">Promotion</a>
                         @endif

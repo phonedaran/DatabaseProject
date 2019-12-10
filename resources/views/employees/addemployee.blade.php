@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Customer</title>
+    <title>Add Employee</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -55,15 +55,7 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <!-- <a><span class="fas fa-user" style=" color: aliceblue"></span></a> -->
+                        <a class="text-muted" href="#"></a>
                     </div>
                 </div>
             </header>
@@ -73,22 +65,21 @@
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block"></a>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  style="color:black">
-                    Menu
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url('main/customer') }}">Customer</a>
-                    <a class="dropdown-item" href="#">Employee</a>
-                    <a class="dropdown-item" href="#">Key Order</a>
-                    <a class="dropdown-item" href="#">Order list</a>
-                    <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                </div>
+            aria-expanded="false"  style="color:dark blue">
+                <?php 
+                    session_start();
+                        $Fname = $_SESSION['Fname'];
+                        $Lname = $_SESSION['Lname']; 
+                ?>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>       
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <!-- <a class="dropdown-item" href="{{ url('/main/success') }}">Product</a> -->
+                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                <!-- <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a> -->
+            </div>
         </div>
     </nav>
         <!-- after field -->
@@ -97,7 +88,7 @@
     <div class="container col-md-8 bg-white " >
     <br>
     <div class="col-md-12 ">
-      <h4 class="mb-5" style="text-align:center;">Add Employee</h4>
+      <h2 class="mb-5" style="text-align:center;">Add Employee</h2>
 
       <form class="needs-validation" novalidate action="{{ URL::to('/employee/add/check') }} ">
 
