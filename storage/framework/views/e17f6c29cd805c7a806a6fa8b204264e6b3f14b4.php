@@ -47,14 +47,14 @@
 				<?php if(Session('warning')): ?>
 				<div class="alert alert-danger alert-dismissable fade show" role="alert">
   					<!-- <?php echo e(Session::get('message')); ?> -->
-					<strong>Please try again</strong>
+					<h7>Please try again</h7>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     					<span aria-hidden="true">&times;</span>
  					</button>
 				</div>
 				<?php endif; ?>
 				<!-- <?php echo e(csrf_field()); ?>  -->
-				<form class="login100-form validate-form" method="POST" action="<?php echo e(URL::to('/main/checklogin')); ?>">
+                <form class="login100-form validate-form" method="POST" action="<?php echo e(URL::to('/main/success')); ?>">
 					<?php echo csrf_field(); ?>
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Uername</span>

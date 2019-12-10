@@ -14,12 +14,50 @@ class EmployeeController extends Controller
         //block url if no user
         session_start();
         if(isset($_SESSION['user'])){
+            $jobTitle = $_SESSION['job'];
             $employees = Employee::all();
-            return view('employees.employee', ['employees' => $employees ]);
+            $Enumber = $_SESSION['user'];
+
+            switch($jobTitle){
+                case "President":
+                    $type = 1;
+                break;
+
+                case "VP Sales":
+                    $type = 2;
+                break;
+
+                case "Sales Manager (APAC)":
+                    $type = 3;
+                break;
+
+                case "Sale Manager (EMEA)":
+                    $type = 3;
+                break;
+
+                case "Sale Manager (NA)":
+                    $type = 3;
+                break;
+
+                case "Sales Rep":
+                    $type = 4;
+                break;
+
+                default:
+                    $type = 5;
+
+            }
+            if($jobTitle != "President" and $jobTitle != "VP Marketing"){
+                $firedEmp = DB::table('employees')->where(['reportsTo'=> $Enumber])->get();
+                return view('employees.employee', [ 'firedEmp' => $firedEmp, 'employees' => $employees ,'jobTitle' => $jobTitle]);
+            }else{
+                return view('employees.employee', ['employees' => $employees ,'jobTitle' => $jobTitle ]);
+            }
+
         }else{
             return redirect('/main');
         }
-
+        
     }
 
     function addEmployee(request $request)
@@ -30,29 +68,27 @@ class EmployeeController extends Controller
         $extension = $request->input('extension');
         $email = $request->input('email');
         $officeCode = $_GET['OfficeCode'];
-        // $reportsTo = $request->input('reportsTo');
         $jobTitle = $request->input('jobTitle');
 
-        $employee = DB::table('employees')->where(['employeeNumber'=> $reportsTo])->get();
-
+        session_start();
+        $ReportTo = $_SESSION['user'];
+        
         if ($Enumber===null or $Fname===null or $Lname===null or $extension===null or $email===null or $officeCode===null or $jobTitle===null){
             return redirect()->back()->with('nodata','Please try again');
         }else{
-            if (count($employee)){
-                DB::table('employees')->insert(
-                    ['employeeNumber' => $Enumber,
-                    'firstName' => $Fname,
-                    'lastName' => $Lname,
-                    'extension' => $extension,
-                    'email' => $email,
-                    'officeCode' => $officeCode,
-                    'reportsTo' => $reportsTo,
-                    'jobTitle' => $jobTitle
-                ]);
-                return redirect()->back()->with('success','complete!');
-            }else{
-                return redirect()->back()->with('warning','Please try again');
-            }
+            
+            DB::table('employees')->insert(
+                ['employeeNumber' => $Enumber,
+                'firstName' => $Fname,
+                'lastName' => $Lname,
+                'extension' => $extension,
+                'email' => $email,
+                'officeCode' => $officeCode,
+                'reportsTo' => $ReportTo,
+                'jobTitle' => $jobTitle
+            ]);
+            return redirect()->back()->with('success','complete!'); 
         }
+        
     }
 }
