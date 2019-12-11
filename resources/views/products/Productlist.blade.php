@@ -187,7 +187,6 @@
                                                     <input type="hidden" value={{$product->productCode}} name="code">
                                                     <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>

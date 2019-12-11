@@ -92,7 +92,24 @@
             </div>
         </div>
     </nav>
-
+    <!-- after field -->
+    @if (\Session::has('null'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Try again!</strong> Please complete all fields.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (\Session::has('noreport'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Try again!</strong> This ReportTo number doesn't exist in the Database.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    <!-- after field -->
 
     <main role="main">
 

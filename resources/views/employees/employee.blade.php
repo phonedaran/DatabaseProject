@@ -117,7 +117,7 @@
                                 <td>{{$Emp->jobTitle}}<input type="hidden" value="{{$Emp->jobTitle}}" name="jobTitle" id="jobTitle"></td>
                                     <td>
                                         @if($jobTitle == 'President')
-                                            <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
+                                            <input type="hidden"  name="editNumber" value="{{$Emp->employeeNumber}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/employee/edit') }}'; submit()" > Edit </button>
                                             @if($Emp->jobTitle != 'President')
                                             <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
                                             @endif

@@ -239,12 +239,13 @@
 
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="{{ URL::to('/productlist/detail') }}" method="get">
-                                                <input type="hidden" value="{{$Enumber}}" name="user">
+                                            <form action="../productlist/view" method="get">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
-                                                <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()">
+                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                            </form>
                                                 @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')
-                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
+                                                    <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
+                                                    <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()" >Update</button>
                                                 @endif
                                             </form>
                                         </div>

@@ -37,7 +37,8 @@ Route::get('/product/filter','ProductController@filter');                       
 Route::get('/product/add','ProductController@add');     //addproduct(login)
 Route::get('/product/add/check','ProductController@addCheck');
 Route::get('/product/delete','ProductController@delete');
-Route::get('/productlist/detail','ViewController@detail');
+Route::get('/UpdatePd','ProductController@update');
+Route::get('/UpdatePd/check','ProductController@checkupdate');
 
 //Order
 Route::get('/keyOrder','OrderController@keyOrder');
