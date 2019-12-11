@@ -65,9 +65,16 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <?php
+                $jobTitle = $_SESSION['job'];
+            ?>
+            @if ($jobTitle == 'Sales Rep')
             <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}">
                 <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
             </a>
+            @else
+            <a class="py-2 d-none d-md-inline-block" href="#"></a>
+            @endif
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"  style="color:dark blue">
                 <?php
@@ -77,11 +84,18 @@
                     <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <!-- <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a> -->
-                <!-- <a class="dropdown-item" href="#">Key Order</a>
-                <a class="dropdown-item" href="#">Order list</a>
-                <a class="dropdown-item" href="#">Promotion</a> -->
-                <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                @if ($jobTitle != 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                @endif
+                @if ($jobTitle == 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                @endif
+                <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                @if ($jobTitle == 'VP Marketing')
+                    <a class="dropdown-item" href="#">Promotion</a>
+                @endif
+                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
             </div>
         </div>
     </nav>

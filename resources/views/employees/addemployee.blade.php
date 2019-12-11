@@ -71,15 +71,27 @@
               <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
                 <a class="py-2 d-none d-md-inline-block"></a>
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
-                    <?php
-
-                      $Fname = $_SESSION['Fname'];
-                      $Lname = $_SESSION['Lname'];
-                    ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                  <?php
+                    
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
+                  ?>
+                      <b>{{$Fname}} &nbsp {{$Lname}}</b>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                      <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                      @if ($jobTitle != 'Sales Rep')
+                          <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                      @endif
+                      @if ($jobTitle == 'Sales Rep')
+                          <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                      @endif
+                      <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                      @if ($jobTitle == 'VP Marketing')
+                          <a class="dropdown-item" href="#">Promotion</a>
+                      @endif
+                      <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
                   </div>
                 </a>
               </a>
@@ -166,6 +178,13 @@
                                 <option value="Sales Rep">Sales Rep</option>
                             @endif
                         </select>
+                    </div>
+                  
+                    <div class="mb-3">
+                    <input type="password" name=password class="form-control" id="password" placeholder="Enter your Password" required>
+                        <div class="invalid-feedback">
+                            Please enter your password.
+                        </div>
                     </div>
 
                 <hr class="mb-5" >

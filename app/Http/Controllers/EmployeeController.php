@@ -32,7 +32,8 @@ class EmployeeController extends Controller
     function fireEmployee(){
         $Fname = $_GET['Fname'];
         $Lname = $_GET['Lname'];
-        DB::table('employees')->where(['Fname' => $Fname])->where(['Lname' => $Lname])->delete();
+        DB::table('employees')->where(['firstName' => $Fname])->where(['lastName' => $Lname])->delete();
+        return redirect('/main/employee');
     }
 
     function addEmployee(request $request)
@@ -44,6 +45,8 @@ class EmployeeController extends Controller
         $extension = $request->input('extension');
         $email = $request->input('email');
         $officeCode = $_GET['OfficeCode'];
+        $pass = $request->input('password');
+        $encodePass = md5($pass);
         
         $jobTitle = $request->input('jobTitle');
         $ReportTo = $_SESSION['user'];
@@ -61,6 +64,13 @@ class EmployeeController extends Controller
                 'officeCode' => $officeCode,
                 'reportsTo' => $ReportTo,
                 'jobTitle' => $jobTitle
+            ]);
+
+            DB::table('users')->insert(
+                ['employeeNumber' => $Enumber,
+                'firstName' => $Fname,
+                'lastName' => $Lname,
+                'password' => $encodePass
             ]);
             return redirect()->back()->with('success','complete!');
         }
