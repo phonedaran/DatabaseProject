@@ -113,22 +113,6 @@
             </button>
         </div>
     @endif
-    @if (\Session::has('warning'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try agian!</strong> There is no this order number.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-    @if (\Session::has('code'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> There is no this product code.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
     <!-- alert  -->
 
     <!-- form for filling detail -->
@@ -149,7 +133,7 @@
             </div>
             <div class="form-group">
                 <label>Quantity Ordered</label> <span class="error">*</span>
-                <input type="number" name="quantity" class="form-control">
+                <input type="number" name="quantity" class="form-control" min=0>
             </div>
             <input type="button" class="btn btn-outline-success" value="ADD" onClick="this.form.action='{{ URL::to('/keyOrder/orderDetail/check') }}'; submit()">
             <input type="button" class="btn btn-outline-primary" value="View Order list" onClick="this.form.action='{{ URL::to('/orderlist') }}'; submit()">

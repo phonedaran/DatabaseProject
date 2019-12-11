@@ -70,6 +70,7 @@
                 <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
                 <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
                 @if ($jobTitle != 'Sales Rep')
                 <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>

@@ -9,7 +9,8 @@ class promotionController extends Controller
     public function index(){
         session_start();
         if(isset($_SESSION['user'])){
-            return view('promotion');
+            $products=DB::select('select * from products');
+            return view('promotion',['products'=>$products]);
         }else{
             return redirect('/main');
         }

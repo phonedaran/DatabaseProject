@@ -174,8 +174,13 @@
 
                 <fieldset id="two">
                     <div class="form-group">
-                        <label>Product Code</label> <span class="error">*</span>
-                        <input type="text" name="productCode" class="form-control" placeholder="Enter Product Code">
+                        <label>Product</label> <span class="error">*</span>
+                            <select class="form-control" id="productCode" name="productCode">
+                                <option selected>Choose ...</option>
+                                @foreach ($products as $product)
+                                    <option value="{{$product->productCode}}">Code : {{$product->productCode}} , Name : {{$product->productName}}</option>
+                                @endforeach
+                            </select>
                     </div>
                     <div class="form-group">
                         <label>Start Date</label> <span class="error">*</span>

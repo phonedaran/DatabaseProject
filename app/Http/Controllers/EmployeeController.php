@@ -39,6 +39,7 @@ class EmployeeController extends Controller
             $Fname = $_GET['Fname'];
             $Lname = $_GET['Lname'];
             DB::table('employees')->where(['firstName' => $Fname])->where(['lastName' => $Lname])->delete();
+            DB::table('users')->where(['firstName' => $Fname])->where(['lastName' => $Lname])->delete();
             return redirect()->back()->with('fired','The employee is fired');
         }else{
             return redirect('/main');
