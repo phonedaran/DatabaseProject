@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function index(){
+        session_start();
         if(isset($_SESSION['user'])){
-            return redirect('/main/successs');
+            return redirect('/main/success');
         }else{
             $products = Product::paginate(15);
             return view('products.productlist',['products' => $products ]);

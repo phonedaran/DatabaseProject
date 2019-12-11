@@ -87,7 +87,7 @@
 
     @if (\Session::has('fired'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Success!</strong> The customer is fired.
+        <strong>Success!</strong> The employee is fired.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -96,7 +96,7 @@
     @if (Session('success'))
         <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Well done!</strong> &nbsp Add the customer successfully.
+            <strong>Well done!</strong> &nbsp Add the employee successfully.
         </div>
     @endif
 
