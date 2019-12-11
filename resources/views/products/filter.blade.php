@@ -130,7 +130,20 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
-            <h3>Result have {{$count}} result</h3>
+            @if ($type != 'Any')
+                <h3>Type : {{$type}}</h3>
+            @endif
+            @if ($scale != 'Any')
+                <h3>Scale : {{$scale}}</h3>
+            @endif
+            @if ($vendor != 'Any')
+                <h3>Vendor : {{$vendor}}</h3>
+            @endif
+            @if( $count > 0)
+                <h3>Result have {{$count}} result</h3>
+            @else
+                <h3>Don't have any result</h3>
+            @endif
                 <button type="button" class="btn btn-sm btn-outline-secondary" >
                         <a href="{{ url('/') }}">Clear</a>
                     </button>

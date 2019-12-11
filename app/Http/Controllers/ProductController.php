@@ -60,7 +60,7 @@ class ProductController extends Controller
 
         $count = $products->count();
 
-        return view('products.filter',['products' => $products, 'count' => $count]);
+        return view('products.filter',['products' => $products, 'count' => $count, 'type' => $type, 'scale' => $scale, 'vendor' => $vendor]);
     }
 
     public function update(){
