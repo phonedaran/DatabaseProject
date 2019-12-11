@@ -61,11 +61,10 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
             <?php
-
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname'];
-                        $jobTitle = $_SESSION['job'];
-                ?>
+                $Fname = $_SESSION['Fname'];
+                $Lname = $_SESSION['Lname'];
+                $jobTitle = $_SESSION['job'];
+            ?>
                     <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -78,7 +77,7 @@
                 @endif
                 <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                 @if ($jobTitle == 'VP Marketing')
-                    <a class="dropdown-item" href="#">Promotion</a>
+                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
                 @endif
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
             </div>

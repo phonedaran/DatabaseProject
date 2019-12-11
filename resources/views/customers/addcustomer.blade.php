@@ -15,26 +15,24 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link href="forcreate.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         }
         @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
         }
-        .error {color: #FF0000;}
+        }
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -47,13 +45,17 @@
 <body>
     <div class="text-white bg-dark">
         <div class="container">
-            <header class="blog-header py-3">
-                <div class="row flex-nowrap justify-content-between align-items-center">
-                    <div class="col-4 pt-1">
-                        <a class="text-muted" href="#"></a>
-                    </div>
-                </div>
-            </header>
+          <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+              <div class="col-4 pt-1">
+                <a class="text-muted" href="#"></a>
+              </div>
+              <div class="col-4 text-center">
+                <h1 class="display-4">K I K K O K</h1>
+              </div>
+              <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="text-muted" href="#"></a>
+              </div>
         </div>
     </div>
 
@@ -74,17 +76,17 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
                 @if ($jobTitle != 'Sales Rep')
-                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                 @endif
                 @if ($jobTitle == 'Sales Rep')
-                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                 @endif
                 <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                 @if ($jobTitle == 'VP Marketing')
-                    <a class="dropdown-item" href="#">Promotion</a>
+                <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
                 @endif
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-            </div>
+              </div>
         </div>
     </nav>
         <!-- after field -->

@@ -86,11 +86,11 @@
                 @if ($jobTitle == 'Sales Rep')
                     <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                 @endif
-                <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                    <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                 @if ($jobTitle == 'VP Marketing')
-                    <a class="dropdown-item" href="#">Promotion</a>
+                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
                 @endif
-                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
             </div>
         </div>
     </nav>
@@ -107,7 +107,7 @@
         <br>
 
         @foreach ($customers as $cus)
-           <form action="customer/view" method="get">
+            <form action="{{ URL::to('/productlist/detail') }}" method="get">
                 <input type="hidden" value={{$cus->customerNumber}} name="number">
                 <button class="btn btn-lg btn-block col-md-14" style="background-color:pink;" type="submit">
                     <div class="row">

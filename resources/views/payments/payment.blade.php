@@ -57,8 +57,35 @@
             </header>
         </div>
     </div>
+    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:dark blue">
+                <?php
+                $Fname = $_SESSION['Fname'];
+                $Lname = $_SESSION['Lname'];
+                $jobTitle = $_SESSION['job'];
+                ?>
+                <b>{{$Fname}} &nbsp {{$Lname}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                @if ($jobTitle != 'Sales Rep')
+                <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                @endif
+                @if ($jobTitle == 'Sales Rep')
+                <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                @endif
+                <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                @if ($jobTitle == 'VP Marketing')
+                <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                @endif
+                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+            </div>
+        </div>
+    </nav>
 
-   
     <!-- header -->
 
     <!-- alert -->
@@ -92,7 +119,9 @@
     <!-- payment form -->
     <div class="container">
         <form action="{{ URL::to('/payment/paymentDetail') }} ">
-            <strong><h2>PAYMENT</h2></strong>
+            <strong>
+                <h2>PAYMENT</h2>
+            </strong>
             <p><span class="error">* required field</span></p>
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>

@@ -66,27 +66,36 @@
     </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block"></a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-                <?php
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 d-none d-md-inline-block"></a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"  style="color:dark blue">
+                    <?php
                         $Fname = $_SESSION['Fname'];
                         $Lname = $_SESSION['Lname'];
-                ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-
+                        $jobTitle = $_SESSION['job'];
+                    ?>
+                        <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                    @if ($jobTitle != 'Sales Rep')
+                        <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                    @endif
+                    @if ($jobTitle == 'Sales Rep')
+                        <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                    @endif
+                        <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                    @if ($jobTitle == 'VP Marketing')
+                        <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                    @endif
+                        <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
         <!-- after field -->
 
-    <main role="main" style="background-color:SlateGray;"><br>
+    <main role="main" style="background-color:lightGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <!-- add employee -->
@@ -203,7 +212,7 @@
         </div>
 
         <hr class="mb-5" >
-        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>

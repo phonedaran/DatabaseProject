@@ -60,13 +60,30 @@
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  style="color:dark blue">
+                <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
+                ?>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                @if ($jobTitle != 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                @endif
+                @if ($jobTitle == 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                @endif
+                    <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                @if ($jobTitle == 'VP Marketing')
+                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                @endif
+                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+            </div>
         </div>
     </nav>
     <!-- header -->
@@ -81,10 +98,10 @@
         <table class="table" width="100%">
             <thead>
                 <tr>
-                    <th scope="col" >productCode</th>
-                    <th scope="col" >quantity</th>
-                    <th scope="col" >priceEach</th>
-                    <th scope="col" >amount</th>
+                    <th scope="col" >ProductCode</th>
+                    <th scope="col" >Quantity</th>
+                    <th scope="col" >PriceEach</th>
+                    <th scope="col" >Asmount</th>
                 </tr>
             </thead>
             <tbody>
