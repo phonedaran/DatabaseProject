@@ -94,12 +94,6 @@
       <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
     </div>
   @endif
-  @if (Session('success'))
-    <div class="alert alert-dismissible alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Well done!</strong> &nbsp You successfully.
-    </div>
-  @endif
   <!-- alert -->
 
   <!-- main -->
