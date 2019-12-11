@@ -62,11 +62,52 @@
         </header>
     </div>
 
+    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+                <a class="py-2 d-none d-md-inline-block"></a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:dark blue">
+                    <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
+                    ?>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
+                    <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                    @if ($jobTitle != 'Sales Rep')
+                        <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                    @endif
+                    @if ($jobTitle == 'Sales Rep')
+                        <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                        <a class="dropdown-item" href=" {{url('/payment')}}">Payment</a>
+                    @endif
+                    <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                    @if ($jobTitle == 'VP Marketing')
+                        <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                    @endif
+                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                </div>
+            </div>
+        </nav>
+
+
 
 
     @if (\Session::has('null'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Try again!</strong> Please complete all fields.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (\Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Well done!</strong> Update complete.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -91,7 +132,6 @@
             }
         ?>
 
-<!-- action="{{ URL::to('/employee/edit/check') }}" -->
     <div class="container col-md-9">
     <form method="get" >
     <h3>Add Stock</h3>
@@ -163,7 +203,7 @@
     <td></td>
     <td schop="row" style="text-align : right;">
     <input type="hidden"  name="code" value="{{$code}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd/check') }}'; submit()" > Save </button>
-    <input type="button" class="btn btn-outline-danger" value="Cancle" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()">
+    <input type="button" class="btn btn-outline-danger" value="Cancle" onClick="this.form.action='{{ URL::to('/') }}'; submit()">
     </td>
     </tr>
 

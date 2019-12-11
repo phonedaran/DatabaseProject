@@ -9,6 +9,9 @@ use App\Orderdetails;
 Use \Carbon\Carbon;
 class OrderController extends Controller
 {
+    /* ALTER TABLE orderdetails ADD amount decimal(10,2) */
+    /* ALTER TABLE orderes ADD totalAmount decimal(10,2) */
+    /* UPDATE orderdetails SET amount = quantityOrdered*priceEach */
     public function keyOrder(){
         session_start();
         if(isset($_SESSION['user'])){

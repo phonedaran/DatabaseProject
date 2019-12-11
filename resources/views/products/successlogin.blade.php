@@ -139,9 +139,18 @@
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
                             <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+
+                            <?php foreach($User as $user ){
+                                        $_SESSION['job'] = $user->jobTitle;
+                                        $jobTitle = $_SESSION['job'];
+                                }
+
+                            ?>
+                            @if($jobTitle == 'VP Sales' or $jobTitle == 'Sales Rep')
                             <a class="list-group py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
                                 <button type="button" class="btn btn-success">ADD</button>
                             </a>
+                            @endif
                     </div>
                     <div class="list-group py-3 d-none d-md-inline-block">
                         <a class="btn btn-primary dropdown-toggle"  href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
@@ -239,11 +248,13 @@
                                         <div class="btn-group">
                                             <form action="../productlist/view" method="get">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
-                                                    <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                    <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
                                             </form>
+                                            <form method="get">
+                                                <input type="hidden" value={{$product->productCode}} name="code">
                                                 @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')
                                                     <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
-                                                    <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()" >Update</button>
+                                                    <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()">
                                                 @endif
                                             </form>
                                         </div>

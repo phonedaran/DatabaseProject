@@ -98,7 +98,7 @@ class ProductController extends Controller
                     ]);
 
                     $products = Product::all();
-                    return view('products.updateProduct', ['products' => $products ]);
+                    return view('products.updateProduct',['products' => $products])->with('success','The product update');
             }
         }else{
             return redirect('/main');

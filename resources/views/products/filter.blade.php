@@ -171,13 +171,16 @@
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <form action="productlist/view" method="get">
+                                                <form action="../productlist/view" method="get">
+                                                    <input type="hidden" value={{$product->productCode}} name="code">
+                                                    <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
+                                                </form>
+                                                    <form method="get">
                                                         <input type="hidden" value={{$product->productCode}} name="code">
-                                                        <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
                                                         @if (isset($_SESSION['user']))
                                                             @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')
                                                                 <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
-                                                                <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()" >Update</button>
+                                                                <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()">
                                                             @endif
                                                         @endif
                                                 </form>

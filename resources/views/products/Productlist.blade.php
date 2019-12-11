@@ -141,10 +141,7 @@
                         </div>
                         <div class="list-group py-2 d-none d-md-inline-block">
                         <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
-                            <a class="list-group py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
-                                <button type="button" class="btn btn-success">ADD</button>
-                            </a>
-                </div>
+
         </form>
     </nav>
     <div class="container">

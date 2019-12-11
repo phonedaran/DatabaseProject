@@ -151,15 +151,15 @@
                 <fieldset id="one">
                     <div class="form-group">
                         <label>Discount Code</label> <span class="error">*</span>
-                        <input type="text" id="discountCode" name="discountCode" class="form-control" placeholder="Enter Discount Code">
+                        <input type="text" maxlength="6" id="discountCode" name="discountCode" class="form-control" placeholder="Enter Discount Code">
                     </div>
                     <div class="form-group">
                         <label>Amount</label> <span class="error">*</span>
-                        <input type="number" id="damount" name="damount" class="form-control">
+                        <input type="number" id="damount" name="damount" class="form-control" min=0>
                     </div>
                     <div class="form-group">
                         <label>Times</label> <span class="error">*</span>
-                        <input type="number" id="dtimes" name="dtimes" class="form-control">
+                        <input type="number" id="dtimes" name="dtimes" class="form-control" min=0>
                     </div>
                     <div class="form-group">
                         <label>Start Date</label> <span class="error">*</span>
