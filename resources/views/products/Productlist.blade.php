@@ -82,7 +82,7 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
+                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/main') }}">Log in</a>
                     </div>
                 </div>
             </div>
