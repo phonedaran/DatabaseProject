@@ -89,7 +89,7 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
 
-            <form action="productlist/loginfilter" method="POST">
+            <form action="../product/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
                         <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>

@@ -89,7 +89,7 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
 
-            <form action="../productlist/filter" method="get">
+            <form action="../product/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/product/add')); ?>">
                         <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
@@ -154,17 +154,19 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                        <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
+                        <a class="dropdown-item" href="<?php echo e(url('/main/customer')); ?>">Customer</a>
                         <?php if($user->jobTitle != 'Sales Rep'): ?>
                             <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                         <?php endif; ?>
                         <?php if($user->jobTitle == 'Sales Rep'): ?>
 
                             <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                            <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
                         <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
                         <?php if($user->jobTitle == 'VP Marketing'): ?>
-                            <a class="dropdown-item" href="#">Promotion</a>
+                            <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
                         <?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -172,6 +174,33 @@
                 </div>
             </form>
     </nav>
+    <!-- alert -->
+    <?php if(\Session::has('paymentComplete')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The payment successfully.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php endif; ?>
+    <?php if(\Session::has('product')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The product created.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php endif; ?>
+    <?php if(\Session::has('del')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The product deleted.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php endif; ?>
+
+    <!-- alert -->
 
     <main role="main">
         <?php
@@ -182,14 +211,6 @@
                 $_SESSION['job'] = $user->jobTitle;
             }
         ?>
-        <?php
-        //for test
-        if(isset($_SESSION['user'])){
-            //echo $_SESSION['user'];
-        }else{
-            //echo "No user";
-        }
-    ?>
 
         <div class="album py-5 bg-light">
             <div class="container">
@@ -218,10 +239,11 @@
 
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="<?php echo e(URL::to('/productlist/view')); ?>" method="get">
+                                            <form action="<?php echo e(URL::to('/productlist/detail')); ?>" method="get">
                                                 <input type="hidden" value="<?php echo e($Enumber); ?>" name="user">
                                                 <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='<?php echo e(URL::to('/productlist/view')); ?>'; submit()">
+                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='<?php echo e(URL::to('/product/delete')); ?>'; submit()">
                                             </form>
                                         </div>
                                     </div>

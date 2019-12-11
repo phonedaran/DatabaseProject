@@ -67,15 +67,34 @@
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-        </div>
-    </nav>
+              <a class="py-2 d-none d-md-inline-block"></a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
+                <?php
+                      $Fname = $_SESSION['Fname'];
+                      $Lname = $_SESSION['Lname'];
+                      $jobTitle = $_SESSION['job'];
+                ?>
+                  <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                  <?php if($jobTitle != 'Sales Rep'): ?>
+                      <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                  <?php endif; ?>
+                  <?php if($jobTitle == 'Sales Rep'): ?>
+                      <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                  <?php endif; ?>
+                  <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                  <?php if($jobTitle == 'VP Marketing'): ?>
+                      <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                  <?php endif; ?>
+                  <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+              </div>
+              </a>
+            </a>
+          </div>
+        </nav>
     <!-- header -->
 
     <!-- alert  -->
@@ -141,7 +160,7 @@
                     <div class="form-group">
                         <label>Times</label> <span class="error">*</span>
                         <input type="number" id="dtimes" name="dtimes" class="form-control">
-                    </div>                    
+                    </div>
                     <div class="form-group">
                         <label>Start Date</label> <span class="error">*</span>
                         <input type="date" id="dstartDate" name="dstartDate" class="form-control">
@@ -152,11 +171,16 @@
                     </div>
                     <input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/promotion/checkDiscount')); ?>'; submit()">
                 </fieldset>
-            
+
                 <fieldset id="two">
                     <div class="form-group">
-                        <label>Product Code</label> <span class="error">*</span>
-                        <input type="text" name="productCode" class="form-control" placeholder="Enter Product Code">
+                        <label>Product</label> <span class="error">*</span>
+                            <select class="form-control" id="productCode" name="productCode">
+                                <option selected>Choose ...</option>
+                                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($product->productCode); ?>">Code : <?php echo e($product->productCode); ?> , Name : <?php echo e($product->productName); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
                     </div>
                     <div class="form-group">
                         <label>Start Date</label> <span class="error">*</span>
@@ -168,7 +192,7 @@
                     </div>
                     <input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/promotion/checkBuy1Get1')); ?>'; submit()">
                 </fieldset>
-            
+
         </form>
     </div>
     <!-- create promotion -->

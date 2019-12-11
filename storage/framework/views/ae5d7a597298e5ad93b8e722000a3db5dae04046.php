@@ -52,13 +52,13 @@
 
         .scrollbar-gray::-webkit-scrollbar {
             width: 5px;
-            background-color: #F5F5F5; 
+            background-color: #F5F5F5;
         }
 
         .scrollbar-gray::-webkit-scrollbar-thumb {
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #A9A9A9; 
+            background-color: #A9A9A9;
         }
 
     </style>
@@ -82,7 +82,11 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
+
+                        <?php if(!isset($_SESSION['user'])): ?>
+                            <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
+
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -90,139 +94,53 @@
     </div>
 
     <main role="main">
-        <!--Filter-->
-
-        <?php
-            $type = $_GET['type'];
-            $scale = $_GET['scale'];
-            $vendor = $_GET['vendor'];
-            $filterType = true;
-            $filterScale = true;
-            $filterVendor = true;
-            $resultFilter = array();
-            $count = 0;
-            $jsonDecode= json_Decode($products,true);
-            foreach ($jsonDecode as $result) {
-                //type check
-                if($result['productLine'] == $type){
-                    $filterType = true;
-                }elseif($type == 'Any') {
-                    $filterType = true;
-                }else{
-                    $filterType = false;
-                }
-                //scale check
-                if($result['productScale'] == $scale){
-                    $filterScale = true;
-                }elseif($scale == 'Any') {
-                    $filterScale = true;
-                }else{
-                    $filterScale = false;
-                }
-                //vendor check
-                if($result['productVendor'] == $vendor){
-                    $filterVendor = true;
-                }elseif ($vendor == 'Any') {
-                    $filterVendor = true;
-                }else{
-                    $filterVendor = false;
-                }
-                //result
-                if($filterType=='1' && $filterScale=='1' && $filterVendor=='1'){
-                    array_push($resultFilter, $result['productCode']);
-                    $count++; //count number result
-                }
-            }
-        ?>
-
-        <div class="container">
-            <div class="col-md-6 px-0">
-                <!--Button-->
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <form action="productlist/filter" method="get">
-                        <br>
-                            <!--Type-->
-                            <div class="list-group">
-                                <?php
-                                    if($type !== 'Any'){
-                                        echo "<h3>Type : ".$type."</h3>";
-                                    }
-                                ?>
-                            </div>
-
-                            <!--Scale-->
-                            <div class="list-group">
-                                <?php
-                                    if($scale !== 'Any'){
-                                        echo "<h3>Scale : ".$scale."</h3>";
-                                    }
-                                ?>
-                            </div>
-
-                            <!--Vendor-->
-                            <div class="list-group">
-                                <?php
-                                    if($vendor !== 'Any'){
-                                        echo "<h3>Vendor : ".$vendor."</h3>";
-                                    }
-                                ?>
-                            </div>
-                            <h2>Result have <?php echo $count ?> products. </h2>
-
-                            <button type="button" class="btn btn-sm btn-outline-secondary" >
-                                <a href="<?php echo e(url('/')); ?>">Clear</a>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="album py-5 bg-light">
             <div class="container">
+            <h3>Result have <?php echo e($count); ?> result</h3>
+                <button type="button" class="btn btn-sm btn-outline-secondary" >
+                        <a href="<?php echo e(url('/')); ?>">Clear</a>
+                    </button>
                 <div class="row">
-
-                    <?php $__currentLoopData = $resultFilter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if($product->productCode == $key): ?>
-                                <div class="col-md-4">
-                                    <div class="card mb-4 shadow-sm">
-                                    <div class="scrollbar  scrollbar-gray ">
-                                    <div class="force-overflow">
-                                        <img src="../images/product/<?php echo str_replace('/', '',str_replace(':', '', str_replace("'", '', $product->productName))); ?>.jpg"
-                                            onerror="this.src='../images/not.png'" width="100%" height="100%"  />
-                                        <div class="card-body">
-                                            <h3><?php echo e($product->productName); ?></h3>
-                                            <tr>
-                                                <td>Stock : <?php echo e($product->quantityInStock); ?></td>
-                                                <br>
-                                                <td>Pirce : <?php echo e($product->buyPrice); ?></td>
-                                                <br>
-                                                <td>Type : <?php echo e($product->productLine); ?></td>
-                                                <br>
-                                                <td>Scale : <?php echo e($product->productScale); ?></td>
-                                                <br>
-                                                <td>Vendor : <?php echo e($product->productVendor); ?></td>
-                                            </tr>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <form action="../productlist/view" method="get">
-                                                            <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                            <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
-                                                    </form>
+                        <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                <div class="scrollbar  scrollbar-gray">
+                                <div class="force-overflow">
+                                    <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                        onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                    <div class="card-body">
+                                        <h3><?php echo e($product->productName); ?></h3>
+                                        <tr>
+                                            <td>Stock : <?php echo e($product->quantityInStock); ?></td>
+                                            <br>
+                                            <td>Pirce : <?php echo e($product->buyPrice); ?></td>
+                                            <br>
+                                            <td>producLine : <?php echo e($product->productLine); ?></td>
+                                            <br>
+                                            <td>Scale : <?php echo e($product->productScale); ?></td>
+                                            <br>
+                                            <td>Vendor : <?php echo e($product->productVendor); ?></td>
+                                        </tr>
 
-                                                </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <form action="productlist/view" method="get">
+                                                        <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
+                                                        <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                        <?php if(isset($_SESSION['user'])): ?>
+                                                            <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='<?php echo e(URL::to('/product/delete')); ?>'; submit()">
+                                                        <?php endif; ?>
+                                                </form>
+
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    </div>
                                 </div>
-                            <?php endif; ?>
+                                </div>
+                                </div>
+                            </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                 </div>
             </div>
         </div>

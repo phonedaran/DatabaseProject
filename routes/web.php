@@ -33,12 +33,11 @@ Route::get('employee/edit/check','EmployeeController@editCheckEmp');
 
 //Product
 Route::get('/productlist/view','ViewController@index');         //public
-Route::get('/productlist/filter','ProductController@filter');                               //fix
+Route::get('/product/filter','ProductController@filter');                               //fix
 Route::get('/product/add','ProductController@add');     //addproduct(login)
 Route::get('/product/add/check','ProductController@addCheck');
 Route::get('/product/delete','ProductController@delete');
 Route::get('/productlist/detail','ViewController@detail');
-Route::post('/productlist/loginfilter','ProductController@filterafterl');                   //fix
 
 //Order
 Route::get('/keyOrder','OrderController@keyOrder');

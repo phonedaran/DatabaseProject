@@ -2,13 +2,16 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+Use \Carbon\Carbon;
 
 class promotionController extends Controller
 {
     public function index(){
         session_start();
         if(isset($_SESSION['user'])){
+            $date = Carbon::now();
+            DB::table('buy1get1')->whereDate('exp' ,'<=', $date)->delete();
+            DB::table('discount')->whereDate('exp' ,'<=', $date)->delete();
             $products=DB::select('select * from products');
             return view('promotion',['products'=>$products]);
         }else{

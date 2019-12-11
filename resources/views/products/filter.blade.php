@@ -82,7 +82,11 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
+
+                        @if(!isset($_SESSION['user']))
+                            <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
+
+                        @endif
                     </div>
                 </div>
             </div>
@@ -90,139 +94,53 @@
     </div>
 
     <main role="main">
-        <!--Filter-->
-
-        <?php
-            $type = $_GET['type'];
-            $scale = $_GET['scale'];
-            $vendor = $_GET['vendor'];
-            $filterType = true;
-            $filterScale = true;
-            $filterVendor = true;
-            $resultFilter = array();
-            $count = 0;
-            $jsonDecode= json_Decode($products,true);
-            foreach ($jsonDecode as $result) {
-                //type check
-                if($result['productLine'] == $type){
-                    $filterType = true;
-                }elseif($type == 'Any') {
-                    $filterType = true;
-                }else{
-                    $filterType = false;
-                }
-                //scale check
-                if($result['productScale'] == $scale){
-                    $filterScale = true;
-                }elseif($scale == 'Any') {
-                    $filterScale = true;
-                }else{
-                    $filterScale = false;
-                }
-                //vendor check
-                if($result['productVendor'] == $vendor){
-                    $filterVendor = true;
-                }elseif ($vendor == 'Any') {
-                    $filterVendor = true;
-                }else{
-                    $filterVendor = false;
-                }
-                //result
-                if($filterType=='1' && $filterScale=='1' && $filterVendor=='1'){
-                    array_push($resultFilter, $result['productCode']);
-                    $count++; //count number result
-                }
-            }
-        ?>
-
-        <div class="container">
-            <div class="col-md-6 px-0">
-                <!--Button-->
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <form action="productlist/filter" method="get">
-                        <br>
-                            <!--Type-->
-                            <div class="list-group">
-                                <?php
-                                    if($type !== 'Any'){
-                                        echo "<h3>Type : ".$type."</h3>";
-                                    }
-                                ?>
-                            </div>
-
-                            <!--Scale-->
-                            <div class="list-group">
-                                <?php
-                                    if($scale !== 'Any'){
-                                        echo "<h3>Scale : ".$scale."</h3>";
-                                    }
-                                ?>
-                            </div>
-
-                            <!--Vendor-->
-                            <div class="list-group">
-                                <?php
-                                    if($vendor !== 'Any'){
-                                        echo "<h3>Vendor : ".$vendor."</h3>";
-                                    }
-                                ?>
-                            </div>
-                            <h2>Result have <?php echo $count ?> products. </h2>
-
-                            <button type="button" class="btn btn-sm btn-outline-secondary" >
-                                <a href="{{ url('/') }}">Clear</a>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="album py-5 bg-light">
             <div class="container">
+            <h3>Result have {{$count}} result</h3>
+                <button type="button" class="btn btn-sm btn-outline-secondary" >
+                        <a href="{{ url('/') }}">Clear</a>
+                    </button>
                 <div class="row">
-
-                    @foreach ( $resultFilter as $key)
                         @foreach ($products as $product )
-                            @if ($product->productCode == $key)
-                                <div class="col-md-4">
-                                    <div class="card mb-4 shadow-sm">
-                                    <div class="scrollbar  scrollbar-gray ">
-                                    <div class="force-overflow">
-                                        <img src="../images/product/<?php echo str_replace('/', '',str_replace(':', '', str_replace("'", '', $product->productName))); ?>.jpg"
-                                            onerror="this.src='../images/not.png'" width="100%" height="100%"  />
-                                        <div class="card-body">
-                                            <h3>{{$product->productName}}</h3>
-                                            <tr>
-                                                <td>Stock : {{$product->quantityInStock}}</td>
-                                                <br>
-                                                <td>Pirce : {{$product->buyPrice}}</td>
-                                                <br>
-                                                <td>Type : {{$product->productLine}}</td>
-                                                <br>
-                                                <td>Scale : {{$product->productScale}}</td>
-                                                <br>
-                                                <td>Vendor : {{$product->productVendor}}</td>
-                                            </tr>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <form action="../productlist/view" method="get">
-                                                            <input type="hidden" value={{$product->productCode}} name="code">
-                                                            <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
-                                                    </form>
+                        <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                <div class="scrollbar  scrollbar-gray">
+                                <div class="force-overflow">
+                                    <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                        onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                    <div class="card-body">
+                                        <h3>{{$product->productName}}</h3>
+                                        <tr>
+                                            <td>Stock : {{$product->quantityInStock}}</td>
+                                            <br>
+                                            <td>Pirce : {{$product->buyPrice}}</td>
+                                            <br>
+                                            <td>producLine : {{$product->productLine}}</td>
+                                            <br>
+                                            <td>Scale : {{$product->productScale}}</td>
+                                            <br>
+                                            <td>Vendor : {{$product->productVendor}}</td>
+                                        </tr>
 
-                                                </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <form action="productlist/view" method="get">
+                                                        <input type="hidden" value={{$product->productCode}} name="code">
+                                                        <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                        @if (isset($_SESSION['user']))
+                                                            <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
+                                                        @endif
+                                                </form>
+
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    </div>
                                 </div>
-                            @endif
+                                </div>
+                                </div>
+                            </div>
                         @endforeach
-                    @endforeach
-
                 </div>
             </div>
         </div>

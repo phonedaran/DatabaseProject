@@ -20,11 +20,53 @@ class ProductController extends Controller
 
 
     public function filter(){
+        session_start();
+        $type = $_GET['type'];
+        $scale = $_GET['scale'];
+        $vendor = $_GET['vendor'];
 
-        $products = Product::all();
-        return view('products/filter', ['products' => $products ]);
+            $products = DB::select('select * from products where productLine = ?
+            intersect select * from products where productScale = ?
+            intersect select * from products where productVendor = ?', [$type, $scale, $vendor]);
+
+        if($type == 'Any'){
+            if($scale == 'Any'){
+                if($vendor == 'Any'){
+                    $products = $products= DB::table('products')->get(); // - - -
+                }else{
+                    $products= DB::table('products')->where('productVendor','=',$vendor)->get(); //- - V
+                }
+            }else{
+                if($vendor == 'Any'){
+                    $products= DB::table('products')->where('productScale','=',$scale)->get();  //- S -
+                }else{
+                    $products= DB::table('products')->where('productScale','=',$scale)
+                    ->where('productVendor','=',$vendor)->get();                                //- S V
+                }
+            }
+        }else{
+            if($scale == 'Any'){
+                if($vendor == 'Any'){
+                    $products= DB::table('products')->where('productLine','=',$type)->get();    //T - -
+                }else{
+                    $products= DB::table('products')->where('productLine','=',$type)
+                    ->where('productVendor','=',$vendor)->get();                                //T - V
+                }
+            }else{
+                if($vendor == 'Any'){
+                    $products= DB::table('products')->where('productLine','=',$type)
+                    ->where('productScale','=',$scale)->get();                                  //T S -
+                }else{
+                    $products= DB::table('products')->where('productLine','=',$type)
+                    ->where('productScale','=',$scale)->where('productVendor','=',$vendor)->get();   //T S V
+                }
+            }
+        }
+
+        $count = $products->count();
+
+        return view('products.filter',['products' => $products, 'count' => $count]);
     }
-
 
 
     public function add(){
