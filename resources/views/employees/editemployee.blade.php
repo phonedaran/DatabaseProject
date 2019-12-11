@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Customer</title>
+    <title>EditEmployee</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -63,7 +63,6 @@
                             <path d="M21 21l-5.2-5.2" />
                         </svg>
                         </a>
-                        <!-- <a><span class="fas fa-user" style=" color: aliceblue"></span></a> -->
                     </div>
                 </div>
             </header>
@@ -72,11 +71,7 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        @foreach ($User as $user )
-        @if ($user->jobTitle == 'Sales Rep')
-        <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}" style="color:black">add</a>
-                        @endif
-                        @endforeach
+        
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
             <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
@@ -85,40 +80,112 @@
                     aria-expanded="false"  style="color:black">
                     Menu
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url('main/customer') }}">Customer</a>
-                    <a class="dropdown-item" href="#">Employee</a>
-                    <a class="dropdown-item" href="#">Key Order</a>
-                    <a class="dropdown-item" href="#">Order list</a>
-                    <a class="dropdown-item" href="#">Promotion</a>
-                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                </div>
+               
         </div>
     </nav>
 
 
     <main role="main">
 
-        <?php
-            foreach ($User as $user ){
-                $Enumber = $user->employeeNumber;
+     <?php
+            $number = $_GET['editNumber'];
+            $jsonDecode = json_Decode($employees,true);
+            foreach ($jsonDecode as $result) {
+                if($result['employeeNumber'] == $number){
+                    $Fname = $result['firstName'];
+                    $Lname = $result['lastName'];
+                    $email = $result['email'];
+                    $officeCode = $result['officeCode'];
+                    $report = $result['reportsTo'];
+                    $extension= $result['extension'];
+                    $job= $result['jobTitle'];
+                }
             }
-        ?>    
-
+        ?>
+<!-- action="{{ URL::to('/employee/edit/check') }}" -->
     <div class="container col-md-9">
-    <br>
+    <form method="get" >
+    <table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Column</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Employee Number</th>
+      <td><input type="hidden" id="number" name="number" value="{{$number}}">{{$number}}</td>
+    </tr>
 
-    @foreach ($customers as $cus)
-       <form action="customer/view" method="get">
-        <input type="hidden" value={{$cus->customerNumber}} name="number">
-        <button class="btn btn-lg btn-block col-md-14" style="background-color:pink;" type="submit">
-        <div class="row"><div class="col" style="text-align :left;"><h2> {{$cus->customerName}}</h2></div>
-        <div class="col" style="text-align :right;"><h2>{{$cus->point}}</h2></div></div>
-     </button></form>
-     <div class="mb-2" ></div>
-    @endforeach
-    <br>
-    {{ $customers->links() }}
+    <tr>
+      <th scope="row">First Name</th>
+      <td><input type="text" name=Fname class="form-control" value={{$Fname}}></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Last Name</th>
+      <td><input type="text" name=Lname class="form-control" value={{$Lname}}></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Extension</th>
+      <td><input type="text" name=ext class="form-control" value={{$extension}}></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Email</th>
+      <td><input type="email" name=email class="form-control" value={{$email}}></td>
+    </tr>
+
+    <!-- <tr>
+      <th scope="row">Office Code</th>
+      <td>
+      <input type="text" name=off class="form-control" value={{$officeCode}}>
+      <select class="custom-select" name=officeCode value={{$officeCode}} >
+              <option selected></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+      </td>
+    </tr> -->
+
+    <tr>
+      <th scope="row">Reports To</th>
+      <td><input type="text" name=report class="form-control" value={{$report}}></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Job Title</th>
+      <td>
+      <select class="custom-select" name=job value={{$job}} >
+              <option selected>{{$job}}</option>
+              <option value="1">VP Sales</option>
+              <option value="2">VP Marketing</option>
+              <option value="3">Sales Manager (APAC)</option>
+              <option value="4">Sale Manager (EMEA)</option>
+              <option value="5">Sales Manager (NA)</option>
+              <option value="6">Sales Rep</option>
+            </select>
+      </td>
+    </tr>
+
+    <tr>
+    <td></td>
+    <td schop="row" style="text-align : right;">
+    <input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/employee/edit/check') }}'; submit()">
+    <input type="button" class="btn btn-outline-primary" value="Cancle" onClick="this.form.action='{{ URL::to('/main/employee') }}'; submit()"> 
+    </td>
+    </tr> 
+
+  </tbody>
+</table>
+
+</form>
 </div>
 
 

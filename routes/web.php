@@ -38,6 +38,8 @@ Route::get('main/addemployee', function () {
     }
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
+Route::get('employee/edit','EmployeeController@editEmployee'); //edit
+Route::get('employee/edit/check','EmployeeController@editCheckEmp');
 
 //Product
 Route::get('/productlist/view','ViewController@index');         //public
