@@ -34,6 +34,7 @@
                 font-size: 3.5rem;
             }
         }
+        .error {color: #FF0000;}
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -63,7 +64,6 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"  style="color:dark blue">
                 <?php
-                    session_start();
                         $Fname = $_SESSION['Fname'];
                         $Lname = $_SESSION['Lname'];
                 ?>
@@ -77,88 +77,97 @@
         </div>
     </nav>
         <!-- after field -->
+        @if (\Session::has('null'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> Please complete all required fields.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    <!-- after field -->
 
     <main role="main" style="background-color:LightGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <div class="col-md-12 ">
-      <h4 class="mb-5" style="text-align:center;">ADD CUSTOMER</h4>
+      <h2 class="mb-5" style="text-align:center;">ADD CUSTOMER</h2>
 
       <form class="needs-validation" novalidate action="{{ URL::to('/main/customer/add/check') }}">
 
         <div class="mb-3">
-          <label for="name">Customer Name</label>
-          <input type="text" name=customerName class="form-control" id="customername" placeholder="Enter Customer Name" required>
-          <div class="invalid-feedback">
-            Please enter Customer name.
-          </div>
+            <label for="name">Customer Name</label><span class="error">*</span>
+            <input type="text" name=customerName class="form-control" id="customername" placeholder="Enter Customer Name" required>
+            <div class="invalid-feedback">
+                Please enter Customer name.
+            </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName">Contact First name</label>
-            <input type="text" name=conFName class="form-control" id="firstName" placeholder="...." value="" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
+            <div class="col-md-6 mb-3">
+                <label for="firstName">Contact First name</label><span class="error">*</span>
+                <input type="text" name=conFName class="form-control" id="firstName" placeholder="...." value="" required>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Contact Last name</label>
-            <input type="text" name=conLName class="form-control" id="lastName" placeholder="...." value="" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
+            <div class="col-md-6 mb-3">
+                <label for="lastName">Contact Last name</label><span class="error">*</span>
+                <input type="text" name=conLName class="form-control" id="lastName" placeholder="...." value="" required>
+                <div class="invalid-feedback">
+                    Valid last name is required.
+                </div>
             </div>
-          </div>
         </div>
 
         <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" name=addr class="form-control" id="address" placeholder="Enter Customer Address" required>
-          <div class="invalid-feedback">
-            Please enter your shipping address.
-          </div>
+            <label for="address">Address</label><span class="error">*</span>
+            <input type="text" name=addr class="form-control" id="address" placeholder="Enter Customer Address" required>
+            <div class="invalid-feedback">
+                Please enter your shipping address.
+            </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="postal">Postal Code</label>
-            <input type="text" name=postal class="form-control" id="postal" placeholder="...." value="" required>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label for="phone">Phone Number</label>
-            <input type="phone" name=phone class="form-control" id="lastName" placeholder="...." value="" required>
-            <div class="invalid-feedback">
-              Valid phone number is required.
+            <div class="col-md-6 mb-3">
+                <label for="postal">Postal Code</label>
+                <input type="text" name=postal class="form-control" id="postal" placeholder="...." value="" required>
             </div>
-          </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="phone">Phone Number</label><span class="error">*</span>
+                <input type="phone" name=phone class="form-control" id="lastName" placeholder="...." value="" required>
+                <div class="invalid-feedback">
+                    Valid phone number is required.
+                </div>
+            </div>
         </div>
 
 
         <div class="row">
-        <div class="col-md-4 mb-3">
-            <label for="country">Country</label>
-            <input type="text" name=country class="form-control" id="country" placeholder="" required>
-            <div class="invalid-feedback">
-              Country required.
+            <div class="col-md-4 mb-3">
+                <label for="country">Country</label><span class="error">*</span>
+                <input type="text" name=country class="form-control" id="country" placeholder="" required>
+                <div class="invalid-feedback">
+                    Country required.
+                </div>
             </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="state">State</label>
-            <input type="text" name=state class="form-control" id="state" placeholder="" required>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="city">City</label>
-            <input type="text" name=city class="form-control" id="city" placeholder="" required>
-            <div class="invalid-feedback">
-              City required.
+            <div class="col-md-4 mb-3">
+                <label for="state">State</label>
+                <input type="text" name=state class="form-control" id="state" placeholder="" required>
             </div>
-          </div>
+            <div class="col-md-4 mb-3">
+                <label for="city">City</label><span class="error">*</span>
+                <input type="text" name=city class="form-control" id="city" placeholder="" required>
+                <div class="invalid-feedback">
+                    City required.
+                </div>
+            </div>
         </div>
 
         <hr class="mb-5" >
-        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>Submit</button>
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>

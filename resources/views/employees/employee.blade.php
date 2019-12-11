@@ -79,22 +79,13 @@
 
 
     <main role="main">
-            <?php
-            //for test
-            if(isset($_SESSION['user'])){
-                //secho $_SESSION['user'];
-            }else{
-                //echo "No user";
-            }
-        ?>
-
         <div class="album py-5 bg-light">
             <div class="container">
                 <h2>EMPLOYEE</h2>
                 <div>
                     <table class="table table-hover">
                     @foreach ( $employees as $Emp)
-                        <form action="productlist/view" method="get">
+                        <form method="get">
                             <tr class="table-secondary">
                                 <th scope="row">{{$Emp->firstName}}<input type="hidden" value={{$Emp->firstName}} name="Fname"></th>
                                 <th scope="row">{{$Emp->lastName}}<input type="hidden" value={{$Emp->lastName}} name="Lname"></th>
@@ -110,8 +101,9 @@
                                         @if($jobTitle != 'President' and $jobTitle != 'VP Marketing')
                                             @foreach ( $firedEmp as $fired)
                                                 @if($Emp->employeeNumber == $fired->employeeNumber)
-                                                <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
-                                                <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
+                                                    <input type="hidden"  name="editNumber" value="{{$Emp->employeeNumber}}" >
+                                                    <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/employee/edit') }}'; submit()" > Edit </button>
+                                                    <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
                                                 @endif
                                             @endforeach
                                         @endif
