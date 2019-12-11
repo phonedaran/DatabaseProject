@@ -154,7 +154,7 @@ class OrderController extends Controller
                 WHERE orderdetails.orderNumber = orders.orderNumber)
                 ")]);
             
-        session_start();
+        // session_start();
         $jobTitle = $_SESSION['job'];
 
 
