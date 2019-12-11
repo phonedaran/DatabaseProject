@@ -51,8 +51,6 @@ class promotionController extends Controller
     }
 
     public function checkBuy1Get1(request $request){
-
-
         session_start();
         if(isset($_SESSION['user'])){
             $productCode=$request->input('productCode');

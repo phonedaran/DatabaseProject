@@ -98,7 +98,6 @@ class EmployeeController extends Controller
         }else{
             return redirect('/main');
         }
-
     }
 
 

@@ -27,6 +27,7 @@ class CustomerController extends Controller
             return redirect('/main');
         }
     }
+    
     function detail()
     {
         session_start();
