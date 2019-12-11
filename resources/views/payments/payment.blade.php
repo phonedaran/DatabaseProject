@@ -73,14 +73,15 @@
                 <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
                 <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
                 @if ($jobTitle != 'Sales Rep')
-                <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                 @endif
                 @if ($jobTitle == 'Sales Rep')
-                <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                    <a class="dropdown-item" href=" {{url('/payment')}}">Payment</a>
                 @endif
                 <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                 @if ($jobTitle == 'VP Marketing')
-                <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
                 @endif
                 <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
             </div>
