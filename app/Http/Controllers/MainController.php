@@ -41,6 +41,15 @@ class MainController extends Controller
         }
     }
 
+    function onLogin()
+    {
+        session_start();
+        $Enumber = $_SESSION['user'];
+        $User = DB::table('employees')->where(['employeeNumber'=> $Enumber])->get();
+        $products = Product::paginate(15);
+        return view('products.successlogin',['User' => $User, 'products' => $products]);
+    }
+
     function logout()
     {
         session_start(); //logout
