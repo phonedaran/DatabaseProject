@@ -169,18 +169,20 @@ class OrderController extends Controller
                 }
             }
 
+            $jobTitle = $_SESSION['job'];
             //update totalAmount
             DB::table('orders')->update(['totalAmount'=> DB::raw("
                 (SELECT SUM(orderdetails.amount)
                 FROM orderdetails
                 WHERE orderdetails.orderNumber = orders.orderNumber)
                 ")]);
-            return view('orders.orderlist',['orders' => $orders, 'status' => $status]);
+            return view('orders.orderlist',['orders' => $orders, 'status' => $status , 'jobTitle' => $jobTitle]);
 
         }else{
             return redirect('/main');
         }
     }
+
     public function updateOrder(){
         session_start();
         if(isset($_SESSION['user'])){
