@@ -15,8 +15,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link href="forcreate.css" rel="stylesheet">
 
@@ -36,7 +35,6 @@
             }
 
         }
-
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -47,6 +45,7 @@
 </head>
 
 <body>
+    <!-- header -->
     <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
@@ -64,18 +63,16 @@
             </header>
         </div>
     </div>
-
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
             <a class="py-2 d-none d-md-inline-block"></a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:dark blue">
                 <?php
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname'];
+                $Fname = $_SESSION['Fname'];
+                $Lname = $_SESSION['Lname'];
                 ?>
-                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
@@ -84,145 +81,115 @@
             </div>
         </div>
     </nav>
-        <!-- after field -->
+    <!-- header -->
 
+    <!-- alert -->
+    @if (Session('haveName'))
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Try Again!</strong> &nbsp The product name has already in use.
+    </div>
+    @endif
+    <!-- alert -->
+
+    <!-- main form -->
     <main role="main" style="background-color:SlateGray;"><br>
-    <div class="container col-md-8 bg-white " >
-    <br>
-    <!-- add employee -->
-    <div class="col-md-12 ">
-      <h4 class="display-5" style="text-align:center;">ADD PRODUCT</h4>
-
-      <!-- alert -->
-      @if (Session('warning'))
-      <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oops!</strong> &nbsp Change a few Report To and try submitting again.
-      </div>
-      @endif
-      @if (Session('nodata'))
-      <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oops!</strong> &nbsp Please Enter the data and try submitting again.
-      </div>
-      @endif
-      @if (Session('success'))
-      <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> &nbsp You successfully.
-      </div>
-      @endif
-
-      <form class="needs-validation" method ="get" novalidate action="{{ URL::to('/product/add/check') }} ">
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <input type="text" name="Pcode" class="form-control" id="Pcode" placeholder="Product Code" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <input type="text" name=Pname class="form-control" id="Pname" placeholder="Product Name" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <select class="custom-select" name=type id="type">
-                    <option selected>Type</option>
-                    <option value="Classic Cars">Classic Cars</option>
-                    <option value="Motorcycles">Motorcycles </option>
-                    <option value="Planes">Planes</option>
-                    <option value="Ships">Ships</option>
-                    <option value="Trains">Trains</option>
-                    <option value="Trucks and Buses">Trucks and Buses</option>
-                    <option value="Vintage Cars">Vintage Cars</option>
-                </select>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <select class="custom-select" name=scale id="scale">
-                    <option selected>Scale</option>
-                    <option value="1:10">1:10</option>
-                    <option value="1:12">1:12</option>
-                    <option value="1:18">1:18</option>
-                    <option value="1:24">1:24</option>
-                    <option value="1:32">1:32</option>
-                    <option value="1:50">1:50</option>
-                    <option value="1:72">1:72</option>
-                    <option value="1:700">1:700</option>
-                </select>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <select class="custom-select" name=vendor id="vendor">
-                    <option selected>Vendor</option>
-                    <option value="Autoart Studio Design">Autoart Studio Design </option>
-                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
-                    <option value="Classic Metal Creations">Classic Metal Creations </option>
-                    <option value="Exoto Designs">Exoto Designs </option>
-                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
-                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
-                    <option value="Min Lin Diecast">Min Lin Diecast </option>
-                    <option value="Motor City Art Classics">Motor City Art Classics </option>
-                    <option value="Red Start Diecast">Red Start Diecast </option>
-                    <option value="Second Gear Diecast">Second Gear Diecast </option>
-                    <option value="Studio M Art Models">Studio M Art Models </option>
-                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
-                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
-                </select>
+        <div class="container col-md-8 bg-white ">
+            <div class="col-md-12 ">
+                <h4 class="display-5" style="text-align:center;">ADD PRODUCT</h4>
+                <form class="needs-validation" method="get" action="{{ URL::to('/product/add/check') }} ">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <input type="text" name=Pname class="form-control" id="Pname" placeholder="Product Name" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <select class="custom-select" name=type id="type">
+                                <option selected>Type</option>
+                                <option value="Classic Cars">Classic Cars</option>
+                                <option value="Motorcycles">Motorcycles </option>
+                                <option value="Planes">Planes</option>
+                                <option value="Ships">Ships</option>
+                                <option value="Trains">Trains</option>
+                                <option value="Trucks and Buses">Trucks and Buses</option>
+                                <option value="Vintage Cars">Vintage Cars</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <select class="custom-select" name=scale id="scale">
+                                <option selected>Scale</option>
+                                <option value="1:10">1:10</option>
+                                <option value="1:12">1:12</option>
+                                <option value="1:18">1:18</option>
+                                <option value="1:24">1:24</option>
+                                <option value="1:32">1:32</option>
+                                <option value="1:50">1:50</option>
+                                <option value="1:72">1:72</option>
+                                <option value="1:700">1:700</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <select class="custom-select" name=vendor id="vendor">
+                                <option selected>Vendor</option>
+                                <option value="Autoart Studio Design">Autoart Studio Design </option>
+                                <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                                <option value="Classic Metal Creations">Classic Metal Creations </option>
+                                <option value="Exoto Designs">Exoto Designs </option>
+                                <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                                <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                                <option value="Min Lin Diecast">Min Lin Diecast </option>
+                                <option value="Motor City Art Classics">Motor City Art Classics </option>
+                                <option value="Red Start Diecast">Red Start Diecast </option>
+                                <option value="Second Gear Diecast">Second Gear Diecast </option>
+                                <option value="Studio M Art Models">Studio M Art Models </option>
+                                <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                                <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="Pdes" class="form-control" id="Pdes" placeholder="Product Description" required>
+                        <div class="invalid-feedback">
+                            Please enter E-mail.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="number" name=qty class="form-control" id="qty" placeholder="Quantity In Stock" min="0" required>
+                            <div class="invalid-feedback">
+                                Please enter Extension.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="number" name=price class="form-control" id="price" placeholder="Buy Price" min="0" required>
+                            <div class="invalid-feedback">
+                                Please enter Extension.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-5">
+                    <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+                    <br>
+                </form>
             </div>
         </div>
-
-        <div class="mb-3">
-          <input type="text" name="Pdes" class="form-control" id="Pdes" placeholder="Product Description" required>
-          <div class="invalid-feedback">
-            Please enter E-mail.
-          </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <input type="text" name=qty class="form-control" id="qty" placeholder="Quantity In Stock" value="" required>
-                <div class="invalid-feedback">
-                Please enter Extension.
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-3">
-                <input type="text" name=price class="form-control" id="price" placeholder="Buy Price" value="" required>
-                <div class="invalid-feedback">
-                Please enter Extension.
-                </div>
-            </div>
-        </div>
-
-        <hr class="mb-5" >
-        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
         <br>
-      </form>
-    </div>
-  </div>
-    </div>
-       <br>
     </main>
+    <!-- main form -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

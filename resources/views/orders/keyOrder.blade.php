@@ -87,28 +87,21 @@
             </button>
         </div>
     @endif
-    @if (\Session::has('warning'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> The order number is already in use.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
     <!-- alert after fill -->
 
-    <!-- form for filling order -->
+    <!-- form -->
     <div class="container">
-        <form action="{{ URL::to('/keyOrder/check') }} ">
+        <form method="get" action="{{ URL::to('/keyOrder/check') }} ">
             <strong><h2>ORDER</h2></strong>
             <p><span class="error">* required field</span></p>
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>
-                <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
-            </div>
-            <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
+                <select class="form-control" id="customerNumber" name="customerNumber">
+                    <option selected>Choose ...</option>
+                    @foreach ($customers as $customer)
+                        <option>{{$customer->customerNumber}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label>Order Date</label> <span class="error">*</span>
@@ -126,7 +119,7 @@
         </form>
     </div>
     <br>
-    <!-- form for filling order -->
+    <!-- form -->
 
 
     <!-- end -->

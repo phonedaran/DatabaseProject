@@ -26,6 +26,8 @@ Route::post('/main/success','MainController@login');
 Route::get('main/logout','MainController@logout');
 
 Route::get('/product/add','ProductController@add');
+Route::get('/product/add/check','ProductController@addCheck');
+Route::get('/product/delete','ProductController@delete');
 
 
 Route::get('main/employee','EmployeeController@showEmployees');
@@ -50,7 +52,6 @@ Route::get('/orderlist/updateOrder','OrderController@updateOrder');
 Route::get('/orderlist/detail','OrderController@detail');
 
 Route::get('/promotion','promotionController@index');
-Route::get('/promotion/update','promotionController@update');
 Route::get('/promotion/checkDiscount','promotionController@checkDiscount');
 Route::get('/promotion/checkBuy1Get1','promotionController@checkBuy1Get1');
 

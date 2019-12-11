@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
+    //employee->structure->relation view->set null
+    //customer->structure->relation view->set null
+    
     function showEmployees()
     {
         //block url if no user
@@ -34,7 +37,8 @@ class EmployeeController extends Controller
     function fireEmployee(){
         $Fname = $_GET['Fname'];
         $Lname = $_GET['Lname'];
-        DB::table('employees')->where(['Fname' => $Fname])->where(['Lname' => $Lname])->delete();
+        DB::table('employees')->where(['firstName' => $Fname])->where(['lastName' => $Lname])->delete();
+        return redirect()->back()->with('fired','The employee is fired');
     }
 
     function addEmployee(request $request)
@@ -49,6 +53,10 @@ class EmployeeController extends Controller
 
         session_start();
         $ReportTo = $_SESSION['user'];
+
+        if($jobTitle== 'Job Title'){
+            return redirect()->back()->with('nodata','Please try again');
+        }
         
         if ($Enumber===null or $Fname===null or $Lname===null or $extension===null or $email===null or $officeCode===null or $jobTitle===null){
             return redirect()->back()->with('nodata','Please try again');
@@ -64,7 +72,7 @@ class EmployeeController extends Controller
                 'reportsTo' => $ReportTo,
                 'jobTitle' => $jobTitle
             ]);
-            return redirect()->back()->with('success','complete!'); 
+            return redirect('/main/employee')->with('success','complete!'); 
         }
         
     }
