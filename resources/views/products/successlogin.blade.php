@@ -175,6 +175,33 @@
                 </div>
             </form>
     </nav>
+    <!-- alert -->
+    @if (\Session::has('paymentComplete'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The payment successfully.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (\Session::has('product'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The product created.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (\Session::has('del'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The product deleted.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
+    <!-- alert -->
 
     <main role="main">
         <?php

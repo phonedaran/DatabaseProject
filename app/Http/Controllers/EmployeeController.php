@@ -39,7 +39,7 @@ class EmployeeController extends Controller
             $Fname = $_GET['Fname'];
             $Lname = $_GET['Lname'];
             DB::table('employees')->where(['firstName' => $Fname])->where(['lastName' => $Lname])->delete();
-            return redirect('/main/employee');
+            return redirect()->back()->with('fired','The employee is fired');
         }else{
             return redirect('/main');
         }
@@ -81,7 +81,7 @@ class EmployeeController extends Controller
                     'lastName' => $Lname,
                     'password' => $encodePass
                 ]);
-                return redirect()->back()->with('success','complete!');
+                return redirect('/main/employee')->with('success','complete!');
             }
         }else{
             return redirect('/main');

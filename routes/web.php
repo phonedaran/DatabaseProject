@@ -34,6 +34,8 @@ Route::get('employee/edit/check','EmployeeController@editCheckEmp');
 Route::get('/productlist/view','ViewController@index');         //public
 Route::get('/productlist/filter','ProductController@filter');       //public
 Route::get('/product/add','ProductController@add');     //addproduct(login)
+Route::get('/product/add/check','ProductController@addCheck');
+Route::get('/product/delete','ProductController@delete');
 
 //Order
 Route::get('/keyOrder','OrderController@keyOrder');

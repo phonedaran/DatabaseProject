@@ -31,11 +31,38 @@ class ProductController extends Controller
         return view('products.addproduct');
     }
 
-    public function addCheck(){
+    public function addCheck(request $request)
+    {
+        //define productCode
+        $scale = $request->input('scale');
+        list($scale1, $scale2) = explode(":", $scale);
+        $Pcode = "S" . $scale2 . "_" . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        $haveCode = DB::table('products')->where(['productCode' => $Pcode])->exists();
+        if ($haveCode) {
+            $Pcode = "S" . $scale2 . "_" . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        }
 
-        //
-        //
+        $Pname = $request->input('Pname');
+        //ถ้าชื่อซ้ำ
+        $haveName = DB::table('products')->where(['productName' => $Pname])->exists();
+        if ($haveName) {
+            return redirect()->back()->with('haveName', 'The product name has already in use.');
+        }
+        $vendor = $request->input('vendor');
+        $type = $request->input('type');
+        $Pdes = $request->input('Pdes');
+        $qty = $request->input('qty');
+        $price = $request->input('price');
+        DB::table('products')->insert(
+            ['productCode' => $Pcode,
+            'productName' => $Pname,
+            'productLine' =>$type,
+            'productScale'=> $scale,
+            'productDescription' => $Pdes,
+            'buyPrice' => $price,
+            'quantityInStock' => $qty,
+            'productVendor' => $vendor]
+        );
+        return redirect('/main/success')->with('product','The product created');
     }
-
-
 }
