@@ -127,7 +127,12 @@
             <p><span class="error">* required field</span></p>
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>
-                <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
+                <select class="form-control" id="customerNumber" name="customerNumber">
+                        <option selected>Choose ...</option>
+                        @foreach ($customers as $customer)
+                            <option value="{{$customer->customerNumber}}">Customer Number : {{$customer->customerNumber}}</option>
+                        @endforeach
+                    </select>
             </div>
             <div class="form-group">
                 <label>Cheque Number</label> <span class="error">*</span>

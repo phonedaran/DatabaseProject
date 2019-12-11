@@ -90,23 +90,7 @@
             </button>
         </div>
     @endif
-    @if (\Session::has('noCustomer'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> There is no this Customer Number.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-    @if (\Session::has('warning'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> The order number is already in use.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-    <!-- alert after fill -->
+    
 
     <!-- form for filling order -->
     <div class="container">
@@ -118,7 +102,7 @@
                 <select class="form-control" id="customerNumber" name="customerNumber">
                     <option selected>Choose ...</option>
                     @foreach ($customers as $customer)
-                        <option>{{$customer->customerNumber}}</option>
+                        <option value="{{$customer->customerNumber}}">Customer Number : {{$customer->customerNumber}}</option>
                     @endforeach
                 </select>
             </div>
