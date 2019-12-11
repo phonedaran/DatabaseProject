@@ -77,14 +77,6 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
                     </div>
                 </div>
             </div>
@@ -92,13 +84,30 @@
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  style="color:dark blue">
+                <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
+                ?>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                @if ($jobTitle != 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                @endif
+                @if ($jobTitle == 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                @endif
+                    <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                @if ($jobTitle == 'VP Marketing')
+                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                @endif
+                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+            </div>
         </div>
     </nav>
     <!-- header -->
@@ -110,13 +119,13 @@
         <table class="table table-striped" style="width:100%">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col" >orderNumber</th>
-                    <th scope="col" >customerNumber</th>
-                    <th scope="col" >orderDate</th>
-                    <th scope="col" >requiredDate</th>
-                    <th scope="col" >shippedDate</th>
-                    <th scope="col" >status</th>
-                    <th scope="col" >comments</th>
+                    <th scope="col" >Order Number</th>
+                    <th scope="col" >Customer Number</th>
+                    <th scope="col" >Order Date</th>
+                    <th scope="col" >Required Date</th>
+                    <th scope="col" >Shipped Date</th>
+                    <th scope="col" >Status</th>
+                    <th scope="col" >Comments</th>
                     <th scope="col" ></th>
                     <th scope="col" ></th>
                 </tr>
@@ -146,6 +155,8 @@
                                 <td schop="row"><textarea rows="3"  id="comment" name="comment">{{$order->comments}}</textarea></td>
                                 @if($jobTitle == 'Sales Rep')
                                     <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/orderlist/updateOrder') }}'; submit()">
+                                @else
+                                    <td schop="row">
                                 @endif
                                 <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='{{ URL::to('/orderlist/detail') }}'; submit()">
                             </div>

@@ -89,11 +89,8 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
 
-            <form action="../productlist/filter" method="get">
+            <form action="productlist/loginfilter" method="POST">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
-                        <button type="button" class="btn btn-outline-primary"><strong>UPDATE</strong></button>
-                    </a>
                     <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
                         <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
                     </a>
@@ -157,6 +154,7 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     @foreach ($User as $user )
+                        <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
                         <a class="dropdown-item" href="{{url('/main/customer')}}">Customer</a>
                         @if ($user->jobTitle != 'Sales Rep')
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
@@ -164,10 +162,11 @@
                         @if ($user->jobTitle == 'Sales Rep')
 
                             <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                            <a class="dropdown-item" href=" {{url('/payment')}}">Payment</a>
                         @endif
                         <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
                         @if ($user->jobTitle == 'VP Marketing')
-                            <a class="dropdown-item" href="#">Promotion</a>
+                            <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
                         @endif
                         <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
                     @endforeach
@@ -240,7 +239,7 @@
 
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="{{ URL::to('/productlist/view') }}" method="get">
+                                            <form action="{{ URL::to('/productlist/detail') }}" method="get">
                                                 <input type="hidden" value="{{$Enumber}}" name="user">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
                                                 <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()">
