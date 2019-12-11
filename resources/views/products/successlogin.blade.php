@@ -243,7 +243,9 @@
                                                 <input type="hidden" value="{{$Enumber}}" name="user">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
                                                 <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()">
+                                                @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')
                                                 <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
+                                                @endif
                                             </form>
                                         </div>
                                     </div>

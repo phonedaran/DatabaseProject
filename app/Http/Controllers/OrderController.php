@@ -153,13 +153,14 @@ class OrderController extends Controller
                 FROM orderdetails
                 WHERE orderdetails.orderNumber = orders.orderNumber)
                 ")]);
-            return view('orders.orderlist',['orders' => $orders, 'status' => $status , 'jobTitle' => $jobTitle]);
+            
+        // session_start();
+        $jobTitle = $_SESSION['job'];
 
-        }else{
-            return redirect('/main');
-        }
+
+        return view('orders.orderlist',['orders' => $orders, 'status' => $status , 'jobTitle' => $jobTitle]);
     }
-
+}
     public function updateOrder(){
         session_start();
         if(isset($_SESSION['user'])){
