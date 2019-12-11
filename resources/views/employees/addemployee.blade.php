@@ -71,16 +71,28 @@
               <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
                 <a class="py-2 d-none d-md-inline-block"></a>
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
-                    <?php
-
-                      $Fname = $_SESSION['Fname'];
-                      $Lname = $_SESSION['Lname'];
-                    ?>
+                  <?php
+                    
+                        $Fname = $_SESSION['Fname'];
+                        $Lname = $_SESSION['Lname'];
+                        $jobTitle = $_SESSION['job'];
+                  ?>
                     <b>{{$Fname}} &nbsp {{$Lname}}</b>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                    @if ($jobTitle != 'Sales Rep')
+                        <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                    @endif
+                    @if ($jobTitle == 'Sales Rep')
+                        <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                    @endif
+                    <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                    @if ($jobTitle == 'VP Marketing')
+                        <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                    @endif
                     <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                  </div>
+                </div>
                 </a>
               </a>
             </div>
@@ -106,7 +118,7 @@
     <main role="main" style="background-color:LightGray;"><br>
         <div class="container col-md-8 bg-white"><br>
             <div class="col-md-12 ">
-                <h2 class="display-5" style="text-align:center;">ADD EMPLOYEE</h2>
+                <h4 class="display-5" style="text-align:center;">ADD EMPLOYEE</h4><br>
                 <form class="needs-validation" method ="get" novalidate action="{{ URL::to('employee/add/check') }} ">
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -169,23 +181,13 @@
                     </div>
 
                 <hr class="mb-5" >
-                <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+                <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
                 <br>
                 </form>
             </div>
         </div>
+        <br>
     </main>
-    <footer class="text-muted">
-        <div class="container">
-            <p class="float-right">
-                <a href="#">Back to top</a>
-            </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
-        </div>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

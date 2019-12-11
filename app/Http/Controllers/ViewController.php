@@ -14,4 +14,10 @@ class ViewController extends Controller
         return view('products.productdetail', ['products'=>$products]);
     }
 
+    function detail(){
+
+        $products = Product::all();
+        return view('products.loginproductdetail', ['products'=>$products]);
+    }
+
 }

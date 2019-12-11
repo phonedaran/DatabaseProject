@@ -170,7 +170,7 @@
                             </div>
                             <h2>Result have <?php echo $count ?> products. </h2>
 
-                            <button type="button" class="btn btn-sm btn-outline-secondary" >
+                            <button type="button" class="btn btn-sm btn-outline-danger" >
                                 <a href="{{ url('/') }}">Clear</a>
                             </button>
                         </form>

@@ -61,8 +61,7 @@
             </header>
         </div>
     </div>
-    </div>
-
+  
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="{{ url('main/customer/add') }}">
@@ -73,15 +72,23 @@
                 <?php
                     $Fname = $_SESSION['Fname'];
                     $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
                 ?>
                     <b>{{$Fname}} &nbsp {{$Lname}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <!-- <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a> -->
-                <!-- <a class="dropdown-item" href="#">Key Order</a>
-                <a class="dropdown-item" href="#">Order list</a>
-                <a class="dropdown-item" href="#">Promotion</a> -->
-                <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
+                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                @if ($jobTitle != 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                @endif
+                @if ($jobTitle == 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                @endif
+                    <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                @if ($jobTitle == 'VP Marketing')
+                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                @endif
+                    <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
             </div>
         </div>
     </nav>

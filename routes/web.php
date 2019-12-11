@@ -39,7 +39,9 @@ Route::get('main/employee/fire','EmployeeController@fireEmployee');
 
 //Product
 Route::get('/productlist/view','ViewController@index');         //public
+Route::get('/productlist/detail','ViewController@detail');
 Route::get('/productlist/filter','ProductController@filter');       //public
+Route::post('/productlist/loginfilter','ProductController@filterafterl'); 
 
 //Order
 Route::get('/keyOrder','OrderController@keyOrder');
