@@ -148,10 +148,11 @@ class OrderController extends Controller
             WHERE orderdetails.orderNumber = orders.orderNumber)
             ")]);
 
+        session_start();
+        $jobTitle = $_SESSION['job'];
 
 
-
-        return view('orders.orderlist',['orders' => $orders, 'status' => $status]);
+        return view('orders.orderlist',['orders' => $orders, 'status' => $status , 'jobTitle' => $jobTitle]);
     }
     public function updateOrder(){
         $orders = Order::all();
