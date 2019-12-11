@@ -61,18 +61,27 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
             <?php
-                    $Fname = $_SESSION['Fname'];
-                    $Lname = $_SESSION['Lname'];
-            ?>
-                <b>{{$Fname}} &nbsp {{$Lname}}</b>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{url('/main/employee')}}">Employee</a>
-            <!-- <a class="dropdown-item" href="#">Key Order</a>
-            <a class="dropdown-item" href="#">Order list</a>
-            <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" {{url('/main/logout')}}">Log out</a>
-        </div>
+                    
+                        $Fname = $_SESSION['Fname'];
+                        $Lname = $_SESSION['Lname'];
+                        $jobTitle = $_SESSION['job'];
+                ?>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                @if ($jobTitle != 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                @endif
+                @if ($jobTitle == 'Sales Rep')
+                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                @endif
+                <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                @if ($jobTitle == 'VP Marketing')
+                    <a class="dropdown-item" href="#">Promotion</a>
+                @endif
+                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+            </div>
         </div>
     </nav>
 
@@ -96,8 +105,9 @@
                     @foreach ( $employees as $Emp)
                         <form action="productlist/view" method="get">
                             <tr class="table-secondary">
-                                <th scope="row">{{$Emp->firstName}}<input type="hidden" value={{$Emp->firstName}} name="Fname"></th>
-                                <th scope="row">{{$Emp->lastName}}<input type="hidden" value={{$Emp->lastName}} name="Lname"></th>
+                                <th scope="row">{{$Emp->employeeNumber}}<input type="hidden" value="{{$Emp->employeeNumber}}" name="Fname"></th>
+                                <th scope="row">{{$Emp->firstName}}<input type="hidden" value="{{$Emp->firstName}}" name="Fname"></th>
+                                <th scope="row">{{$Emp->lastName}}<input type="hidden" value="{{$Emp->lastName}}" name="Lname"></th>
 
                                 <td>{{$Emp->jobTitle}}<input type="hidden" value="{{$Emp->jobTitle}}" name="jobTitle" id="jobTitle"></td>
                                     <td>
@@ -116,8 +126,8 @@
                                             @endforeach
                                         @endif
                                     </td>
-                                </tr>
-                            </form>
+                            </tr>
+                        </form>
                     @endforeach
                     </table>
                 </div>
