@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Employee;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Migrations\Migration;
+
 class EmployeeController extends Controller
 {
     function showEmployees()
@@ -47,7 +51,7 @@ class EmployeeController extends Controller
         $officeCode = $_GET['OfficeCode'];
         $pass = $request->input('password');
         $encodePass = md5($pass);
-        
+
         $jobTitle = $request->input('jobTitle');
         $ReportTo = $_SESSION['user'];
 
@@ -74,5 +78,31 @@ class EmployeeController extends Controller
             ]);
             return redirect()->back()->with('success','complete!');
         }
+    }
+
+    function editEmployee()
+    {
+        $employees = Employee::all();
+        return view('employees.editemployee', ['employees' => $employees ]);
+    }
+    function editCheckEmp()
+    {
+        $employees = Employee::all();
+        DB::table('employees')
+            ->where(['employeeNumber' => $_GET["number"]])
+            ->update(['lastName' => $_GET["Lname"],
+            'firstName' => $_GET["Fname"],
+            'extension' => $_GET["ext"],
+            'email' => $_GET["email"],
+            'reportsTo' => $_GET["report"],
+            'jobTitle' => $_GET["job"]
+            ]);
+            // $table = Employee::all();
+            // $table->char('officeCode')->nullable()->unsigned();
+            // SET FOREIGN_KEY_CHECKS = 0;
+
+            // SET FOREIGN_KEY_CHECKS = 1;
+            // $table->foreign('officeCode')->references('officeCode')->on('offices');
+            return redirect('/main/employee')->with('success','The order updated');
     }
 }
