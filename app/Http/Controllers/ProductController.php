@@ -24,6 +24,8 @@ class ProductController extends Controller
         return view('products/filter', ['products' => $products ]);
     }
 
+
+
     public function add(){
         session_start();
         return view('products.addproduct');
