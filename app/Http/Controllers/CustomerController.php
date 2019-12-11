@@ -51,6 +51,7 @@ class CustomerController extends Controller
     public function addcheck(request $request)
     {
         session_start();
+        $Enumber = $_SESSION['user'];
         if(isset($_SESSION['user'])){
             $customerName=$request->input('customerName');
             $conFName=$request->input('conFName');
@@ -62,6 +63,9 @@ class CustomerController extends Controller
             $city=$request->input('city');
             $phone=$request->input('phone');
             $customerNumber=Customer::max('customerNumber')+1;
+        if($customerName === null or $conFName === null or $addr === null or $conLName === null or $country === null or $city === null or $phone === null) {
+            return redirect()->back()->with('null','Please fill all required field.');
+        }else{
             $customers = DB::table('customers')->insert(
                 ['customerNumber' =>$customerNumber,
                 'customerName' => $customerName,
@@ -74,11 +78,11 @@ class CustomerController extends Controller
                 'postalCode' => $postal,
                 'country' => $country,
                 'point' => '0',
-                'salesRepEmployeeNumber' => '1702'
+                'salesRepEmployeeNumber' => $Enumber
                 ]
             );
-            $customers = Customer::all();
-            return redirect('keyOrder/orderDetail')->with('success','Fill order detail');
+            return  redirect('main/customer')->with('success','The customer has been stored in database');
+        }
         }else{
             return redirect('/main');
         }
