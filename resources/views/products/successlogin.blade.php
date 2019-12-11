@@ -89,44 +89,38 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
 
-            <form action="productlist/loginfilter" method="POST">
+            <form action="productlist/loginfilter" method="POST" class="form-inline">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
-                        <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
-                    </a>
-                    <div class="py-2 d-none d-md-inline-block">
-                        <a>Product Filter</a>
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                        <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Type : </a>
+                        <select name="type" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                            <option value="Any">Any</option>
+                            <option value="Classic Cars">Classic Cars</option>
+                            <option value="Motorcycles">Motorcycles </option>
+                            <option value="Planes">Planes</option>
+                            <option value="Ships">Ships</option>
+                            <option value="Trains">Trains</option>
+                            <option value="Trucks and Buses">Trucks and Buses</option>
+                            <option value="Vintage Cars">Vintage Cars</option>
+                        </select>
                     </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
-                        <a>Type : </a>
-                            <select name="type">
-                                <option value="Any">Any</option>
-                                <option value="Classic Cars">Classic Cars</option>
-                                <option value="Motorcycles">Motorcycles </option>
-                                <option value="Planes">Planes</option>
-                                <option value="Ships">Ships</option>
-                                <option value="Trains">Trains</option>
-                                <option value="Trucks and Buses">Trucks and Buses</option>
-                                <option value="Vintage Cars">Vintage Cars</option>
-                            </select>
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                        <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Scale : </a>
+                        <select name="scale" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                            <option value="Any">Any </option>
+                            <option value="1:10">1:10</option>
+                            <option value="1:12">1:12</option>
+                            <option value="1:18">1:18</option>
+                            <option value="1:24">1:24</option>
+                            <option value="1:32">1:32</option>
+                            <option value="1:50">1:50</option>
+                            <option value="1:72">1:72</option>
+                            <option value="1:700">1:700</option>
+                        </select>
                     </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
-                        <a>Scale : </a>
-                            <select name="scale">
-                                <option value="Any">Any </option>
-                                <option value="1:10">1:10</option>
-                                <option value="1:12">1:12</option>
-                                <option value="1:18">1:18</option>
-                                <option value="1:24">1:24</option>
-                                <option value="1:32">1:32</option>
-                                <option value="1:50">1:50</option>
-                                <option value="1:72">1:72</option>
-                                <option value="1:700">1:700</option>
-                            </select>
-                    </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
-                        <a>Vendor : <a>
-                            <select name="vendor">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                    <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Vendor : </a>
+                            <select name="vendor" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
                                 <option value="Any">Any </option>
                                 <option value="Autoart Studio Design">Autoart Studio Design </option>
                                 <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
@@ -144,32 +138,36 @@
                             </select>
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
-                        <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
+                        <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                        <a class="list-group py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
+                            <button type="button" class="btn btn-success">ADD</button>
+                        </a>                   
                     </div>
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"  style="color:dark blue">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                        <a class="btn btn-primary dropdown-toggle"  href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
                             @foreach ($User as $user )
                                 <b>{{$user->firstName}} &nbsp {{$user->lastName}}</b>
                             @endforeach
                         </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    @foreach ($User as $user )
-                        <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
-                        <a class="dropdown-item" href="{{url('/main/customer')}}">Customer</a>
-                        @if ($user->jobTitle != 'Sales Rep')
-                            <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
-                        @endif
-                        @if ($user->jobTitle == 'Sales Rep')
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @foreach ($User as $user )
+                                <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
+                                <a class="dropdown-item" href="{{url('/main/customer')}}">Customer</a>
+                                @if ($user->jobTitle != 'Sales Rep')
+                                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                                @endif
+                                @if ($user->jobTitle == 'Sales Rep')
 
-                            <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
-                            <a class="dropdown-item" href=" {{url('/payment')}}">Payment</a>
-                        @endif
-                        <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
-                        @if ($user->jobTitle == 'VP Marketing')
-                            <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
-                        @endif
-                        <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-                    @endforeach
+                                    <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
+                                    <a class="dropdown-item" href=" {{url('/payment')}}">Payment</a>
+                                @endif
+                                <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
+                                @if ($user->jobTitle == 'VP Marketing')
+                                    <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
+                                @endif
+                                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </form>

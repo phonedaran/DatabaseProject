@@ -10,11 +10,12 @@ class PaymentController extends Controller
     public function index(){
         session_start();
         if(isset($_SESSION['user'])){
-            return view('payments.payment');
+            $Enumber = $_SESSION['user'];
+            $customers = DB::select('select * from customers where salesRepEmployeeNumber = ?',[$Enumber]);
+            return view('payments.payment',['customers' => $customers]);
         }else{
             return redirect('/main');
         }
-
     }
     public function paymentDetail(request $request){
 
