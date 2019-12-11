@@ -94,17 +94,17 @@
                             onerror="this.src='../images/not.png'" width="100%" height="100%"  />
 
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.</p>
+                            <h4 class="card-text"><?php echo e($name); ?><h4>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.
+                                <p class="card-text"><?php echo e($des); ?>
+
                                 </p>
+                                <br>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                     <button class="w3-button w3-red" input type='button' onclick="del('qtyTotal',<?php echo e($price); ?>)" value='-'>-</button>
@@ -114,7 +114,7 @@
                             </div>
                             <br>
                             <h4>price :
-                                    <input id="priceTotal" type='text' value="<?php echo e($price); ?>" readonly/>
+                                    <input id="priceTotal" type='text' value="<?php echo e($price); ?>" size="9" readonly/>
                             </h4>
                         </div>
                     </div>

@@ -92,12 +92,12 @@
         </button>
     </div>
     @endif
-    @if (Session('success'))
+    <!-- @if (Session('success'))
         <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Well done!</strong> &nbsp Add the employee successfully.
         </div>
-    @endif
+    @endif -->
 
     <main role="main">
         <div class="album py-5 bg-light">
@@ -115,16 +115,15 @@
                                 <td>{{$Emp->jobTitle}}<input type="hidden" value="{{$Emp->jobTitle}}" name="jobTitle" id="jobTitle"></td>
                                     <td>
                                         @if($jobTitle == 'President')
-                                            <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
-                                            @if($Emp->jobTitle != 'President')
+                                        <input type="hidden"  name="editNumber" value="{{$Emp->employeeNumber}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/employee/edit') }}'; submit()" > Edit </button>
+                                         @if($Emp->jobTitle != 'President')
                                             <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
                                             @endif
                                         @endif
                                         @if($jobTitle != 'President' and $jobTitle != 'VP Marketing')
                                             @foreach ( $firedEmp as $fired)
                                                 @if($Emp->employeeNumber == $fired->employeeNumber)
-                                                    <input type="hidden"  name="editNumber" value="{{$Emp->employeeNumber}}" >
-                                                    <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/employee/edit') }}'; submit()" > Edit </button>
+                                                    <input type="hidden"  name="editNumber" value="{{$Emp->employeeNumber}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/employee/edit') }}'; submit()" > Edit </button>
                                                     <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='{{ URL::to('/main/employee/fire') }}'; submit()">
                                                 @endif
                                             @endforeach

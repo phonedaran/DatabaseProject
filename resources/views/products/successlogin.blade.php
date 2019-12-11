@@ -234,15 +234,17 @@
                                         <br>
                                         <td>Vendor : {{$product->productVendor}}</td>
                                     </tr>
-
+<!-- action="{{ URL::to('/productlist/detail') }}" -->
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="{{ URL::to('/productlist/detail') }}" method="get">
+                                            <form  method="get">
                                                 <input type="hidden" value="{{$Enumber}}" name="user">
-                                                <input type="hidden" value={{$product->productCode}} name="code">
-                                                <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()">
+                                                <input type="hidden" value="{{$product->productCode}}" name="code">
+                                                <!-- <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()"> -->
+                                                <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()" > View </button>
+                                                <button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()" >Update</button>
                                                 <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
-                                            </form>
+                                                 </form>
                                         </div>
                                     </div>
                                 </div>

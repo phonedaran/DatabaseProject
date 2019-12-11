@@ -61,63 +61,76 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
             <?php
-                    $Fname = $_SESSION['Fname'];
-                    $Lname = $_SESSION['Lname'];
+                $Fname = $_SESSION['Fname'];
+                $Lname = $_SESSION['Lname'];
+                $jobTitle = $_SESSION['job'];
             ?>
-                <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo e(url('/main/employee')); ?>">Employee</a>
-            <!-- <a class="dropdown-item" href="#">Key Order</a>
-            <a class="dropdown-item" href="#">Order list</a>
-            <a class="dropdown-item" href="#">Promotion</a> -->
-            <a class="dropdown-item" href=" <?php echo e(url('/main/logout')); ?>">Log out</a>
-        </div>
+                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                <?php if($jobTitle != 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                <?php endif; ?>
+                <?php if($jobTitle == 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                <?php endif; ?>
+                <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <?php if($jobTitle == 'VP Marketing'): ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                <?php endif; ?>
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+            </div>
         </div>
     </nav>
 
-
+    <?php if(\Session::has('fired')): ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> The employee is fired.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php endif; ?>
+    <!-- <?php if(Session('success')): ?>
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Well done!</strong> &nbsp Add the employee successfully.
+        </div>
+    <?php endif; ?> -->
 
     <main role="main">
-            <?php
-            //for test
-            if(isset($_SESSION['user'])){
-                //secho $_SESSION['user'];
-            }else{
-                //echo "No user";
-            }
-        ?>
-
         <div class="album py-5 bg-light">
             <div class="container">
                 <h2>EMPLOYEE</h2>
                 <div>
                     <table class="table table-hover">
                     <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <form action="productlist/view" method="get">
+                        <form method="get">
                             <tr class="table-secondary">
-                                <th scope="row"><?php echo e($Emp->firstName); ?><input type="hidden" value=<?php echo e($Emp->firstName); ?> name="Fname"></th>
-                                <th scope="row"><?php echo e($Emp->lastName); ?><input type="hidden" value=<?php echo e($Emp->lastName); ?> name="Lname"></th>
+                                <th scope="row"><?php echo e($Emp->employeeNumber); ?><input type="hidden" value="<?php echo e($Emp->employeeNumber); ?>" name="Fname"></th>
+                                <th scope="row"><?php echo e($Emp->firstName); ?><input type="hidden" value="<?php echo e($Emp->firstName); ?>" name="Fname"></th>
+                                <th scope="row"><?php echo e($Emp->lastName); ?><input type="hidden" value="<?php echo e($Emp->lastName); ?>" name="Lname"></th>
 
                                 <td><?php echo e($Emp->jobTitle); ?><input type="hidden" value="<?php echo e($Emp->jobTitle); ?>" name="jobTitle" id="jobTitle"></td>
                                     <td>
                                         <?php if($jobTitle == 'President'): ?>
-                                            <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
-                                            <?php if($Emp->jobTitle != 'President'): ?>
+                                        <input type="hidden"  name="editNumber" value="<?php echo e($Emp->employeeNumber); ?>" ><button class="btn btn-outline-primary" onClick="this.form.action='<?php echo e(URL::to('/employee/edit')); ?>'; submit()" > Edit </button>
+                                         <?php if($Emp->jobTitle != 'President'): ?>
                                             <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='<?php echo e(URL::to('/main/employee/fire')); ?>'; submit()">
                                             <?php endif; ?>
                                         <?php endif; ?>
                                         <?php if($jobTitle != 'President' and $jobTitle != 'VP Marketing'): ?>
                                             <?php $__currentLoopData = $firedEmp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fired): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php if($Emp->employeeNumber == $fired->employeeNumber): ?>
-                                                <input type="submit" class="btn btn-outline-primary" href="#" name="edit" value="EDIT"></button>
-                                                <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='<?php echo e(URL::to('/main/employee/fire')); ?>'; submit()">
+                                                    <input type="hidden"  name="editNumber" value="<?php echo e($Emp->employeeNumber); ?>" ><button class="btn btn-outline-primary" onClick="this.form.action='<?php echo e(URL::to('/employee/edit')); ?>'; submit()" > Edit </button>
+                                                    <input type="button" class="btn btn-outline-danger" value="FIRED" onClick="this.form.action='<?php echo e(URL::to('/main/employee/fire')); ?>'; submit()">
                                                 <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <?php endif; ?>
                                     </td>
-                                </tr>
-                            </form>
+                            </tr>
+                        </form>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </table>
                 </div>

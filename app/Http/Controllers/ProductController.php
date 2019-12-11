@@ -90,4 +90,40 @@ class ProductController extends Controller
         }
 
     }
+
+    public function update(){
+        $products = Product::all();
+        return view('products.updateProduct', ['products' => $products ]);
+    }
+
+    public function checkupdate(){
+
+        if($_GET["name"] === "" or $_GET["scale"] === "" or $_GET["vendor"] === "" or $_GET["des"] === "" or $_GET["price"] === "" )
+         {
+            return redirect()->back()->with('null','Please fill all required field.');
+        }
+        else{
+
+        if($_GET["add"] != ""){
+            DB::table('products')
+            ->where(['productCode' => $_GET["code"]])
+            ->update(['quantityInStock' => $_GET["instock"]+$_GET["add"],
+            'DateAddStock' => today()->format('j F Y ')
+            ]);
+
+        }
+        DB::table('products')
+            ->where(['productCode' => $_GET["code"]])
+            ->update(['productName' => $_GET["name"],
+            'productScale' => $_GET["scale"],
+            'productVendor' => $_GET["vendor"],
+            'productDescription' => $_GET["des"],
+            'buyPrice' => $_GET["price"]
+            ]);
+        
+            $products = Product::all();
+        return view('products.updateProduct', ['products' => $products ]);
+
+        }
+    }
 }

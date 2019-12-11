@@ -100,25 +100,28 @@ class EmployeeController extends Controller
 
     }
 
-
     function editCheckEmp()
     {
         session_start();
         if(isset($_SESSION['user'])){
-            $employees = Employee::all();
-            DB::table('employees')
-                ->where(['employeeNumber' => $_GET["number"]])
-                ->update(['lastName' => $_GET["Lname"],
-                'firstName' => $_GET["Fname"],
-                'extension' => $_GET["ext"],
-                'email' => $_GET["email"],
-                'reportsTo' => $_GET["report"],
-                'jobTitle' => $_GET["job"]
-                ]);
-                return redirect('/main/employee')->with('success','The order updated');
+        if($_GET["Lname"] === "" or $_GET["Fname"] === "" or $_GET["ext"] === "" or $_GET["email"] === "" or $_GET["job"] === "" )
+         {
+            return redirect()->back()->with('null','Please fill all required field.');
         }else{
-            return redirect('/main');
+        $data=DB::table('employees')->where(['reportsTo' => $_GET["report"]])->exists();
+        if($_GET["report"] === ""){
+            DB::table('employees')
+            ->where(['employeeNumber' => $_GET["number"]])
+            ->update(['reportsTo' => Null]);
+        }elseif($data == 0){
+            return redirect()->back()->with('noreport','Please fill all required field.');
         }
+        else{
+            DB::table('employees')
+            ->where(['employeeNumber' => $_GET["number"]])
+            ->update(['reportsTo' => $_GET["report"]]);
+        }
+        
         $employees = Employee::all();
         DB::table('employees')
             ->where(['employeeNumber' => $_GET["number"]])
@@ -126,9 +129,13 @@ class EmployeeController extends Controller
             'firstName' => $_GET["Fname"],
             'extension' => $_GET["ext"],
             'email' => $_GET["email"],
-            'reportsTo' => $_GET["report"],
             'jobTitle' => $_GET["job"]
             ]);
-        return redirect('/main/employee')->with('success','The order updated');
+
+         return redirect('/main/employee')->with('success','The employee is updated');
     }
+    }else{
+        return redirect('/main');
+    }
+}
 }

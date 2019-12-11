@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>EditEmployee</title>
+    <title>updateProduct</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <div class="text-white bg-dark">
+<div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -55,44 +55,16 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
+                        <a class="text-muted" href="#"></a>
                     </div>
                 </div>
-            </header>
-        </div>
+            </div>
+        </header>
     </div>
 
-    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block"></a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:dark blue">
-                <?php
-                $Fname = $_SESSION['Fname'];
-                $Lname = $_SESSION['Lname'];
-                $jobTitle = $_SESSION['job'];
-                ?>
-                <b>{{$Fname}} &nbsp {{$Lname}}</b>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
-                @if ($jobTitle != 'Sales Rep')
-                <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
-                @endif
-                @if ($jobTitle == 'Sales Rep')
-                <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
-                @endif
-                <a class="dropdown-item" href="{{url('/orderlist')}}">Order list</a>
-                @if ($jobTitle == 'VP Marketing')
-                <a class="dropdown-item" href="{{url('/promotion')}}">Promotion</a>
-                @endif
-                <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
-            </div>
-        </div>
-    </nav>
+   
 
-<!-- after field -->
-     @if (\Session::has('null'))
+    @if (\Session::has('null'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Try again!</strong> Please complete all fields.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -100,96 +72,100 @@
             </button>
         </div>
     @endif
-    @if (\Session::has('noreport'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> This ReportTo number doesn't exist in the Database.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-    <!-- after field -->
-    
+
     <main role="main">
 
-     <?php
-            $number = $_GET['editNumber'];
-            $jsonDecode = json_Decode($employees,true);
+      <?php
+            $code = $_GET['code'];
+            $jsonDecode = json_Decode($products,true);
             foreach ($jsonDecode as $result) {
-                if($result['employeeNumber'] == $number){
-                    $Fname = $result['firstName'];
-                    $Lname = $result['lastName'];
-                    $email = $result['email'];
-                    $officeCode = $result['officeCode'];
-                    $report = $result['reportsTo'];
-                    $extension= $result['extension'];
-                    $job= $result['jobTitle'];
+                if($result['productCode'] == $code){
+                    $name = $result['productName'];
+                    $line = $result['productLine'];
+                    $scale = $result['productScale'];
+                    $vendor = $result['productVendor'];
+                    $des = $result['productDescription'];
+                    $stock = $result['quantityInStock'];
+                    $price = $result['buyPrice'];
                 }
             }
         ?>
+        
 <!-- action="{{ URL::to('/employee/edit/check') }}" -->
     <div class="container col-md-9">
     <form method="get" >
+    <h3>Add Stock</h3>
+    <div class="col-md-4 mb-5">
+        <input class="form-control" type="text" name=add ><br>
+    </div>
+    <label for="name"><h3>Update Product</h3></label>
     <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Column</th>
+      <th scope="col">Product</th>
       <th scope="col">Value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">Employee Number</th>
-      <td><input type="hidden" id="number" name="number" value="{{$number}}">{{$number}}</td>
+      <th scope="row">Code</th>
+      <td><input type="hidden"  name="code" value="{{$code}}">{{$code}}</td>
     </tr>
 
     <tr>
-      <th scope="row">First Name</th>
-      <td><input type="text" name=Fname class="form-control" value={{$Fname}}></td>
+      <th scope="row">Name</th>
+      <td><textarea rows="1" style="width:100%"  name=name value={{$name}}>{{$name}}</textarea></td>
     </tr>
 
     <tr>
-      <th scope="row">Last Name</th>
-      <td><input type="text" name=Lname class="form-control" value={{$Lname}}></td>
+      <th scope="row">Product Line</th>
+      <td><input type="hidden"  name="line" value="{{$line}}">{{$line}}</td>
     </tr>
 
     <tr>
-      <th scope="row">Extension</th>
-      <td><input type="text" name=ext class="form-control" value={{$extension}}></td>
-    </tr>
-
-    <tr>
-      <th scope="row">Email</th>
-      <td><input type="email" name=email class="form-control" value={{$email}}></td>
-    </tr>
-
-    <tr>
-      <th scope="row">Reports To</th>
-      <td><input type="text" name=report class="form-control" value={{$report}}></td>
-    </tr>
-
-    <tr>
-      <th scope="row">Job Title</th>
+      <th scope="row">Scale</th>
       <td>
-      <select class="custom-select" name=job value={{$job}} >
-              <option selected>{{$job}}</option>
-              <option value="1">VP Sales</option>
-              <option value="2">VP Marketing</option>
-              <option value="3">Sales Manager (APAC)</option>
-              <option value="4">Sale Manager (EMEA)</option>
-              <option value="5">Sales Manager (NA)</option>
-              <option value="6">Sales Rep</option>
+      <select class="custom-select" name=scale value={{$scale}} >
+              <option selected>{{$scale}}</option>
+              <option value="1:10">1:10</option>
+              <option value="1:12">1:12</option>
+              <option value="1:18">1:18</option>
+              <option value="1:24">1:24</option>
+              <option value="1:32">1:32</option>
+              <option value="1:50">1:50</option>
+              <option value="1:72">1:72</option>
+              <option value="1:100">1:100</option>
             </select>
       </td>
     </tr>
 
     <tr>
+      <th scope="row">Vendor</th>
+      <td><textarea rows="1" style="width:100%" name=vendor value={{$vendor}}>{{$vendor}}</textarea></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Description</th>
+      <td><textarea rows="3" style="width:100%"  name=des value={{$des}}>{{$des}}</textarea>
+    </tr>
+
+    <tr>
+      <th scope="row">Quantity In Stock</th>
+      <td><input type="hidden"  name="instock" value="{{$stock}}">{{$stock}}</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Buy Prise</th>
+      <td><input type="text"  name="price" value="{{$price}}"></td>
+    </tr>
+
+    <tr>
     <td></td>
     <td schop="row" style="text-align : right;">
-    <input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/employee/edit/check') }}'; submit()">
-    <input type="button" class="btn btn-outline-primary" value="Cancle" onClick="this.form.action='{{ URL::to('/main/employee') }}'; submit()">
+    <input type="hidden"  name="code" value="{{$code}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd/check') }}'; submit()" > Save </button>
+    <input type="button" class="btn btn-outline-danger" value="Cancle" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()"> 
     </td>
-    </tr>
+    </tr> 
 
   </tbody>
 </table>
@@ -199,7 +175,7 @@
 
 
     </main>
-
+<br>
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
