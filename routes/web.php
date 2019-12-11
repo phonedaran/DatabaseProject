@@ -13,6 +13,7 @@
 
 Route::get('/','ProductController@index');      //main(public)
 Route::get('/main','MainController@index');     //login
+Route::get('/login','MainController@index');     //login
 
 Route::post('/main/success','MainController@login');    //main(login)
 Route::get('/main/success','MainController@onLogin');     // for already login main(public)->main(login)

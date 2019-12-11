@@ -243,7 +243,8 @@
                                             <form action="{{ URL::to('/productlist/view') }}" method="get">
                                                 <input type="hidden" value="{{$Enumber}}" name="user">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
-                                                <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()">
+                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
                                             </form>
                                         </div>
                                     </div>
