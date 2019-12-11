@@ -99,16 +99,17 @@
 
     <!-- form for filling order -->
     <div class="container">
-        <form action="{{ URL::to('/keyOrder/check') }} ">
+        <form method="get" action="{{ URL::to('/keyOrder/check') }} ">
             <strong><h2>ORDER</h2></strong>
             <p><span class="error">* required field</span></p>
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>
-                <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
-            </div>
-            <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
+                <select class="form-control" id="customerNumber" name="customerNumber">
+                    <option selected>Choose ...</option>
+                    @foreach ($customers as $customer)
+                        <option>{{$customer->customerNumber}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label>Order Date</label> <span class="error">*</span>

@@ -145,7 +145,7 @@
                                 </td>
                                 <td schop="row"><textarea rows="3"  id="comment" name="comment">{{$order->comments}}</textarea></td>
                                 @if($jobTitle == 'Sales Rep')
-                                <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/orderlist/updateOrder') }}'; submit()">
+                                    <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/orderlist/updateOrder') }}'; submit()">
                                 @endif
                                 <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='{{ URL::to('/orderlist/detail') }}'; submit()">
                             </div>

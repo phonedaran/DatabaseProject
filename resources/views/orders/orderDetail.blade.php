@@ -124,16 +124,19 @@
 
     <!-- form for filling detail -->
     <div class="container">
-        <form action="{{ URL::to('/keyOrder/orderDetail/check') }} ">
+            <form method="get" action="{{ URL::to('/keyOrder/orderDetail/check') }} ">
             <strong><h2>ORDER DETAILS</h2></strong>
+            <h5>YOUR ORDER NUMBER : {{$orderNumber}}</h5>
             <p><span class="error">* required field</span></p>
+            <input type="hidden" id="orderNumber" name="orderNumber" value="{{$orderNumber}}">
             <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
-            </div>
-            <div class="form-group">
-                <label>Product Code</label> <span class="error">*</span>
-                <input type="text" name="productCode" class="form-control" placeholder="Enter Product Code">
+            <label>Product</label> <span class="error">*</span>
+            <select class="form-control" id="productCode" name="productCode">
+                <option selected>Choose ...</option>
+                @foreach ($products as $product)
+                    <option value="{{$product->productCode}}">Code : {{$product->productCode}} , Name : {{$product->productName}}</option>
+                @endforeach
+            </select>
             </div>
             <div class="form-group">
                 <label>Quantity Ordered</label> <span class="error">*</span>

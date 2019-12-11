@@ -119,7 +119,7 @@ class PaymentController extends Controller
                 }
             }
 
-            return redirect('/')->with('paymentComplete','The payment successfully');
+            return redirect('/main/success')->with('paymentComplete','The payment successfully');
         }else{
             return redirect('/main');
         }

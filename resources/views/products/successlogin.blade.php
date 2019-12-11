@@ -175,6 +175,33 @@
                 </div>
             </form>
     </nav>
+    <!-- alert -->
+    @if (\Session::has('paymentComplete'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The payment successfully.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (\Session::has('product'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The product created.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (\Session::has('del'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Completed!</strong> The product deleted.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
+    <!-- alert -->
 
     <main role="main">
         <?php
@@ -216,7 +243,8 @@
                                             <form action="{{ URL::to('/productlist/view') }}" method="get">
                                                 <input type="hidden" value="{{$Enumber}}" name="user">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
-                                                <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
+                                                <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='{{ URL::to('/productlist/view') }}'; submit()">
+                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
                                             </form>
                                         </div>
                                     </div>

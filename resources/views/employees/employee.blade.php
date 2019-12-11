@@ -61,7 +61,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"  style="color:dark blue">
             <?php
-                    
+
                         $Fname = $_SESSION['Fname'];
                         $Lname = $_SESSION['Lname'];
                         $jobTitle = $_SESSION['job'];
@@ -85,7 +85,20 @@
         </div>
     </nav>
 
-
+    @if (\Session::has('fired'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> The customer is fired.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (Session('success'))
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Well done!</strong> &nbsp Add the customer successfully.
+        </div>
+    @endif
 
     <main role="main">
         <div class="album py-5 bg-light">

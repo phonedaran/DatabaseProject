@@ -84,7 +84,7 @@
                     <th scope="col" >productCode</th>
                     <th scope="col" >quantity</th>
                     <th scope="col" >priceEach</th>
-                    <th scope="col" >orderLineNumber</th>
+                    <th scope="col" >amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -93,7 +93,7 @@
                         <td schop="row">{{$orderdetail->productCode}}</td>
                         <td schop="row">{{$orderdetail->quantityOrdered}}</td>
                         <td schop="row">{{$orderdetail->priceEach}}</td>
-                        <td schop="row">{{$orderdetail->orderLineNumber}}</td>
+                        <td schop="row">{{$orderdetail->amount}}</td>
                     </tr>
                 @endforeach
             </tbody>
