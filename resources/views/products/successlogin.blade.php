@@ -92,6 +92,9 @@
             <form action="../productlist/filter" method="get">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
                     <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
+                        <button type="button" class="btn btn-outline-primary"><strong>UPDATE</strong></button>
+                    </a>
+                    <a class="py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
                         <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
                     </a>
                     <div class="py-2 d-none d-md-inline-block">
@@ -154,7 +157,7 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     @foreach ($User as $user )
-                        <a class="dropdown-item" href="{{url('main/customer')}}">Customer</a>
+                        <a class="dropdown-item" href="{{url('/main/customer')}}">Customer</a>
                         @if ($user->jobTitle != 'Sales Rep')
                             <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
                         @endif
@@ -182,14 +185,6 @@
                 $_SESSION['job'] = $user->jobTitle;
             }
         ?>
-        <?php
-        //for test
-        if(isset($_SESSION['user'])){
-            //echo $_SESSION['user'];
-        }else{
-            //echo "No user";
-        }
-    ?>
 
         <div class="album py-5 bg-light">
             <div class="container">

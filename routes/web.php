@@ -11,21 +11,12 @@
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/productlist', function () {
-    return view('Productlist');
-});
-
 Route::get('/','ProductController@index');      //main(public)
 Route::get('/main','MainController@index');     //login
 
 Route::post('/main/success','MainController@login');    //main(login)
+Route::get('/main/success','MainController@onLogin');     // for already login main(public)->main(login)
 Route::get('main/logout','MainController@logout');      //main(public)
-
-Route::get('/product/add','ProductController@add');     //addproduct
 
 //Employee
 Route::get('main/employee','EmployeeController@showEmployees');     //ok
@@ -36,10 +27,13 @@ Route::get('main/addemployee', function () {
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
 Route::get('main/employee/fire','EmployeeController@fireEmployee');
+Route::get('employee/edit','EmployeeController@editEmployee'); //edit
+Route::get('employee/edit/check','EmployeeController@editCheckEmp');
 
 //Product
 Route::get('/productlist/view','ViewController@index');         //public
 Route::get('/productlist/filter','ProductController@filter');       //public
+Route::get('/product/add','ProductController@add');     //addproduct(login)
 
 //Order
 Route::get('/keyOrder','OrderController@keyOrder');
@@ -51,10 +45,9 @@ Route::get('/orderlist/updateOrder','OrderController@updateOrder');
 Route::get('/orderlist/detail','OrderController@detail');
 
 //Promotion
-Route::get('/promotion','promotionController@index');
-Route::get('/promotion/update','promotionController@update');
-Route::get('/promotion/checkDiscount','promotionController@checkDiscount');
-Route::get('/promotion/checkBuy1Get1','promotionController@checkBuy1Get1');
+Route::get('/promotion','promotionController@index');           //ok
+Route::get('/promotion/checkDiscount','promotionController@checkDiscount');       //ok
+Route::get('/promotion/checkBuy1Get1','promotionController@checkBuy1Get1');       //ok
 
 //Customer
 Route::get('main/customer','CustomerController@index');           //ok
@@ -63,6 +56,6 @@ Route::get('main/customer/add','CustomerController@add');           //ok
 Route::get('main/customer/add/check','CustomerController@addcheck');        //ok
 
 //Payment
-Route::get('/payment','paymentController@index');
-Route::get('/payment/paymentDetail','paymentController@paymentDetail');
-Route::get('/payment/paymentDetail/check','paymentController@check');
+Route::get('/payment','paymentController@index');       //ok
+Route::get('/payment/paymentDetail','paymentController@paymentDetail');         //ok
+Route::get('/payment/paymentDetail/check','paymentController@check');           //ok
