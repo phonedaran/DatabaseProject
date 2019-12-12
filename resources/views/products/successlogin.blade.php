@@ -146,7 +146,7 @@
                                 }
 
                             ?>
-                            @if($jobTitle == 'VP Sales' or $jobTitle == 'Sales Rep')
+                            @if($jobTitle == 'VP Sales' or $jobTitle == 'Sales Rep' or $jobTitle == 'Sales Manager (APAC)' or $jobTitle == 'Sale Manager (EMEA)' or $jobTitle == 'Sales Manager (NA)')
                             <a class="list-group py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
                                 <button type="button" class="btn btn-success">ADD</button>
                             </a>

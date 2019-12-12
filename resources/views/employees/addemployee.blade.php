@@ -174,6 +174,7 @@
                                 <option value="Sales Rep">Sales Rep</option>
                             @elseif($jobTitle == 'VP Sales')
                                 <option value="Sales Manager">Sales Manager</option>
+                                <option value="Sales Rep">Sales Rep</option>
                             @else
                                 <option value="Sales Rep">Sales Rep</option>
                             @endif

@@ -125,7 +125,7 @@
                             City: {{$city}}<br>
                             State: {{$state}}<br>
                             Postal: {{$pos}}<br>
-                            Point: {{$city}}<br>
+                            Point: {{$point}}<br>
                             Credit: {{$credit}}
                         </h4>
                         <br>
