@@ -117,8 +117,7 @@
     <!-- show order list -->
     <div class="container">
             <h2>ORDER LISTS</h2>
-
-        <table class="table table-striped" style="width:100%">
+            <table class="table table-striped" style="width:100%">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col" >Order Number</th>
@@ -140,33 +139,33 @@
                     <td schop="row">{{$order->orderDate}}</td>
                     <td schop="row">{{$order->requiredDate}}</td>
                     <td schop="row">{{$order->shippedDate}}</td>
-
-                        <form method="get">
-                            <div class="form-group">
-                                <input type="hidden" id="orderNumber" name="orderNumber" value="{{$order->orderNumber}}">
+                    <form method="get">
+                        <div class="form-group">
+                            <input type="hidden" id="orderNumber" name="orderNumber" value="{{$order->orderNumber}}">
+                            <td schop="row">
+                                <select class="form-control" id="status" name="status">
+                                    <option>{{$order->status}}</option>
+                                    @foreach ($status as $value)
+                                        @if($value != $order->status)
+                                            <option>{{$value}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td schop="row"><textarea rows="3"  id="comment" name="comment">{{$order->comments}}</textarea></td>
+                            @if($jobTitle == 'Sales Rep')
+                                <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/orderlist/updateOrder') }}'; submit()">
+                            @else
                                 <td schop="row">
-                                    <select class="form-control" id="status" name="status">
-                                        <option>{{$order->status}}</option>
-                                        @foreach ($status as $value)
-                                            @if($value != $order->status)
-                                                <option>{{$value}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td schop="row"><textarea rows="3"  id="comment" name="comment">{{$order->comments}}</textarea></td>
-                                @if($jobTitle == 'Sales Rep')
-                                    <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='{{ URL::to('/orderlist/updateOrder') }}'; submit()">
-                                @else
-                                    <td schop="row">
-                                @endif
-                                <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='{{ URL::to('/orderlist/detail') }}'; submit()">
-                            </div>
-                        </form>
+                            @endif
+                            <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='{{ URL::to('/orderlist/detail') }}'; submit()">
+                        </div>
+                    </form>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $orders->links() }}
     </div>
     <!-- show order list -->
 

@@ -89,17 +89,11 @@
 
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
 
-            <form action="../product/filter" method="get">
+            <form action="../product/filter" method="get" class="form-inline">
                 <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a class="py-2 d-none d-md-inline-block" href="<?php echo e(url('/product/add')); ?>">
-                        <button type="button" class="btn btn-outline-success"><strong>+ ADD</strong></button>
-                    </a>
-                    <div class="py-2 d-none d-md-inline-block">
-                        <a>Product Filter</a>
-                    </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
-                        <a>Type : </a>
-                            <select name="type">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                            <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Type : </a>
+                            <select name="type" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
                                 <option value="Any">Any</option>
                                 <option value="Classic Cars">Classic Cars</option>
                                 <option value="Motorcycles">Motorcycles </option>
@@ -110,9 +104,9 @@
                                 <option value="Vintage Cars">Vintage Cars</option>
                             </select>
                     </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
-                        <a>Scale : </a>
-                            <select name="scale">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                            <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Scale : </a>
+                            <select name="scale" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
                                 <option value="Any">Any </option>
                                 <option value="1:10">1:10</option>
                                 <option value="1:12">1:12</option>
@@ -124,9 +118,9 @@
                                 <option value="1:700">1:700</option>
                             </select>
                     </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
-                        <a>Vendor : <a>
-                            <select name="vendor">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                            <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Vendor : </a>
+                            <select name="vendor" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
                                 <option value="Any">Any </option>
                                 <option value="Autoart Studio Design">Autoart Studio Design </option>
                                 <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
@@ -144,36 +138,54 @@
                             </select>
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
-                        <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="Filter" >
+                        <?php 
+                            foreach($User as $user ){
+                                $_SESSION['job'] = $user->jobTitle;
+                                $jobTitle = $_SESSION['job'];
+                            }
+                        ?>
+                        <?php if($jobTitle == 'VP Sales' or $jobTitle == 'Sales Rep'): ?>
+                            <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                            <a class="list-group py-2 d-none d-md-inline-block" href="<?php echo e(url('/product/add')); ?>">
+                                <button type="button" class="btn btn-success">ADD</button>
+                            </a>
+                        <?php else: ?>
+                            <div class="py-2">
+                                <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                            </div>
+                        <?php endif; ?>
+
                     </div>
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"  style="color:dark blue">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                        <a class="btn btn-primary dropdown-toggle"  href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
                             <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <b><?php echo e($user->firstName); ?> &nbsp <?php echo e($user->lastName); ?></b>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
-                        <a class="dropdown-item" href="<?php echo e(url('/main/customer')); ?>">Customer</a>
-                        <?php if($user->jobTitle != 'Sales Rep'): ?>
-                            <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
-                        <?php endif; ?>
-                        <?php if($user->jobTitle == 'Sales Rep'): ?>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <?php $__currentLoopData = $User; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
+                                <a class="dropdown-item" href="<?php echo e(url('/main/customer')); ?>">Customer</a>
+                                <?php if($user->jobTitle != 'Sales Rep'): ?>
+                                    <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                                <?php endif; ?>
+                                <?php if($user->jobTitle == 'Sales Rep'): ?>
 
-                            <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
-                            <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
-                        <?php endif; ?>
-                        <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
-                        <?php if($user->jobTitle == 'VP Marketing'): ?>
-                            <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
-                        <?php endif; ?>
-                        <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                                <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
+                            <?php endif; ?>
+                            <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                            <?php if($user->jobTitle == 'VP Marketing'): ?>
+                                <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                            <?php endif; ?>
+                            <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
                     </div>
                 </div>
             </form>
     </nav>
+
     <!-- alert -->
     <?php if(\Session::has('paymentComplete')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -199,7 +211,6 @@
         </button>
     </div>
     <?php endif; ?>
-
     <!-- alert -->
 
     <main role="main">
@@ -239,11 +250,16 @@
 
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <form action="<?php echo e(URL::to('/productlist/detail')); ?>" method="get">
-                                                <input type="hidden" value="<?php echo e($Enumber); ?>" name="user">
+                                            <form action="../productlist/view" method="get">
                                                 <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                <input type="button" class="btn btn-outline-secondary" value="View" onClick="this.form.action='<?php echo e(URL::to('/productlist/view')); ?>'; submit()">
-                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='<?php echo e(URL::to('/product/delete')); ?>'; submit()">
+                                                    <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
+                                            </form>&nbsp;
+                                            <form method="get">
+                                                <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
+                                                <?php if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep'): ?>
+                                                    <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='<?php echo e(URL::to('/product/delete')); ?>'; submit()">
+                                                    <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='<?php echo e(URL::to('/UpdatePd')); ?>'; submit()">
+                                                <?php endif; ?>
                                             </form>
                                         </div>
                                     </div>
