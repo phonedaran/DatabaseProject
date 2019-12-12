@@ -45,14 +45,6 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
                     </div>
                 </div>
             </div>
@@ -71,18 +63,20 @@
                     <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
                 <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
                 <?php if($jobTitle != 'Sales Rep'): ?>
                     <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                 <?php endif; ?>
                 <?php if($jobTitle == 'Sales Rep'): ?>
                     <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                    <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
                 <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
                 <?php if($jobTitle == 'VP Marketing'): ?>
                     <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
                 <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
             </div>
         </div>
     </nav>

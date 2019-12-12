@@ -31,6 +31,10 @@ class OrderController extends Controller
             $orderDate=$request->input('orderDate');
             $requiredDate=$request->input('requiredDate');
             $comment=$request->input('comment');
+            
+            if($requiredDate < $orderDate){
+                return redirect()->back()->with('date','Required Date cannot due before Order Date.');
+            }
 
             if(empty($orderDate) or empty($requiredDate)) {
                 return redirect()->back()->with('null','Please fill all required field.');
@@ -115,7 +119,7 @@ class OrderController extends Controller
     public function index(){
         session_start();
         if(isset($_SESSION['user'])){
-            $orders = Order::all();
+            $orders = Order::paginate(15);
             $status = array("In Process","Waiting","Disputed","On Hold","Resolved","Shipped","Cancelled");
 
             //orders ที่จ่ายแล้วแต่ของไม่พอ
