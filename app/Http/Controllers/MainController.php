@@ -16,7 +16,13 @@ class MainController extends Controller
 
     function index()
     {
-        return view('login');
+        session_start();
+        if(isset($_SESSION['user'])){
+            return redirect('/main/success');
+        }else{
+            return view('login');
+        }
+
     }
 
     function login(request $request)

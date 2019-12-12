@@ -109,6 +109,15 @@
         </button>
     </div>
     @endif
+    @if (\Session::has('cant'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Try again!</strong> This ReportTo number cant be yourself.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
     <!-- after field -->
 
     <main role="main">
@@ -128,7 +137,6 @@
                 }
             }
         ?>
-<!-- action="{{ URL::to('/employee/edit/check') }}" -->
     <div class="container col-md-9">
     <form method="get" >
     <table class="table table-striped">
@@ -164,21 +172,6 @@
       <td><input type="email" name=email class="form-control" value={{$email}}></td>
     </tr>
 
-    <!-- <tr>
-      <th scope="row">Office Code</th>
-      <td>
-      <input type="text" name=off class="form-control" value={{$officeCode}}>
-      <select class="custom-select" name=officeCode value={{$officeCode}} >
-              <option selected></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-      </td>
-    </tr> -->
 
     <tr>
       <th scope="row">Reports To</th>

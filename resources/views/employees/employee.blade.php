@@ -100,6 +100,14 @@
             <strong>Well done!</strong> &nbsp Add the employee successfully.
         </div>
     @endif
+    @if (\Session::has('update'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> The employee is update.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
 
     <main role="main">
         <div class="album py-5 bg-light">

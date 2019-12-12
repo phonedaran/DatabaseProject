@@ -110,15 +110,26 @@ class EmployeeController extends Controller
             }else{
                 $data=DB::table('employees')->where(['reportsTo' => $_GET["report"]])->exists();
                 if($_GET["report"] === ""){
+                    if($_GET['job'] === "President"){
                     DB::table('employees')
                     ->where(['employeeNumber' => $_GET["number"]])
                     ->update(['reportsTo' => Null]);
+                    }else{
+                        return redirect()->back()->with('null','Please fill all required field.');
+                    }
+
                 }elseif($data == 0){
                     return redirect()->back()->with('noreport','Please fill all required field.');
                 }else{
+                    if($_GET["report"] === $_GET["number"] ){
+
+                        return redirect()->back()->with('cant','Please fill all required field.');
+                    }else{
+
                     DB::table('employees')
                     ->where(['employeeNumber' => $_GET["number"]])
                     ->update(['reportsTo' => $_GET["report"]]);
+                    }
                 }
                 $employees = Employee::all();
                 DB::table('employees')
@@ -129,7 +140,7 @@ class EmployeeController extends Controller
                     'email' => $_GET["email"],
                     'jobTitle' => $_GET["job"]
                     ]);
-                return redirect('/main/employee')->with('success','The employee is updated');
+                return redirect('/main/employee')->with('update','The employee is updated');
             }
         }else{
             return redirect('/main');

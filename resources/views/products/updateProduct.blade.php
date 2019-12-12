@@ -203,7 +203,7 @@
     <td></td>
     <td schop="row" style="text-align : right;">
     <input type="hidden"  name="code" value="{{$code}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd/check') }}'; submit()" > Save </button>
-    <input type="button" class="btn btn-outline-danger" value="Cancle" onClick="this.form.action='{{ URL::to('/') }}'; submit()">
+    <input type="button" class="btn btn-outline-danger" value="Back" onClick="this.form.action='{{ URL::to('/') }}'; submit()">
     </td>
     </tr>
 

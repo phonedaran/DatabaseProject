@@ -81,7 +81,7 @@ class ProductController extends Controller
             {
                 return redirect()->back()->with('null','Please fill all required field.');
             }else{
-                if($_GET["add"] != ""){
+                if($_GET["add"] != "" ){
                     DB::table('products')
                     ->where(['productCode' => $_GET["code"]])
                     ->update(['quantityInStock' => $_GET["instock"]+$_GET["add"],
