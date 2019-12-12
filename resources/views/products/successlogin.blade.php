@@ -249,7 +249,7 @@
                                             <form action="../productlist/view" method="get">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
                                                     <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
-                                            </form>
+                                            </form>&nbsp;
                                             <form method="get">
                                                 <input type="hidden" value={{$product->productCode}} name="code">
                                                 @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')

@@ -95,18 +95,20 @@
                     <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
                 <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
                 <?php if($jobTitle != 'Sales Rep'): ?>
                     <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                 <?php endif; ?>
                 <?php if($jobTitle == 'Sales Rep'): ?>
                     <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                    <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
                 <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
                 <?php if($jobTitle == 'VP Marketing'): ?>
                     <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
                 <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
             </div>
         </div>
     </nav>

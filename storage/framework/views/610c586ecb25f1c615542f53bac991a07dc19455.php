@@ -57,13 +57,47 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#"></a>
-                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
-                    </div>
+                            <?php if(!isset($_SESSION['user'])): ?>
+                                <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
+                            <?php endif; ?>
+                        </div>
                 </div>
             </div>
         </header>
     </div>
+    <nav>
+        <?php if(isset($_SESSION['user'])): ?>
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 d-none d-md-inline-block"></a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"  style="color:dark blue">
+                    <?php
+                        $Fname = $_SESSION['Fname'];
+                        $Lname = $_SESSION['Lname'];
+                        $jobTitle = $_SESSION['job'];
+                    ?>
+                        <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
+                    <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                    <?php if($jobTitle != 'Sales Rep'): ?>
+                        <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                    <?php endif; ?>
+                    <?php if($jobTitle == 'Sales Rep'): ?>
+                        <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                        <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
+                    <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                    <?php if($jobTitle == 'VP Marketing'): ?>
+                        <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                    <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </nav>
 
 
     <main role="main">
@@ -94,17 +128,17 @@
                             onerror="this.src='../images/not.png'" width="100%" height="100%"  />
 
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.</p>
+                            <h4 class="card-text"><?php echo e($name); ?><h4>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                    This content is a little bit longer.
+                                <p class="card-text"><?php echo e($des); ?>
+
                                 </p>
+                                <br>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                     <button class="w3-button w3-red" input type='button' onclick="del('qtyTotal',<?php echo e($price); ?>)" value='-'>-</button>
@@ -114,7 +148,7 @@
                             </div>
                             <br>
                             <h4>price :
-                                    <input id="priceTotal" type='text' value="<?php echo e($price); ?>" readonly/>
+                                    <input id="priceTotal" type='text' value="<?php echo e($price); ?>" size="9" readonly/>
                             </h4>
                         </div>
                     </div>
@@ -125,16 +159,12 @@
     </main>
 
     <footer class="text-muted">
-        <div class="container">
-            <p class="float-right">
-                <a href="#">Back to top</a>
-            </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
-        </div>
-    </footer>
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Back to top</a>
+                </p>
+            </div>
+        </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>

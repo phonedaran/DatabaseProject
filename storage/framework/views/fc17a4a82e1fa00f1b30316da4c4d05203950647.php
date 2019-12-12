@@ -71,18 +71,30 @@
               <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
                 <a class="py-2 d-none d-md-inline-block"></a>
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
-                    <?php
+                  <?php
 
-                      $Fname = $_SESSION['Fname'];
-                      $Lname = $_SESSION['Lname'];
-                    ?>
-                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
+                  ?>
+                      <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
+                    <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                    <?php if($jobTitle != 'Sales Rep'): ?>
+                        <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                    <?php endif; ?>
+                    <?php if($jobTitle == 'Sales Rep'): ?>
+                        <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                        <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
+                    <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                    <?php if($jobTitle == 'VP Marketing'): ?>
+                        <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                    <?php endif; ?>
                     <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-                  </div>
-                </a>
-              </a>
+                </div>
             </div>
           </nav>
           <!-- header -->
@@ -153,19 +165,31 @@
                     </div>
 
                     <div class="mb-3">
-                        <select class="custom-select" name=jobTitle id="jobTitle">
+                        <select class="custom-select" name=jobTitle id="jobTitle" >
                             <option selected>Job Title</option>
                             <?php if($jobTitle == 'President'): ?>
                                 <option value="VP Sales">VP Sales</option>
                                 <option value="VP Marketing">VP Marketing</option>
-                                <option value="Sales Manager">Sales Manager</option>
+                                <option value="3">Sales Manager (APAC)</option>
+                                <option value="4">Sale Manager (EMEA)</option>
+                                <option value="5">Sales Manager (NA)</option>
                                 <option value="Sales Rep">Sales Rep</option>
                             <?php elseif($jobTitle == 'VP Sales'): ?>
-                                <option value="Sales Manager">Sales Manager</option>
+                                <option value="3">Sales Manager (APAC)</option>
+                                <option value="4">Sale Manager (EMEA)</option>
+                                <option value="5">Sales Manager (NA)</option>
+                                <option value="Sales Rep">Sales Rep</option>
                             <?php else: ?>
                                 <option value="Sales Rep">Sales Rep</option>
                             <?php endif; ?>
                         </select>
+                    </div>
+
+                    <div class="mb-3">
+                    <input type="password" name=password class="form-control" id="password" placeholder="Enter your Password" required>
+                        <div class="invalid-feedback">
+                            Please enter your password.
+                        </div>
                     </div>
 
                 <hr class="mb-5" >

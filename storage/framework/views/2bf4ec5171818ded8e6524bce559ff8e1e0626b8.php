@@ -62,18 +62,20 @@
                     <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
                 <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
                 <?php if($jobTitle != 'Sales Rep'): ?>
                     <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
                 <?php endif; ?>
                 <?php if($jobTitle == 'Sales Rep'): ?>
                     <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                    <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
                 <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
                 <?php if($jobTitle == 'VP Marketing'): ?>
                     <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
                 <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
             </div>
         </div>
     </nav>
@@ -88,23 +90,7 @@
             </button>
         </div>
     <?php endif; ?>
-    <?php if(\Session::has('noCustomer')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> There is no this Customer Number.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <?php if(\Session::has('warning')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> The order number is already in use.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <!-- alert after fill -->
+    
 
     <!-- form for filling order -->
     <div class="container">
@@ -116,7 +102,7 @@
                 <select class="form-control" id="customerNumber" name="customerNumber">
                     <option selected>Choose ...</option>
                     <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option><?php echo e($customer->customerNumber); ?></option>
+                        <option value="<?php echo e($customer->customerNumber); ?>">Customer Number : <?php echo e($customer->customerNumber); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>

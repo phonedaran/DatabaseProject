@@ -66,27 +66,38 @@
     </div>
 
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block"></a>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-                <?php
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 d-none d-md-inline-block"></a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"  style="color:dark blue">
+                    <?php
                         $Fname = $_SESSION['Fname'];
                         $Lname = $_SESSION['Lname'];
-                ?>
-                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-
+                        $jobTitle = $_SESSION['job'];
+                    ?>
+                        <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a>
+                    <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                    <?php if($jobTitle != 'Sales Rep'): ?>
+                        <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                    <?php endif; ?>
+                    <?php if($jobTitle == 'Sales Rep'): ?>
+                        <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                        <a class="dropdown-item" href=" <?php echo e(url('/payment')); ?>">Payment</a>
+                    <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                    <?php if($jobTitle == 'VP Marketing'): ?>
+                        <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                    <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
         <!-- after field -->
 
-    <main role="main" style="background-color:SlateGray;"><br>
+    <main role="main" style="background-color:lightGray;"><br>
     <div class="container col-md-8 bg-white " >
     <br>
     <!-- add employee -->
@@ -203,7 +214,7 @@
         </div>
 
         <hr class="mb-5" >
-        <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
         <br>
       </form>
     </div>
