@@ -138,6 +138,13 @@
                             </select>
                     </div>
                     <div class="list-group py-2 d-none d-md-inline-block">
+                        <?php
+                            foreach($User as $user ){
+                                $_SESSION['job'] = $user->jobTitle;
+                                $jobTitle = $_SESSION['job'];
+                            }
+                        ?>
+                        @if($jobTitle == 'VP Sales' or $jobTitle == 'Sales Rep')
                             <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
 
                             <?php foreach($User as $user ){
@@ -150,7 +157,12 @@
                             <a class="list-group py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
                                 <button type="button" class="btn btn-success">ADD</button>
                             </a>
-                            @endif
+                        @else
+                            <div class="py-2">
+                                <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                            </div>
+                        @endif
+
                     </div>
                     <div class="list-group py-3 d-none d-md-inline-block">
                         <a class="btn btn-primary dropdown-toggle"  href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:dark blue">
@@ -181,6 +193,7 @@
                 </div>
             </form>
     </nav>
+
     <!-- alert -->
     @if (\Session::has('paymentComplete'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -206,7 +219,6 @@
         </button>
     </div>
     @endif
-
     <!-- alert -->
 
     <main role="main">

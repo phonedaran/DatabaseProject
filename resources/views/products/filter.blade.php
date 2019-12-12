@@ -130,69 +130,71 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
-            @if ($type != 'Any')
-                <h3>Type : {{$type}}</h3>
-            @endif
-            @if ($scale != 'Any')
-                <h3>Scale : {{$scale}}</h3>
-            @endif
-            @if ($vendor != 'Any')
-                <h3>Vendor : {{$vendor}}</h3>
-            @endif
-            @if( $count > 0)
-                <h3>Result have {{$count}} result</h3>
-            @else
-                <h3>Don't have any result</h3>
-            @endif
-                <button type="button" class="btn btn-sm btn-outline-secondary" >
-                        <a href="{{ url('/') }}">Clear</a>
-                    </button>
                 <div class="row">
-                        @foreach ($products as $product )
-                        <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                <div class="scrollbar  scrollbar-gray">
-                                <div class="force-overflow">
-                                    <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
-                                        onerror="this.src='../images/not.png'" width="100%" height="100%"  />
-                                    <div class="card-body">
-                                        <h3>{{$product->productName}}</h3>
-                                        <tr>
-                                            <td>Stock : {{$product->quantityInStock}}</td>
-                                            <br>
-                                            <td>Pirce : {{$product->buyPrice}}</td>
-                                            <br>
-                                            <td>producLine : {{$product->productLine}}</td>
-                                            <br>
-                                            <td>Scale : {{$product->productScale}}</td>
-                                            <br>
-                                            <td>Vendor : {{$product->productVendor}}</td>
-                                        </tr>
+                    @if ($type != 'Any')
+                        <h3>Type : {{$type}}</h3>
+                    @endif
+                    @if ($scale != 'Any')
+                        <h3>Scale : {{$scale}}</h3>
+                    @endif
+                    @if ($vendor != 'Any')
+                        <h3>Vendor : {{$vendor}}</h3>
+                    @endif
+                    @if( $count > 0)
+                        <h3>Result have {{$count}} result&emsp;</h3>
+                    @else
+                        <h3>Don't have any result&emsp;</h3>
+                    @endif
+                    <button type="button" class="btn btn-danger">
+                        <a href="{{ url('/') }}" style="color:white">Clear</a>
+                    </button>
+                </div><br>
+                <div class="row">
+                    @foreach ($products as $product )
+                    <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                            <div class="scrollbar  scrollbar-gray">
+                            <div class="force-overflow">
+                                <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                    onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                <div class="card-body">
+                                    <h3>{{$product->productName}}</h3>
+                                    <tr>
+                                        <td>Stock : {{$product->quantityInStock}}</td>
+                                        <br>
+                                        <td>Pirce : {{$product->buyPrice}}</td>
+                                        <br>
+                                        <td>producLine : {{$product->productLine}}</td>
+                                        <br>
+                                        <td>Scale : {{$product->productScale}}</td>
+                                        <br>
+                                        <td>Vendor : {{$product->productVendor}}</td>
+                                    </tr>
 
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <form action="../productlist/view" method="get">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <form action="../productlist/view" method="get">
+                                                <input type="hidden" value={{$product->productCode}} name="code">
+                                                <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
+                                            </form>
+                                                <form method="get">
                                                     <input type="hidden" value={{$product->productCode}} name="code">
-                                                    <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
-                                                </form>
-                                                    <form method="get">
-                                                        <input type="hidden" value={{$product->productCode}} name="code">
-                                                        @if (isset($_SESSION['user']))
-                                                            @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')
-                                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
-                                                                <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()">
-                                                            @endif
+                                                    @if (isset($_SESSION['user']))
+                                                        @if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep')
+                                                            <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='{{ URL::to('/product/delete') }}'; submit()">
+                                                            <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='{{ URL::to('/UpdatePd') }}'; submit()">
                                                         @endif
-                                                </form>
+                                                    @endif
+                                            </form>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-                                </div>
                             </div>
-                        @endforeach
+                            </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

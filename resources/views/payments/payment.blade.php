@@ -99,14 +99,6 @@
             </button>
         </div>
     @endif
-    @if (\Session::has('noCustomer'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> There is no this Customer Number.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
     @if (\Session::has('noOrder'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Try again!</strong> The customer has no any order for payment.
@@ -115,7 +107,14 @@
             </button>
         </div>
     @endif
-
+    @if (\Session::has('date'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> Payment Date cannot due before Order Date.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- alert -->
 
     <!-- payment form -->
@@ -136,7 +135,7 @@
             </div>
             <div class="form-group">
                 <label>Cheque Number</label> <span class="error">*</span>
-                <input type="text" name="chequeNumber" class="form-control" placeholder="Enter Cheque Number">
+                <input type="text" name="chequeNumber" class="form-control" maxlength="8" placeholder="Enter Cheque Number">
             </div>
             <div class="form-group">
                 <label>Payment Date</label> <span class="error">*</span>

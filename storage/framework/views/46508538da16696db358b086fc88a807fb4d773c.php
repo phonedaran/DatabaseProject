@@ -121,26 +121,27 @@
                 </div>
 
                 <div class="list-group py-3 d-none d-md-inline-block">
-                        <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Vendor : </a>
-                                <select name="vendor" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option value="Any">Any </option>
-                                    <option value="Autoart Studio Design">Autoart Studio Design </option>
-                                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
-                                    <option value="Classic Metal Creations">Classic Metal Creations </option>
-                                    <option value="Exoto Designs">Exoto Designs </option>
-                                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
-                                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
-                                    <option value="Min Lin Diecast">Min Lin Diecast </option>
-                                    <option value="Motor City Art Classics">Motor City Art Classics </option>
-                                    <option value="Red Start Diecast">Red Start Diecast </option>
-                                    <option value="Second Gear Diecast">Second Gear Diecast </option>
-                                    <option value="Studio M Art Models">Studio M Art Models </option>
-                                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
-                                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
-                                </select>
-                        </div>
-                        <div class="list-group py-2 d-none d-md-inline-block">
-                        <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                    <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Vendor : </a>
+                    <select name="vendor" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option value="Any">Any </option>
+                        <option value="Autoart Studio Design">Autoart Studio Design </option>
+                        <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                        <option value="Classic Metal Creations">Classic Metal Creations </option>
+                        <option value="Exoto Designs">Exoto Designs </option>
+                        <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                        <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                        <option value="Min Lin Diecast">Min Lin Diecast </option>
+                        <option value="Motor City Art Classics">Motor City Art Classics </option>
+                        <option value="Red Start Diecast">Red Start Diecast </option>
+                        <option value="Second Gear Diecast">Second Gear Diecast </option>
+                        <option value="Studio M Art Models">Studio M Art Models </option>
+                        <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                        <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                    </select>
+                </div>
+                <div class="list-group py-3 d-none d-md-inline-block">
+                    <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
+                </div>
 
         </form>
     </nav>

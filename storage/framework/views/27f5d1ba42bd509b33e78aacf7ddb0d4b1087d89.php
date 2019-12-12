@@ -44,7 +44,6 @@
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
             background-color: #2BBBAD;
         }
-
     </style>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -117,8 +116,7 @@
     <!-- show order list -->
     <div class="container">
             <h2>ORDER LISTS</h2>
-
-        <table class="table table-striped" style="width:100%">
+            <table class="table table-striped" style="width:100%">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col" >Order Number</th>
@@ -140,33 +138,34 @@
                     <td schop="row"><?php echo e($order->orderDate); ?></td>
                     <td schop="row"><?php echo e($order->requiredDate); ?></td>
                     <td schop="row"><?php echo e($order->shippedDate); ?></td>
-
-                        <form method="get">
-                            <div class="form-group">
-                                <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo e($order->orderNumber); ?>">
+                    <form method="get">
+                        <div class="form-group">
+                            <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo e($order->orderNumber); ?>">
+                            <td schop="row">
+                                <select class="form-control" id="status" name="status">
+                                    <option><?php echo e($order->status); ?></option>
+                                    <?php $__currentLoopData = $status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($value != $order->status): ?>
+                                            <option><?php echo e($value); ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </td>
+                            <td schop="row"><textarea rows="3"  id="comment" name="comment"><?php echo e($order->comments); ?></textarea></td>
+                            <?php if($jobTitle == 'Sales Rep'): ?>
+                                <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/orderlist/updateOrder')); ?>'; submit()">
+                            <?php else: ?>
                                 <td schop="row">
-                                    <select class="form-control" id="status" name="status">
-                                        <option><?php echo e($order->status); ?></option>
-                                        <?php $__currentLoopData = $status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($value != $order->status): ?>
-                                                <option><?php echo e($value); ?></option>
-                                            <?php endif; ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </td>
-                                <td schop="row"><textarea rows="3"  id="comment" name="comment"><?php echo e($order->comments); ?></textarea></td>
-                                <?php if($jobTitle == 'Sales Rep'): ?>
-                                    <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/orderlist/updateOrder')); ?>'; submit()">
-                                <?php else: ?>
-                                    <td schop="row">
-                                <?php endif; ?>
-                                <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='<?php echo e(URL::to('/orderlist/detail')); ?>'; submit()">
-                            </div>
-                        </form>
+                            <?php endif; ?>
+                            <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='<?php echo e(URL::to('/orderlist/detail')); ?>'; submit()">
+                        </div>
+                    </form>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
+        <?php echo e($orders->links()); ?>
+
     </div>
     <!-- show order list -->
 

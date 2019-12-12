@@ -130,69 +130,71 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
-            <?php if($type != 'Any'): ?>
-                <h3>Type : <?php echo e($type); ?></h3>
-            <?php endif; ?>
-            <?php if($scale != 'Any'): ?>
-                <h3>Scale : <?php echo e($scale); ?></h3>
-            <?php endif; ?>
-            <?php if($vendor != 'Any'): ?>
-                <h3>Vendor : <?php echo e($vendor); ?></h3>
-            <?php endif; ?>
-            <?php if( $count > 0): ?>
-                <h3>Result have <?php echo e($count); ?> result</h3>
-            <?php else: ?>
-                <h3>Don't have any result</h3>
-            <?php endif; ?>
-                <button type="button" class="btn btn-sm btn-outline-secondary" >
-                        <a href="<?php echo e(url('/')); ?>">Clear</a>
-                    </button>
                 <div class="row">
-                        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                <div class="scrollbar  scrollbar-gray">
-                                <div class="force-overflow">
-                                    <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
-                                        onerror="this.src='../images/not.png'" width="100%" height="100%"  />
-                                    <div class="card-body">
-                                        <h3><?php echo e($product->productName); ?></h3>
-                                        <tr>
-                                            <td>Stock : <?php echo e($product->quantityInStock); ?></td>
-                                            <br>
-                                            <td>Pirce : <?php echo e($product->buyPrice); ?></td>
-                                            <br>
-                                            <td>producLine : <?php echo e($product->productLine); ?></td>
-                                            <br>
-                                            <td>Scale : <?php echo e($product->productScale); ?></td>
-                                            <br>
-                                            <td>Vendor : <?php echo e($product->productVendor); ?></td>
-                                        </tr>
+                    <?php if($type != 'Any'): ?>
+                        <h3>Type : <?php echo e($type); ?></h3>
+                    <?php endif; ?>
+                    <?php if($scale != 'Any'): ?>
+                        <h3>Scale : <?php echo e($scale); ?></h3>
+                    <?php endif; ?>
+                    <?php if($vendor != 'Any'): ?>
+                        <h3>Vendor : <?php echo e($vendor); ?></h3>
+                    <?php endif; ?>
+                    <?php if( $count > 0): ?>
+                        <h3>Result have <?php echo e($count); ?> result&emsp;</h3>
+                    <?php else: ?>
+                        <h3>Don't have any result&emsp;</h3>
+                    <?php endif; ?>
+                    <button type="button" class="btn btn-danger">
+                        <a href="<?php echo e(url('/')); ?>" style="color:white">Clear</a>
+                    </button>
+                </div><br>
+                <div class="row">
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                            <div class="scrollbar  scrollbar-gray">
+                            <div class="force-overflow">
+                                <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $product->productName)); ?>.jpg'
+                                    onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+                                <div class="card-body">
+                                    <h3><?php echo e($product->productName); ?></h3>
+                                    <tr>
+                                        <td>Stock : <?php echo e($product->quantityInStock); ?></td>
+                                        <br>
+                                        <td>Pirce : <?php echo e($product->buyPrice); ?></td>
+                                        <br>
+                                        <td>producLine : <?php echo e($product->productLine); ?></td>
+                                        <br>
+                                        <td>Scale : <?php echo e($product->productScale); ?></td>
+                                        <br>
+                                        <td>Vendor : <?php echo e($product->productVendor); ?></td>
+                                    </tr>
 
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <form action="../productlist/view" method="get">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <form action="../productlist/view" method="get">
+                                                <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
+                                                <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
+                                            </form>
+                                                <form method="get">
                                                     <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                    <input type="submit" class="btn btn-outline-secondary" name="view" value="View" >
-                                                </form>
-                                                    <form method="get">
-                                                        <input type="hidden" value=<?php echo e($product->productCode); ?> name="code">
-                                                        <?php if(isset($_SESSION['user'])): ?>
-                                                            <?php if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep'): ?>
-                                                                <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='<?php echo e(URL::to('/product/delete')); ?>'; submit()">
-                                                                <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='<?php echo e(URL::to('/UpdatePd')); ?>'; submit()">
-                                                            <?php endif; ?>
+                                                    <?php if(isset($_SESSION['user'])): ?>
+                                                        <?php if($_SESSION['job'] == 'VP Sales' or $_SESSION['job'] == 'Sales Rep'): ?>
+                                                            <input type="button" class="btn btn-outline-danger" value="Delete" onClick="this.form.action='<?php echo e(URL::to('/product/delete')); ?>'; submit()">
+                                                            <input type="button" class="btn btn-outline-primary" value="Update" onClick="this.form.action='<?php echo e(URL::to('/UpdatePd')); ?>'; submit()">
                                                         <?php endif; ?>
-                                                </form>
+                                                    <?php endif; ?>
+                                            </form>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-                                </div>
                             </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>

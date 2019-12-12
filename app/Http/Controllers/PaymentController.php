@@ -28,12 +28,7 @@ class PaymentController extends Controller
             if($customerNumber===null or $chequeNumber===null or empty($paymentDate)){
                 return redirect()->back()->with('null','Please fill all required field.');
             }
-
-            $customer=DB::table('customers')->where(['customerNumber' => $customerNumber])->doesntExist();
-            if($customer){
-                return  redirect()->back()->with('noCustomer','Please try again. There is no this Customer Number.');
-            }
-
+            
             $order=DB::table('orders')->where(['customerNumber' => $customerNumber])->where(['status' => 'In process'])->get();
             if($order == '[]'){
                 return redirect()->back()->with('noOrder','the customer has no any order for payment.');
@@ -60,6 +55,11 @@ class PaymentController extends Controller
 
             if($orderNumber == "0" or $discountCode == "0"){
                 return redirect()->back()->with('null','Please fill all required field.');
+            }
+
+            $orderDate=DB::table('orders')->where(['orderNumber' => $orderNumber])->value('orderDate');
+            if($paymentDate < $orderDate){
+                return redirect('/payment')->with('date','Payment Date cannot due before Order Date.');
             }
 
             //add amount of discount in a variable
@@ -106,7 +106,7 @@ class PaymentController extends Controller
                 DB::table('orders') //update status and shippedDate
                     ->where(['customerNumber' => $customerNumber])
                     ->where(['orderNumber' => $orderNumber])
-                    ->update(['status' => 'Shipped', 'shippedDate' => $paymentDate]);
+                    ->update(['status' => 'Shipped', 'shippedDate' => $paymentDate, 'comments' => '']);
 
                 $orderdetails = DB::table('orderdetails')
                 ->where(['orderNumber' => $orderNumber])->get();
