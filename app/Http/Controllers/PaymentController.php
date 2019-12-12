@@ -16,7 +16,6 @@ class PaymentController extends Controller
         }else{
             return redirect('/main');
         }
-
     }
     public function paymentDetail(request $request){
 
