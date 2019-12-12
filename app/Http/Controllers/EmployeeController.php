@@ -62,9 +62,13 @@ class EmployeeController extends Controller
             $jobTitle = $request->input('jobTitle');
             $ReportTo = $_SESSION['user'];
 
-            if ($Enumber===null or $Fname===null or $Lname===null or $extension===null or $email===null or $officeCode===null or $jobTitle===null){
+            if ($Enumber===null or $Fname===null or $Lname===null or $extension===null or $email===null or $officeCode===null or $jobTitle===null or $pass===null){
                 return redirect()->back()->with('nodata','Please try again');
             }else{
+                 if($jobTitle == 'Job Title' or $officeCode == 'OfficeCode'){
+                    return redirect()->back()->with('nodata','Please try again');
+                 }
+
                 DB::table('employees')->insert(
                     ['employeeNumber' => $Enumber,
                     'firstName' => $Fname,

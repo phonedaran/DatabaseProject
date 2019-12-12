@@ -61,7 +61,7 @@
             </header>
         </div>
     </div>
-  
+
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
         <?php
@@ -113,12 +113,17 @@
                 @foreach ($customers as $cus)
                     <form action="customer/view" method="get">
                         <input type="hidden" value={{$cus->customerNumber}} name="number">
-                        <button class="btn btn-lg btn-secondary btn-block col-md-14" type="submit">
-                            <div class="row"><div class="col-md-10" style="text-align :left;">
-                                <h3> {{$cus->customerName}}</h3>
-                            </div>
-                            <div class="col" style="text-align :right;">
-                                <h3>{{$cus->point}}</h3>
+                        <button class="btn btn-lg btn-secondary btn-block col-md-18" type="submit">
+                            <div class="row">
+                                <div class="col-md-1" style="text-align :left;">
+                                    <h3> {{$cus->customerNumber}}</h3>
+                                </div>
+                                <div class="col" style="text-align :left;">
+                                    <h4> {{$cus->customerName}}</h4>
+                                </div>
+                                <div class="col" style="text-align :right;">
+                                    <h4>{{$cus->point}}</h4>
+                                </div>
                             </div>
                         </button>
                     </form>
@@ -136,10 +141,6 @@
             <p class="float-right">
                 <a href="#">Back to top</a>
             </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

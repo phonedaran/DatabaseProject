@@ -183,12 +183,21 @@
       <td>
       <select class="custom-select" name=job value={{$job}} >
               <option selected>{{$job}}</option>
-              <option value="1">VP Sales</option>
-              <option value="2">VP Marketing</option>
+              @if($jobTitle == 'President')
+              <option value="VP Sales">VP Sales</option>
+              <option value="VP Marketing">VP Marketing</option>
               <option value="3">Sales Manager (APAC)</option>
               <option value="4">Sale Manager (EMEA)</option>
               <option value="5">Sales Manager (NA)</option>
-              <option value="6">Sales Rep</option>
+              <option value="Sales Rep">Sales Rep</option>
+          @elseif($jobTitle == 'VP Sales')
+              <option value="3">Sales Manager (APAC)</option>
+              <option value="4">Sale Manager (EMEA)</option>
+              <option value="5">Sales Manager (NA)</option>
+              <option value="Sales Rep">Sales Rep</option>
+          @else
+              <option value="Sales Rep">Sales Rep</option>
+          @endif
             </select>
       </td>
     </tr>
@@ -215,10 +224,6 @@
             <p class="float-right">
                 <a href="#">Back to top</a>
             </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -128,6 +128,7 @@
                     $des = $result['productDescription'];
                     $stock = $result['quantityInStock'];
                     $price = $result['buyPrice'];
+                    $date = $result['DateAddStock'];
                 }
             }
         ?>
@@ -135,9 +136,16 @@
     <div class="container col-md-9">
     <form method="get" >
     <h3>Add Stock</h3>
-    <div class="col-md-4 mb-5">
-        <input class="form-control" type="text" name=add ><br>
+    <div class="row">
+        <div class="col-md-4 mb-5">
+            <input class="form-control" type="text" name=add ><br>
+        </div>
+        @if ($date != null)
+            <h3> Last update stock : {{$date}}</h3>
+        @endif
+
     </div>
+
     <label for="name"><h3>Update Product</h3></label>
     <table class="table table-striped">
   <thead class="thead-dark">
@@ -216,15 +224,12 @@
 
     </main>
 <br>
-    <footer class="text-muted">
+
+<footer class="text-muted">
         <div class="container">
             <p class="float-right">
                 <a href="#">Back to top</a>
             </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

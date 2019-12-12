@@ -165,15 +165,19 @@
                     </div>
 
                     <div class="mb-3">
-                        <select class="custom-select" name=jobTitle id="jobTitle">
+                        <select class="custom-select" name=jobTitle id="jobTitle" >
                             <option selected>Job Title</option>
                             @if($jobTitle == 'President')
                                 <option value="VP Sales">VP Sales</option>
                                 <option value="VP Marketing">VP Marketing</option>
-                                <option value="Sales Manager">Sales Manager</option>
+                                <option value="3">Sales Manager (APAC)</option>
+                                <option value="4">Sale Manager (EMEA)</option>
+                                <option value="5">Sales Manager (NA)</option>
                                 <option value="Sales Rep">Sales Rep</option>
                             @elseif($jobTitle == 'VP Sales')
-                                <option value="Sales Manager">Sales Manager</option>
+                                <option value="3">Sales Manager (APAC)</option>
+                                <option value="4">Sale Manager (EMEA)</option>
+                                <option value="5">Sales Manager (NA)</option>
                                 <option value="Sales Rep">Sales Rep</option>
                             @else
                                 <option value="Sales Rep">Sales Rep</option>
@@ -200,10 +204,6 @@
             <p class="float-right">
                 <a href="#">Back to top</a>
             </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap?
-                <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
-                <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
         </div>
     </footer>
 
