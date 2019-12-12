@@ -12,7 +12,6 @@ class OrderController extends Controller
     /* ALTER TABLE orderdetails ADD amount decimal(10,2) */
     /* ALTER TABLE orderes ADD totalAmount decimal(10,2) */
     /* UPDATE orderdetails SET amount = quantityOrdered*priceEach */
-
     public function keyOrder(){
         session_start();
         if(isset($_SESSION['user'])){
@@ -54,6 +53,7 @@ class OrderController extends Controller
         }
 
     }
+
     public function orderDetail(){
         session_start();
         if(isset($_SESSION['user'])){
@@ -153,7 +153,7 @@ class OrderController extends Controller
                 FROM orderdetails
                 WHERE orderdetails.orderNumber = orders.orderNumber)
                 ")]);
-            
+
         // session_start();
         $jobTitle = $_SESSION['job'];
 

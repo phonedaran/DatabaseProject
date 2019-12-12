@@ -9,17 +9,9 @@ use App\Product;
 class ViewController extends Controller
 {
     function index(){
-
+        session_start();
         $products = Product::all();
         return view('products.productdetail', ['products'=>$products]);
     }
 
-    function detail(){
-        if(isset($_SESSION['user'])){
-            $products = Product::all();
-            return view('products.loginproductdetail', ['products'=>$products]);
-        }else{
-            return redirect('/main');
-        }
-    }
 }

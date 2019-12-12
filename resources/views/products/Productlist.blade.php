@@ -89,61 +89,59 @@
         </header>
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
+        <form action="product/filter" method="gets" class="form-inline">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                    <div class="list-group py-3 d-none d-md-inline-block">
+                    <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Type : </a>
+                    <select name="type" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option value="Any">Any</option>
+                        <option value="Classic Cars">Classic Cars</option>
+                        <option value="Motorcycles">Motorcycles </option>
+                        <option value="Planes">Planes</option>
+                        <option value="Ships">Ships</option>
+                        <option value="Trains">Trains</option>
+                        <option value="Trucks and Buses">Trucks and Buses</option>
+                        <option value="Vintage Cars">Vintage Cars</option>
+                    </select>
+                </div>
 
-            <form action="productlist/loginfilter" method="POST" class="form-inline">
-                <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <div class="list-group py-3 d-none d-md-inline-block">
-                        <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Type : </a>
-                        <select name="type" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
-                            <option value="Any">Any</option>
-                            <option value="Classic Cars">Classic Cars</option>
-                            <option value="Motorcycles">Motorcycles </option>
-                            <option value="Planes">Planes</option>
-                            <option value="Ships">Ships</option>
-                            <option value="Trains">Trains</option>
-                            <option value="Trucks and Buses">Trucks and Buses</option>
-                            <option value="Vintage Cars">Vintage Cars</option>
-                        </select>
-                    </div>
-                    <div class="list-group py-3 d-none d-md-inline-block">
-                        <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Scale : </a>
-                        <select name="scale" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
-                            <option value="Any">Any </option>
-                            <option value="1:10">1:10</option>
-                            <option value="1:12">1:12</option>
-                            <option value="1:18">1:18</option>
-                            <option value="1:24">1:24</option>
-                            <option value="1:32">1:32</option>
-                            <option value="1:50">1:50</option>
-                            <option value="1:72">1:72</option>
-                            <option value="1:700">1:700</option>
-                        </select>
-                    </div>
-                    <div class="list-group py-3 d-none d-md-inline-block">
-                    <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Vendor : </a>
-                            <select name="vendor" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option value="Any">Any </option>
-                                <option value="Autoart Studio Design">Autoart Studio Design </option>
-                                <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
-                                <option value="Classic Metal Creations">Classic Metal Creations </option>
-                                <option value="Exoto Designs">Exoto Designs </option>
-                                <option value="Gearbox Collectibles">Gearbox Collectibles </option>
-                                <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
-                                <option value="Min Lin Diecast">Min Lin Diecast </option>
-                                <option value="Motor City Art Classics">Motor City Art Classics </option>
-                                <option value="Red Start Diecast">Red Start Diecast </option>
-                                <option value="Second Gear Diecast">Second Gear Diecast </option>
-                                <option value="Studio M Art Models">Studio M Art Models </option>
-                                <option value="Unimax Art Galleries">Unimax Art Galleries </option>
-                                <option value="Welly Diecast Productions">Welly Diecast Productions </option>
-                            </select>
-                    </div>
-                    <div class="list-group py-2 d-none d-md-inline-block">
+                <div class="list-group py-3 d-none d-md-inline-block">
+                    <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Scale : </a>
+                    <select name="scale" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option value="Any">Any </option>
+                        <option value="1:10">1:10</option>
+                        <option value="1:12">1:12</option>
+                        <option value="1:18">1:18</option>
+                        <option value="1:24">1:24</option>
+                        <option value="1:32">1:32</option>
+                        <option value="1:50">1:50</option>
+                        <option value="1:72">1:72</option>
+                        <option value="1:700">1:700</option>
+                    </select>
+                </div>
+
+                <div class="list-group py-3 d-none d-md-inline-block">
+                        <a class="my-1 mr-2" for="inlineFormCustomSelectPref">Vendor : </a>
+                                <select name="vendor" class="custom-select my-0 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option value="Any">Any </option>
+                                    <option value="Autoart Studio Design">Autoart Studio Design </option>
+                                    <option value="Carousel DieCast Legends">Carousel DieCast Legends </option>
+                                    <option value="Classic Metal Creations">Classic Metal Creations </option>
+                                    <option value="Exoto Designs">Exoto Designs </option>
+                                    <option value="Gearbox Collectibles">Gearbox Collectibles </option>
+                                    <option value="Highway 66 Mini Classics">Highway 66 Mini Classics </option>
+                                    <option value="Min Lin Diecast">Min Lin Diecast </option>
+                                    <option value="Motor City Art Classics">Motor City Art Classics </option>
+                                    <option value="Red Start Diecast">Red Start Diecast </option>
+                                    <option value="Second Gear Diecast">Second Gear Diecast </option>
+                                    <option value="Studio M Art Models">Studio M Art Models </option>
+                                    <option value="Unimax Art Galleries">Unimax Art Galleries </option>
+                                    <option value="Welly Diecast Productions">Welly Diecast Productions </option>
+                                </select>
+                        </div>
+                        <div class="list-group py-2 d-none d-md-inline-block">
                         <input type="submit" class="btn btn-secondary" name="view" value="Filter" >
-                        <a class="list-group py-2 d-none d-md-inline-block" href="{{url('/product/add')}}">
-                            <button type="button" class="btn btn-success">ADD</button>
-                        </a>                   
-                    </div>
+
         </form>
     </nav>
     <div class="container">
@@ -187,7 +185,6 @@
                                                     <input type="hidden" value={{$product->productCode}} name="code">
                                                     <input type="submit" class="btn btn-sm btn-outline-secondary" name="view" value="View" >
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>

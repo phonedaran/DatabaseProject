@@ -89,7 +89,7 @@
         </header>
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ;">
-        <form action="productlist/filter" method="get">
+        <form action="product/filter" method="gets">
             <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <div class="py-2 d-none d-md-inline-block">
                     <a>Product Filter</a>
@@ -156,16 +156,6 @@
     </div>
 
     <main role="main">
-
-        <?php
-            //for test
-            session_start();
-            if(isset($_SESSION['user'])){
-                //echo $_SESSION['user'];
-            }else{
-                //echo "No user";
-            }
-        ?>
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">

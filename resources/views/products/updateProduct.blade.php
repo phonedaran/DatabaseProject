@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -8,19 +7,18 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product Detail</title>
-
+    <title>updateProduct</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-fixed/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/product/">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+
+    <link href="forcreate.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -46,7 +44,7 @@
 </head>
 
 <body>
-    <div class="text-white bg-dark">
+<div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -57,26 +55,24 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                            @if(!isset($_SESSION['user']))
-                                <a class="btn btn-sm btn-outline-danger" href="{{ url('/login') }}">Log in</a>
-                            @endif
-                        </div>
+                        <a class="text-muted" href="#"></a>
+                    </div>
                 </div>
             </div>
         </header>
     </div>
-    <nav>
-        @if(isset($_SESSION['user']))
+
+    <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
             <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
                 <a class="py-2 d-none d-md-inline-block"></a>
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  style="color:dark blue">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:dark blue">
                     <?php
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname'];
-                        $jobTitle = $_SESSION['job'];
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
                     ?>
-                        <b>{{$Fname}} &nbsp {{$Lname}}</b>
+                    <b>{{$Fname}} &nbsp {{$Lname}}</b>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
@@ -95,13 +91,32 @@
                     <a class="dropdown-item" href="{{ url('/main/logout') }}">Log out</a>
                 </div>
             </div>
-        @endif
+        </nav>
 
-    </nav>
 
+
+
+    @if (\Session::has('null'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Try again!</strong> Please complete all fields.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (\Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Well done!</strong> Update complete.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
     <main role="main">
-        <?php
+
+      <?php
             $code = $_GET['code'];
             $jsonDecode = json_Decode($products,true);
             foreach ($jsonDecode as $result) {
@@ -117,46 +132,90 @@
             }
         ?>
 
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-6 shadow-sm">
-                            {{-- fix path later --}}
+    <div class="container col-md-9">
+    <form method="get" >
+    <h3>Add Stock</h3>
+    <div class="col-md-4 mb-5">
+        <input class="form-control" type="text" name=add ><br>
+    </div>
+    <label for="name"><h3>Update Product</h3></label>
+    <table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Code</th>
+      <td><input type="hidden"  name="code" value="{{$code}}">{{$code}}</td>
+    </tr>
 
-                            <img src='../images/product/<?php echo str_replace('/', '', str_replace(':', '', $name)); ?>.jpg'
-                            onerror="this.src='../images/not.png'" width="100%" height="100%"  />
+    <tr>
+      <th scope="row">Name</th>
+      <td><textarea rows="1" style="width:100%"  name=name value={{$name}}>{{$name}}</textarea></td>
+    </tr>
 
-                            <div class="card-body">
-                            <h4 class="card-text">{{$name}}<h4>
-                            </div>
-                        </div>
-                    </div>
+    <tr>
+      <th scope="row">Product Line</th>
+      <td><input type="hidden"  name="line" value="{{$line}}">{{$line}}</td>
+    </tr>
 
-                    <div class="col-md-6">
-                            <div class="card-body">
-                                <p class="card-text">{{$des}}
-                                </p>
-                                <br>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <button class="w3-button w3-red" input type='button' onclick="del('qtyTotal',{{$price}})" value='-'>-</button>
-                                    <input id="qtyTotal" type='text' value="1"/>
-                                    <button class="w3-button w3-black" input type='button' onclick="add('qtyTotal',{{$price}})" value='+'>+</button>
-                                </div>
-                            </div>
-                            <br>
-                            <h4>price :
-                                    <input id="priceTotal" type='text' value="{{$price}}" size="9" readonly/>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
+    <tr>
+      <th scope="row">Scale</th>
+      <td>
+      <select class="custom-select" name=scale value={{$scale}} >
+              <option selected>{{$scale}}</option>
+              <option value="1:10">1:10</option>
+              <option value="1:12">1:12</option>
+              <option value="1:18">1:18</option>
+              <option value="1:24">1:24</option>
+              <option value="1:32">1:32</option>
+              <option value="1:50">1:50</option>
+              <option value="1:72">1:72</option>
+              <option value="1:100">1:100</option>
+            </select>
+      </td>
+    </tr>
 
-            </div>
-        </div>
+    <tr>
+      <th scope="row">Vendor</th>
+      <td><textarea rows="1" style="width:100%" name=vendor value={{$vendor}}>{{$vendor}}</textarea></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Description</th>
+      <td><textarea rows="3" style="width:100%"  name=des value={{$des}}>{{$des}}</textarea>
+    </tr>
+
+    <tr>
+      <th scope="row">Quantity In Stock</th>
+      <td><input type="hidden"  name="instock" value="{{$stock}}">{{$stock}}</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Buy Prise</th>
+      <td><input type="text"  name="price" value="{{$price}}"></td>
+    </tr>
+
+    <tr>
+    <td></td>
+    <td schop="row" style="text-align : right;">
+    <input type="hidden"  name="code" value="{{$code}}" ><button class="btn btn-outline-primary" onClick="this.form.action='{{ URL::to('/UpdatePd/check') }}'; submit()" > Save </button>
+    <input type="button" class="btn btn-outline-danger" value="Cancle" onClick="this.form.action='{{ URL::to('/') }}'; submit()">
+    </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+</div>
+
+
     </main>
-
+<br>
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
@@ -179,29 +238,6 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-    <script>
-        function add(id,p) {
-            let x = Number(document.getElementById('qtyTotal').value);
-            let result = x + 1;
-            let price = result*p
-            document.getElementById('qtyTotal').value = result;
-            document.getElementById('priceTotal').value = price.toFixed(2);
-        }
-        function del(id, p) {
-            let x = Number(document.getElementById('qtyTotal').value);
-            let result = x - 1;
-            let price = result*p
-            if(result < 0){
-                document.getElementById('qtyTotal').value = 0;
-                document.getElementById('priceTotal').value = 0;
-            }else{
-                document.getElementById('qtyTotal').value = result;
-                document.getElementById('priceTotal').value = price.toFixed(2);
-            }
-        }
-    </script>
-
 </body>
 
 </html>

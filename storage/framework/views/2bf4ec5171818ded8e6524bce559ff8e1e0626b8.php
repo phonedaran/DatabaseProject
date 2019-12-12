@@ -43,31 +43,38 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#"></a>
+                        <a class="text-muted" href="#">
                     </div>
                 </div>
-            </header>
-        </div>
+            </div>
+        </header>
     </div>
-
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block"></a>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-                <?php 
-                    session_start();
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  style="color:dark blue">
+                <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
                 ?>
                     <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-                        
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/success')); ?>">Product</a> -->
-            <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a> -->
-        </div>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                <?php if($jobTitle != 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                <?php endif; ?>
+                <?php if($jobTitle == 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <?php if($jobTitle == 'VP Marketing'): ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+            </div>
         </div>
     </nav>
     <!-- header -->
@@ -101,16 +108,17 @@
 
     <!-- form for filling order -->
     <div class="container">
-        <form action="<?php echo e(URL::to('/keyOrder/check')); ?> ">
+        <form method="get" action="<?php echo e(URL::to('/keyOrder/check')); ?> ">
             <strong><h2>ORDER</h2></strong>
             <p><span class="error">* required field</span></p>
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>
-                <input type="text" name="customerNumber" class="form-control" placeholder="Enter Customer Number">
-            </div>
-            <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
+                <select class="form-control" id="customerNumber" name="customerNumber">
+                    <option selected>Choose ...</option>
+                    <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option><?php echo e($customer->customerNumber); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
             </div>
             <div class="form-group">
                 <label>Order Date</label> <span class="error">*</span>
@@ -124,7 +132,7 @@
                 <label>Comment</label>
                 <textarea rows="3" name="comment" class="form-control" placeholder="Enter Comment"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-outline-success">ADD ORDER</button>
         </form>
     </div>
     <!-- form for filling order -->

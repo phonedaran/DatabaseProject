@@ -23,6 +23,28 @@
         }
 
         tr:hover {background-color:#f5f5f5;}
+
+        .scrollbar {
+            margin-left: 0px;
+            float: left;
+            height: 400px;
+            background: #fff;
+            overflow-y: scroll;
+            margin-bottom: 0px;
+        }
+        .force-overflow {
+            min-height: 300px;
+        }
+        .scrollbar-default::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+        .scrollbar-default::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #2BBBAD;
+        }
+
     </style>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -43,7 +65,7 @@
 </head>
 <body>
 <!-- header -->
-<div class="text-white bg-dark">
+        <div class="text-white bg-dark">
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
@@ -54,53 +76,48 @@
                         <h1 class="display-4">K I K K O K</h1>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#"></a>
+                        <a class="text-muted" href="#">
                     </div>
                 </div>
-            </header>
-        </div>
+            </div>
+        </header>
     </div>
-
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block"></a>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"  style="color:dark blue">
-                <?php 
-                    session_start();
-                        $Fname = $_SESSION['Fname'];
-                        $Lname = $_SESSION['Lname']; 
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  style="color:dark blue">
+                <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
                 ?>
                     <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
-                        
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
-            <!-- <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a> -->
-        </div>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                <?php if($jobTitle != 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                <?php endif; ?>
+                <?php if($jobTitle == 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <?php if($jobTitle == 'VP Marketing'): ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+            </div>
         </div>
     </nav>
     <!-- header -->
 
-
-    <!-- alert  -->
-    <?php if(\Session::has('success')): ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> The order updated.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <!-- alert  -->
-
-
     <!-- show order list -->
     <div class="container">
-        <strong><h2>ORDER LISTS</h2></strong>
-        
-        <table style="width:100%">
-            <thead>
+            <h2>ORDER LISTS</h2>
+
+        <table class="table table-striped" style="width:100%">
+                <thead class="thead-dark">
                 <tr>
                     <th scope="col" >Order Number</th>
                     <th scope="col" >Customer Number</th>
@@ -120,11 +137,11 @@
                     <td schop="row"><?php echo e($order->customerNumber); ?></td>
                     <td schop="row"><?php echo e($order->orderDate); ?></td>
                     <td schop="row"><?php echo e($order->requiredDate); ?></td>
-                    
+                    <td schop="row"><?php echo e($order->shippedDate); ?></td>
+
                         <form method="get">
                             <div class="form-group">
                                 <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo e($order->orderNumber); ?>">
-                                <td schop="row"><input type="date" id="shippedDate" name="shippedDate" value="<?php echo e($order->shippedDate); ?>"></td>
                                 <td schop="row">
                                     <select class="form-control" id="status" name="status">
                                         <option><?php echo e($order->status); ?></option>
@@ -134,16 +151,20 @@
                                             <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
-                                </td>    
+                                </td>
                                 <td schop="row"><textarea rows="3"  id="comment" name="comment"><?php echo e($order->comments); ?></textarea></td>
-                                <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/orderlist/updateOrder')); ?>'; submit()">
-                                <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='<?php echo e(URL::to('/orderlist/detail')); ?>'; submit()"> 
+                                <?php if($jobTitle == 'Sales Rep'): ?>
+                                    <td schop="row"><input type="button" class="btn btn-outline-success" value="Save" onClick="this.form.action='<?php echo e(URL::to('/orderlist/updateOrder')); ?>'; submit()">
+                                <?php else: ?>
+                                    <td schop="row">
+                                <?php endif; ?>
+                                <td schop="row"><input type="button" class="btn btn-outline-primary" value="More" onClick="this.form.action='<?php echo e(URL::to('/orderlist/detail')); ?>'; submit()">
                             </div>
                         </form>
                 </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
-        </table>        
+        </table>
     </div>
     <!-- show order list -->
 

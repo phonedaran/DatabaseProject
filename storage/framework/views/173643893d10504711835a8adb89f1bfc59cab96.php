@@ -45,14 +45,6 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                        </a>
-                        <a class="btn btn-sm btn-outline-danger" href="<?php echo e(url('/login')); ?>">Log in</a>
                     </div>
                 </div>
             </div>
@@ -60,21 +52,54 @@
     </div>
     <nav class="site-header sticky-top py-1" style="background-color:white ; border-top-color:black;">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" style="color:black"></a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#" style="color:black"></a>
+            <a class="py-2 d-none d-md-inline-block"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"  style="color:dark blue">
+                <?php
+                    $Fname = $_SESSION['Fname'];
+                    $Lname = $_SESSION['Lname'];
+                    $jobTitle = $_SESSION['job'];
+                ?>
+                    <b><?php echo e($Fname); ?> &nbsp <?php echo e($Lname); ?></b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo e(url('main/customer')); ?>">Customer</a>
+                <?php if($jobTitle != 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/main/employee')); ?>">Employee</a>
+                <?php endif; ?>
+                <?php if($jobTitle == 'Sales Rep'): ?>
+                    <a class="dropdown-item" href=" <?php echo e(url('/keyOrder')); ?>">Key Order</a>
+                <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/orderlist')); ?>">Order list</a>
+                <?php if($jobTitle == 'VP Marketing'): ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/promotion')); ?>">Promotion</a>
+                <?php endif; ?>
+                    <a class="dropdown-item" href="<?php echo e(url('/main/logout')); ?>">Log out</a>
+            </div>
         </div>
     </nav>
     <!-- header -->
 
     <!-- alert  -->
+    <?php if(\Session::has('promo')): ?>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Wow!</strong> The product has "Get 1 buy 1" promotion.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
     <?php if(\Session::has('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Please fill order detail.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
+    <?php if(\Session::has('complete')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> The order updated.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -88,42 +113,30 @@
             </button>
         </div>
     <?php endif; ?>
-    <?php if(\Session::has('warning')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try agian!</strong> There is no this order number.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
-    <?php if(\Session::has('code')): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Try again!</strong> There is no this product code.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php endif; ?>
     <!-- alert  -->
 
     <!-- form for filling detail -->
     <div class="container">
-        <form action="<?php echo e(URL::to('/keyOrder/orderDetail/check')); ?> ">
+            <form method="get" action="<?php echo e(URL::to('/keyOrder/orderDetail/check')); ?> ">
             <strong><h2>ORDER DETAILS</h2></strong>
+            <h5>YOUR ORDER NUMBER : <?php echo e($orderNumber); ?></h5>
             <p><span class="error">* required field</span></p>
+            <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo e($orderNumber); ?>">
             <div class="form-group">
-                <label>Order Number</label> <span class="error">*</span>
-                <input type="text" name="orderNumber" class="form-control" placeholder="Enter Order Number">
-            </div>
-            <div class="form-group">
-                <label>Product Code</label> <span class="error">*</span>
-                <input type="text" name="productCode" class="form-control" placeholder="Enter Product Code">
+            <label>Product</label> <span class="error">*</span>
+            <select class="form-control" id="productCode" name="productCode">
+                <option selected>Choose ...</option>
+                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($product->productCode); ?>">Code : <?php echo e($product->productCode); ?> , Name : <?php echo e($product->productName); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
             </div>
             <div class="form-group">
                 <label>Quantity Ordered</label> <span class="error">*</span>
-                <input type="number" name="quantity" class="form-control">
+                <input type="number" name="quantity" class="form-control" min=0>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="button" class="btn btn-outline-success" value="ADD" onClick="this.form.action='<?php echo e(URL::to('/keyOrder/orderDetail/check')); ?>'; submit()">
+            <input type="button" class="btn btn-outline-primary" value="View Order list" onClick="this.form.action='<?php echo e(URL::to('/orderlist')); ?>'; submit()">
         </form>
     </div>
     <!-- form for filling detail -->

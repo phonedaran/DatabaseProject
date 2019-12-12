@@ -128,11 +128,11 @@
             <div class="form-group">
                 <label>Customer Number</label> <span class="error">*</span>
                 <select class="form-control" id="customerNumber" name="customerNumber">
-                    <option selected>Choose ...</option>
-                    @foreach ($customers as $customer)
-                        <option value="{{$customer->customerNumber}}">Customer Number : {{$customer->customerNumber}}</option>
-                    @endforeach
-                </select>
+                        <option selected>Choose ...</option>
+                        @foreach ($customers as $customer)
+                            <option value="{{$customer->customerNumber}}">Customer Number : {{$customer->customerNumber}}</option>
+                        @endforeach
+                    </select>
             </div>
             <div class="form-group">
                 <label>Cheque Number</label> <span class="error">*</span>

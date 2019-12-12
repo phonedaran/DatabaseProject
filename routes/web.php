@@ -20,7 +20,7 @@ Route::get('/main/success','MainController@onLogin');     // for already login m
 Route::get('main/logout','MainController@logout');      //main(public)
 
 //Employee
-Route::get('main/employee','EmployeeController@showEmployees');     //ok
+Route::get('main/employee','EmployeeController@showEmployees');
 Route::get('main/addemployee', function () {
     session_start();
     $jobTitle = $_SESSION['job'];
@@ -28,17 +28,17 @@ Route::get('main/addemployee', function () {
 });
 Route::get('employee/add/check','EmployeeController@addEmployee');
 Route::get('main/employee/fire','EmployeeController@fireEmployee');
-Route::get('employee/edit','EmployeeController@editEmployee'); //edit
+Route::get('employee/edit','EmployeeController@editEmployee');
 Route::get('employee/edit/check','EmployeeController@editCheckEmp');
 
 //Product
-Route::get('/productlist/view','ViewController@index');         //public
-Route::get('/productlist/filter','ProductController@filter');                               //fix
-Route::get('/product/add','ProductController@add');     //addproduct(login)
+Route::get('/productlist/view','ViewController@index');
+Route::get('/product/filter','ProductController@filter');
+Route::get('/product/add','ProductController@add');
 Route::get('/product/add/check','ProductController@addCheck');
 Route::get('/product/delete','ProductController@delete');
-Route::get('/productlist/detail','ViewController@detail');
-Route::post('/productlist/loginfilter','ProductController@filterafterl');                   //fix
+Route::get('/UpdatePd','ProductController@update');
+Route::get('/UpdatePd/check','ProductController@checkupdate');
 
 //Order
 Route::get('/keyOrder','OrderController@keyOrder');
