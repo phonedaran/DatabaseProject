@@ -130,25 +130,35 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
-                <div class="row">
-                    @if ($type != 'Any')
-                        <h3>Type : {{$type}}</h3>
+
+                    <div class="row">
+                        @if ($type != 'Any')
+                        <h3>Type : {{$type}}&emsp;</h3>
                     @endif
-                    @if ($scale != 'Any')
-                        <h3>Scale : {{$scale}}</h3>
+                    </div>
+                    <div class="row">
+                        @if ($scale != 'Any')
+                        <h3>Scale : {{$scale}}&emsp;</h3>
                     @endif
-                    @if ($vendor != 'Any')
-                        <h3>Vendor : {{$vendor}}</h3>
+                    </div>
+                    <div class="row">
+                        @if ($vendor != 'Any')
+                        <h3>Vendor : {{$vendor}}&emsp;</h3>
                     @endif
-                    @if( $count > 0)
+                    </div>
+                    <div class="row">
+                        @if( $count > 0)
                         <h3>Result have {{$count}} result&emsp;</h3>
                     @else
                         <h3>Don't have any result&emsp;</h3>
                     @endif
+                    </div>
+                <div class="row">
                     <button type="button" class="btn btn-danger">
                         <a href="{{ url('/') }}" style="color:white">Clear</a>
                     </button>
-                </div><br>
+                </div>
+                <br>
                 <div class="row">
                     @foreach ($products as $product )
                     <div class="col-md-4">
