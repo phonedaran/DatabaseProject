@@ -158,14 +158,14 @@
                                 <b>{{$user->firstName}} &nbsp {{$user->lastName}}</b>
                             @endforeach
                         </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    @foreach ($User as $user )
-                        <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
-                        <a class="dropdown-item" href="{{url('/main/customer')}}">Customer</a>
-                        @if ($user->jobTitle != 'Sales Rep')
-                            <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
-                        @endif
-                        @if ($user->jobTitle == 'Sales Rep')
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @foreach ($User as $user )
+                                <a class="dropdown-item" href="{{url('/main/success')}}">Product</a>
+                                <a class="dropdown-item" href="{{url('/main/customer')}}">Customer</a>
+                                @if ($user->jobTitle != 'Sales Rep')
+                                    <a class="dropdown-item" href=" {{url('/main/employee')}}">Employee</a>
+                                @endif
+                                @if ($user->jobTitle == 'Sales Rep')
 
                                 <a class="dropdown-item" href=" {{url('/keyOrder')}}">Key Order</a>
                                 <a class="dropdown-item" href=" {{url('/payment')}}">Payment</a>
